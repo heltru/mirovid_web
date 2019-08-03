@@ -34,4 +34,18 @@ class Helper
         }
 
     }
+
+    public static function runConsole($command)
+    {
+
+        $cmd = $command;
+
+        $cmd = "{$cmd} > /dev/null 2>&1 &";
+
+        pclose(popen($cmd, 'r'));
+        return true;
+
+
+
+    }
 }

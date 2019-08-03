@@ -19,6 +19,10 @@ foreach ($video as $name ){
 
 <?php ActiveForm::end() ?>
 
+<br>
+
+<?=\yii\helpers\Html::a('update files to car',['/admin/api/default/update-files-car'])?>
+
 <script>
     $(document).ready(function () {
         $('.video_item').click(function (){
