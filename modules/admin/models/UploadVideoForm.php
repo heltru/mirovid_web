@@ -15,7 +15,7 @@ class UploadVideoForm extends Model
     public function rules()
     {
         return [
-            [['videoFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['videoFile'], 'file', 'skipOnEmpty' => false, /*'extensions' => 'png, jpg'*/],
         ];
     }
 
