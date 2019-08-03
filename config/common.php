@@ -10,7 +10,7 @@ $params = ArrayHelper::merge(
 );
 
 return [
-    'name' => 'NOVA☀VID',
+    'name' => 'MIR☀VID',
     'basePath' => dirname(__DIR__),
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -49,7 +49,8 @@ return [
                     'routePrefix' => 'admin',
                     'rules' => [
                      //   '' => 'block/default/index',
-                        '' => 'block/block-utils/product-of-pop',
+                        //'' => 'block/block-utils/product-of-pop',
+                        '' => 'default/upload-video',
                         '/' => 'admin',
                         '<_m:[\w\-]+>' => '<_m>/default/index',
                         '<_m:[\w\-]+>/<id:\d+>' => '<_m>/default/view',
