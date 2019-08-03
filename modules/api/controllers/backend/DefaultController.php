@@ -79,7 +79,7 @@ class DefaultController extends Controller
 
     public function actionUpdateFilesCar(){
 
-        $cmd = 'cd ' . Yii::$app->params['path_env'].'/mirovid;'.'bash git_pull.sh' ;
+        $cmd = 'cd ' . Yii::$app->params['path_env'].'/mirovid;'.'bash git_push.sh' ;
         Helper::runConsole($cmd);
 
         Yii::$app->session->setFlash('success', $cmd .' Генерация данных запущена!');
