@@ -64,6 +64,35 @@ class CarController extends Controller
         return parent::beforeAction($action);
     }
 
+
+    public function actionListFiles()
+    {
+        \Yii::$app->response->format =  \yii\web\Response::FORMAT_JSON;
+
+        $dir_video = 'mirovid\video';
+        $dir_img = 'mirovid\images';
+
+        $dirs = [$dir_video,$dir_img];
+
+        $list_path = [];
+
+        foreach ($dirs as $dir){
+
+            foreach (scandir($dir) as $file) {
+                $fn = basename($file);
+                $path = $dir . '/' . $fn;
+                $list_path[] = $path;
+            }
+        }
+
+
+
+        return $list_path;
+
+
+    }
+
+
     public function actionNeedUpdate($id){
 
         $car = Car::findOne(['id'=>$id]);
