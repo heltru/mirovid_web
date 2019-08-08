@@ -69,8 +69,8 @@ class CarController extends Controller
     {
         \Yii::$app->response->format =  \yii\web\Response::FORMAT_JSON;
 
-        $dir_video = 'mirovid\video';
-        $dir_img = 'mirovid\images';
+        $dir_video = 'mirovid'.DIRECTORY_SEPARATOR.'video';
+        $dir_img = 'mirovid'.DIRECTORY_SEPARATOR.'images';
 
         $dirs = [$dir_video,$dir_img];
 
@@ -80,7 +80,7 @@ class CarController extends Controller
 
             foreach (scandir($dir) as $file) {
                 $fn = basename($file);
-                $path = $dir . '/' . $fn;
+                $path = $dir . DIRECTORY_SEPARATOR . $fn;
                 $list_path[] = $path;
             }
         }
