@@ -24,6 +24,7 @@ return [
     ],
 
     'components' => [
+
         'request' => [
             'baseUrl' => ''
         ],
