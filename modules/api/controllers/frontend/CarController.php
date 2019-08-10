@@ -90,7 +90,7 @@ class CarController extends Controller
         $list_str = 'Armin-van-Buuren-vs-Sophie-Ellis-Bextor-Not-Giving-Up-On-Love-Official-Music-Video-YouTube.mp4,Battlefield 1 In the Name of the Tsar Official Teaser Trailer(1).mp4,Crash Team Racing Nitro-Fueled - Adventure Mode Gameplay _ PlayStation Underground.mp4,Eldzhey-Feduk-Rozovoe-vino-YouTube.mp4,FEDUK-Moryak-YouTube.mp4,Gran Turismo Sport - Gameplay Unveil Trailer   PS4.144p.mp4,Gran Turismo Sport - Gameplay Unveil Trailer   PS4.720p.mp4,Armin-van-Buuren-vs-Sophie-Ellis-Bextor-Not-Giving-Up-On-Love-Official-Music-Video-YouTube.webm,Battlefield 1 In the Name of the Tsar Official Teaser Trailer(1).webm,Crash Team Racing Nitro-Fueled - Adventure Mode Gameplay _ PlayStation Underground.webm,Eldzhey-Feduk-Rozovoe-vino-YouTube.webm,FEDUK-Moryak-YouTube.webm,Gran Turismo Sport - Gameplay Unveil Trailer   PS4.144p_1.webm,Gran Turismo Sport - Gameplay Unveil Trailer   PS4.720p_7.webm';
         $arr = explode(',',$list_str);
         foreach ($arr as $item){
-            $list_path[] = 'mirovid/video' . '/' . $item;
+            $list_path[] = 'video' . '/' . $item;
         }
 
 
