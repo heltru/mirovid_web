@@ -21,6 +21,7 @@ class DefaultController extends Controller
 
     public function actionIndex()
     {
+        ex(4);
         $this->layout = 'landing';
         return $this->render('landing/view');
     }
