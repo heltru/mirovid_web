@@ -20,6 +20,11 @@ $config = [
             ],
 
             'modules' => [
+                'file' => [
+                    'class' => 'app\modules\file\FileModule',
+                    'controllerNamespace' => 'app\modules\file\controllers\backend',
+                    'viewPath' => '@app/modules/file/views/backend',
+                ],
                 'user' => [
                     'class' => 'app\modules\user\Module',
                     'controllerNamespace' => 'app\modules\user\controllers\backend',
@@ -70,6 +75,11 @@ $config = [
             ]
         ],
 
+        'file' => [
+            'class' => 'app\modules\file\FileModule',
+            'controllerNamespace' => 'app\modules\file\controllers\frontend',
+            'viewPath' => '@app/modules/file/views/frontend',
+        ],
          'test' => [
             'class' => 'app\modules\test\TestModule',
             'controllerNamespace' => 'app\modules\test\controllers\frontend',

@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "show_register".
  *
  * @property int $id
- * @property int $msg_id
+ * @property int $file_id
  * @property string $date_sh
  * @property int $lat
  * @property int $long
@@ -30,8 +30,8 @@ class ShowRegister extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['msg_id', 'date_sh'], 'required'],
-            [['msg_id', 'time'], 'integer'],
+            [['file_id', 'date_sh'], 'required'],
+            [['file_id', 'time'], 'integer'],
             [[  'lat', 'long' ], 'number'],
 
             [['date_sh'], 'safe'],
@@ -45,7 +45,7 @@ class ShowRegister extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'msg_id' => 'Msg ID',
+            'file_id' => 'Msg ID',
             'date_sh' => 'Date Sh',
             'lat' => 'Lat',
             'long' => 'Long',

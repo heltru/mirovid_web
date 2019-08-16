@@ -37,9 +37,16 @@ class RegisterShow
         }
         */
 
+        $reg = new ShowRegister();
+        $reg->date_sh = HelperModule::convertDateToDatetime();
+        $reg->lat = $data['lat'];
+        $reg->long = $data['long'];
+        $reg->msg_id = $data['file_id'];
+        $reg->save();
+
+
+        /*
         $msg = Msg::find()->joinWith(['block_r.account_r'])->where(['msg.id'=> $this->show_register->msg_id])->one();
-
-
 
         if ($msg !== null){
             $app = new AppPrice();
@@ -85,7 +92,7 @@ class RegisterShow
 
 
         }
-
+*/
         return true;
     }
 

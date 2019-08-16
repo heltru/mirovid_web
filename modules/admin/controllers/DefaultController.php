@@ -3,6 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use app\modules\admin\models\UploadVideoForm;
+use app\modules\app\fileupload\FileUpload;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use Yii;
@@ -20,15 +21,12 @@ class DefaultController extends Controller
     }
 
     public function actionUploadVideo(){
-        $model = new UploadVideoForm();
 
-        if (Yii::$app->request->isPost) {
-            $model->videoFile = UploadedFile::getInstance($model, 'videoFile');
-            if ($model->upload()) {
-                Yii::$app->session->setFlash('success','Video upload !');
+        $app = new FileUpload();
+        $app->begin();
 
-            }
-        }
+        $model = $app->getModelHtmlForm();
+
 
         return $this->render('upload-video',['model'=>$model,'video'=>$this->getListVideo()]);
     }

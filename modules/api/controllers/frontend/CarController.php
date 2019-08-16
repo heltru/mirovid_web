@@ -8,6 +8,7 @@ use app\modules\app\app\FormData;
 use app\modules\block\models\Block;
 use app\modules\block\models\BlockMsg;
 use app\modules\car\models\Car;
+use app\modules\file\models\File;
 use app\modules\helper\HelperModule;
 use app\modules\helper\models\Helper;
 use app\modules\order\models\Order;
@@ -126,7 +127,15 @@ class CarController extends Controller
 
 
     public function actionRegisterShow(){
-        $msg_id =  (int) \Yii::$app->request->get('msg_id');
+        $file_name =  (int) \Yii::$app->request->get('file_name');
+
+        $file = File::findOne(['name'=>$file_name]);
+        if ($file !== null){
+            $file_id = $file->id;
+        } else {
+            return [ false ];
+        }
+
         $date_sh =  (int) \Yii::$app->request->get('date_sh');
         $lat = 0;
         $long = 0;
@@ -141,7 +150,7 @@ class CarController extends Controller
         $long =   \Yii::$app->request->get('long');
 
 
-        Logs::log('actionRegisterShow',['msg_id'=>$msg_id,'date_sh'=>$date_sh,'car_id'=>$car_id,'time'=>$time,'lat'=>$lat,'long'=>$long] );
+        Logs::log('actionRegisterShow',['file_id'=>$file_id,'date_sh'=>$date_sh,'car_id'=>$car_id,'time'=>$time,'lat'=>$lat,'long'=>$long] );
 
 
            \Yii::$app->response->format =  \yii\web\Response::FORMAT_JSON;
@@ -152,7 +161,7 @@ class CarController extends Controller
 
 
 
-        $r =  $app->register_show(['msg_id'=>$msg_id,'date_sh'=>$date_sh,'car_id'=>$car_id,'time'=>$time,'lat'=>$lat,'long'=>$long]);
+        $r =  $app->register_show(['file_id'=>$file_id,'date_sh'=>$date_sh,'car_id'=>$car_id,'time'=>$time,'lat'=>$lat,'long'=>$long]);
 
      //   return [  'msg_id'=>$msg_id,'date_sh'=>date("Y-m-d H:i:s", $date_sh), 'car_id'=>$car_id ] ;
 
