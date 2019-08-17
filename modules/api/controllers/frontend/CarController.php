@@ -126,7 +126,11 @@ class CarController extends Controller
     }
 
     public function actionRegisterShow(){
-        $file_name =  (int) \Yii::$app->request->get('file_name');
+
+        \Yii::$app->response->format =  \yii\web\Response::FORMAT_JSON;
+
+
+        $file_name =   \Yii::$app->request->get('file_name');
 
         $file = File::findOne(['path'=>$file_name]);
         if ($file !== null){
@@ -135,9 +139,8 @@ class CarController extends Controller
             return [ false ];
         }
 
-        $date_sh =  (int) \Yii::$app->request->get('date_sh');
-        $lat = 0;
-        $long = 0;
+        $date_sh =   time();
+
         $car_id = (int) \Yii::$app->request->get('car_id');
         $time = Helper::mysql_datetime(); // (int) \Yii::$app->request->get('time');
 
@@ -147,12 +150,18 @@ class CarController extends Controller
 */
         $lat =  \Yii::$app->request->get('lat') ;
         $long =   \Yii::$app->request->get('long');
+        if ($lat === null){
+            $lat = 0;
+        }
+        if ($long === null){
+            $long = 0;
+        }
 
 
-        Logs::log('actionRegisterShow',['file_id'=>$file_id,'date_sh'=>$date_sh,'car_id'=>$car_id,'time'=>$time,'lat'=>$lat,'long'=>$long] );
+//        Logs::log('actionRegisterShow',['file_id'=>$file_id,'date_sh'=>$date_sh,'car_id'=>$car_id,'time'=>$time,'lat'=>$lat,'long'=>$long] );
 
 
-           \Yii::$app->response->format =  \yii\web\Response::FORMAT_JSON;
+
 
         $app = new \app\modules\app\app\RegisterShow();
 

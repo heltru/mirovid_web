@@ -25,7 +25,9 @@ return [
 
     'components' => [
 
-
+        'request' => [
+            'baseUrl' => ''
+        ],
 
         'session' => [
             'class' => 'yii\web\DbSession',

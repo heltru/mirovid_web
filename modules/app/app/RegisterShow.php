@@ -41,7 +41,7 @@ class RegisterShow
         $reg->date_sh = HelperModule::convertDateToDatetime();
         $reg->lat = $data['lat'];
         $reg->long = $data['long'];
-        $reg->msg_id = $data['file_id'];
+        $reg->file_id = $data['file_id'];
         $reg->save();
 
 

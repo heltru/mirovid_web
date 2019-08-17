@@ -137,9 +137,7 @@ $config = [
         ],
     ],
     'components' => [
-        'request' => [
-            'baseUrl' => ''
-        ],
+
         'assetManager' => [
             'bundles' => [
                 'dmstr\web\AdminLteAsset' => [
