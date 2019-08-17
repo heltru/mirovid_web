@@ -125,11 +125,10 @@ class CarController extends Controller
 
     }
 
-
     public function actionRegisterShow(){
         $file_name =  (int) \Yii::$app->request->get('file_name');
 
-        $file = File::findOne(['name'=>$file_name]);
+        $file = File::findOne(['path'=>$file_name]);
         if ($file !== null){
             $file_id = $file->id;
         } else {
