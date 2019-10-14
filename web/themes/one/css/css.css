@@ -30,6 +30,12 @@
     color: #fff ;
     background-color: #000 ;
 }
+.item_h1{
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.191em;
+}
 .item_utp_a{
     background-color: #FF1744;
 }

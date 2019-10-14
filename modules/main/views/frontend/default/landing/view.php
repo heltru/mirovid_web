@@ -15,8 +15,8 @@
 <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
         <div class="container">
-            <br><br>
-            <h1 class="header center red-text.text-darken-4 text-darken- text-lighten-2">Сообщения на авто в Хлынове</h1>
+
+            <h1 class=" header center red-text.text-darken-4 text-darken- text-lighten-2 item_h1">Сообщения на авто в Хлынове</h1>
             <div class="row ">
                 <div class="col s12 m7 ">
                     <h5 class="header col s12 light item_utp ">Новый формат - LED RGB панели - 16М цветов, Яркость 2000 cd/m2, Площать 2048 см2</h5>
@@ -26,29 +26,28 @@
                     <h5 class="header col s12 light item_utp ">Водители ездят по всему городу</h5>
                     <h5 class="header col s12 light item_utp ">Самая разная аудитория</h5>
                 </div>
-                <div class="col s12 m4 ">
-                </div>
-                <div class="col s12 m3 ">
-                    <div class="row">
+
+                <div class="col s12 m5 card  push-m2">
+                    <div class="row card-content">
                         <form  >
                             <div class="row ">
                                 <div class="input-field col s12 ">
                                     <input placeholder="Имя" id="first_name" type="text" class="validate">
-                                    <label style="    font-weight: bold;
+                                    <label style=" color: #515751;   font-weight: bold;
     font-size: 2.4em;" for="first_name">Имя</label>
                                 </div>
                                 <div class="input-field col s12">
                                     <input  placeholder="Телефон" id="last_name" type="text" class="validate">
-                                    <label style="    font-weight: bold;
+                                    <label style="color: #515751;    font-weight: bold;
     font-size: 2.4em;" for="last_name">Телефон</label>
                                 </div>
                                 <div class="input-field col s12">
                                     <input  placeholder="Email" id="Email" type="text" class="validate">
-                                    <label style="    font-weight: bold;
+                                    <label style="color: #515751;    font-weight: bold;
     font-size: 2.4em;" for="email">Email</label>
                                 </div>
                                 <div class="col s12">
-                                    <a class="waves-effect waves-light btn-large deep-orange ">Оставить заявку</a>
+                                    <a style="background-color: #ffd400;color: black;font-weight: bold" class="waves-effect waves-light btn-large   ">Оставить заявку</a>
                                 </div>
                             </div>
 
@@ -130,7 +129,7 @@
         <div class="row">
             <div class="col s12 center">
                 <h3><i class="mdi-content-send brown-text"></i></h3>
-                <h4>Устройство MIROVID LED</h4>
+                <h4>Как работает MIROVID LED</h4>
 
 
             </div>
@@ -173,26 +172,30 @@
                 <form>
                     <div class="row ">
                         <div class="input-field col s12 ">
-                            <input placeholder="Имя" id="first_name" type="text" class="validate">
+                            <input style="color: #515751;    font-weight: bold;
+    font-size: 2.4em;"    type="text" class="validate">
                             <label style="    font-weight: bold;
-    font-size: 2.4em;" for="first_name" class="active">Имя</label>
+    font-size: 2.4em;"   class="active">Имя</label>
                         </div>
                         <div class="input-field col s12">
-                            <input placeholder="Телефон" id="last_name" type="text" class="validate">
+                            <input style="color: #515751;    font-weight: bold;
+    font-size: 2.4em;"    type="text" class="validate">
                             <label style="    font-weight: bold;
-    font-size: 2.4em;" for="last_name" class="active">Телефон</label>
+    font-size: 2.4em;"  class="active">Телефон</label>
                         </div>
                         <div class="input-field col s12">
-                            <input placeholder="Email" id="Email" type="text" class="validate">
+                            <input style="color: #515751;    font-weight: bold;
+    font-size: 2.4em;"    type="text" class="validate">
                             <label style="    font-weight: bold;
-    font-size: 2.4em;" for="email" class="active">Email</label>
+    font-size: 2.4em;"  class="active">Email</label>
                         </div>
                         <div class="input-field col s12">
-                            <textarea id="textarea1" class="materialize-textarea"></textarea>
-                            <label for="textarea1">Текст вопроса</label>
+                            <textarea style="color: #515751;    font-weight: bold;
+    font-size: 2.4em;"   class="materialize-textarea"></textarea>
+                            <label >Текст вопроса</label>
                         </div>
                         <div class="col s12">
-                            <a class="waves-effect waves-light btn-large deep-orange ">Задать вопрос</a>
+                            <a style="background-color: #ffd400;color: black;font-weight: bold"  class="waves-effect waves-light btn-large  ">Задать вопрос</a>
                         </div>
                     </div>
 
@@ -203,11 +206,11 @@
     <div class="parallax"><img src="/themes/one/background3.jpg" alt="Unsplashed background img 3"></div>
 </div>
 
-<footer style=" padding-top: 0;"  class="page-footer teal">
+<footer style=" padding-top: 0;"  class="page-footer white">
 
     <div class="footer-copyright">
-        <div class="container">
-            Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        <div class="container ">
+            <span class="text-gray">  Made by</span> <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
         </div>
     </div>
 </footer>
