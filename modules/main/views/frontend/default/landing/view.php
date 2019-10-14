@@ -146,7 +146,7 @@
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center yellow-text"><i class="material-icons ">local_taxi</i></h2>
-                    <h5 class="center"><span class="item_font_bold"> Показывается</span> на машинах такстистов, курьеров</h5>
+                    <h5 class="center"><span class="item_font_bold"> Показывается</span> на машинах такстистов, курьеров, доставки</h5>
                 </div>
             </div>
 
