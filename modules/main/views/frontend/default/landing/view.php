@@ -215,8 +215,8 @@
     </div>
 </footer>
 <script>
-    $(document).ready(function (){
+// $(document).ready(function (){
         $('#index-banner').height ($( window ).height() );
 
-    });
+    //});
 </script>
