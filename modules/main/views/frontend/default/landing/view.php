@@ -2,13 +2,13 @@
     <div class="nav-wrapper container">
         <a id="logo-container" href="#"  class="brand-logo red-text text-accent-4 item_logo_text"><span class="red-text text-accent-4">☀</span> MIROVID</a>
         <ul class="right hide-on-med-and-down">
-                <li><a class="item_phone" href="#">8(999)-100-2878</a></li>
+                <li><a class="item_phone" style="font-size: 1.5em;color: black" href="#">8(999)-100-2878</a></li>
         </ul>
 
-        <ul id="nav-mobile" class="sidenav">
-            <li><a href="#">89991002878</a></li>
+        <ul id="nav-mobile" style="background-color: #ffff00;   " class="sidenav">
+            <li><a href="#" style="font-size: 1.5em;">89991002878</a></li>
         </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i style="color: black;" class="material-icons">menu</i></a>
     </div>
 </nav>
 
@@ -172,27 +172,27 @@
                 <form>
                     <div class="row ">
                         <div class="input-field col s12 ">
-                            <input style="color: #515751;    font-weight: bold;
+                            <input style="color: #515751;
     font-size: 2.4em;"    type="text" class="validate">
-                            <label style="    font-weight: bold;
+                            <label style="    color: black;
     font-size: 2.4em;"   class="active">Имя</label>
                         </div>
                         <div class="input-field col s12">
-                            <input style="color: #515751;    font-weight: bold;
+                            <input style="color: #515751;
     font-size: 2.4em;"    type="text" class="validate">
-                            <label style="    font-weight: bold;
+                            <label style="color: black;
     font-size: 2.4em;"  class="active">Телефон</label>
                         </div>
                         <div class="input-field col s12">
                             <input style="color: #515751;    font-weight: bold;
     font-size: 2.4em;"    type="text" class="validate">
-                            <label style="    font-weight: bold;
+                            <label style=" color: black;
     font-size: 2.4em;"  class="active">Email</label>
                         </div>
                         <div class="input-field col s12">
-                            <textarea style="color: #515751;    font-weight: bold;
+                            <textarea style="color: #515751;
     font-size: 2.4em;"   class="materialize-textarea"></textarea>
-                            <label >Текст вопроса</label>
+                            <label style="color: black;  font-size: 2.4em;">Текст</label>
                         </div>
                         <div class="col s12">
                             <a style="background-color: #ffd400;color: black;font-weight: bold"  class="waves-effect waves-light btn-large  ">Задать вопрос</a>
