@@ -195,7 +195,7 @@
                             <label style="color: black;  font-size: 2.4em;">Текст</label>
                         </div>
                         <div class="col s12">
-                            <a style="background-color: #ffd400;color: black;font-weight: bold"  class="waves-effect waves-light btn-large  ">Задать вопрос</a>
+                            <a style="background-color: #ffd400;color: black;font-weight: bold"  class="waves-effect waves-light btn-large  ">Оставить вопрос</a>
                         </div>
                     </div>
 
