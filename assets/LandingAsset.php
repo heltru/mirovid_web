@@ -9,28 +9,19 @@ use yii\web\AssetBundle;
  */
 class LandingAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $basePath = '@webroot/themes/parallax-template';
+    public $baseUrl = '@web/themes/parallax-template';
     public $css = [
-    /*    'place-theme/css/bootstrap/bootstrap.css',
-        'place-theme/css/bootstrap/bootstrap-grid.css',
-        'place-theme/css/bootstrap/bootstrap-reboot.css',
+        'css/materialize.min.css',
+        'css/style.css'
 
-        'place-theme/css/animate.css',
-        'place-theme/css/bootstrap-datepicker.css',
-        'place-theme/css/helpers.css',
-        'place-theme/css/bootstrap-datepicker.css',
-        'place-theme/css/owl.carousel.min.css',
-        'place-theme/css/owl.theme.default.css',
-        'place-theme/css/select2.css',
-        'style.css',*/
     ];
     public $js = [
-    ];
-    public $depends = [
-     /*   'yii\web\YiiAsset',
-        'raoul2000\bootswatch\BootswatchAsset',*/
+        'scripts/jquery-3.2.1.min.js',
+        'materialize.min.js',
+        'init.js',
 
-    //    'yii\bootstrap\BootstrapAsset',
     ];
+    public $jsOptions = ['position' => \yii\web\View::POS_BEGIN];
+
 }

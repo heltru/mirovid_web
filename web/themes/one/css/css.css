@@ -1,0 +1,54 @@
+.li_item_comp{
+    margin: 1em;
+    list-style-type: disc !important;
+    font-size: 1.618em  !important;
+    font-weight: bold;
+}
+.ul_comp{
+    list-style-type: disc !important;
+}
+.com_title{
+    font-size: 2em  !important;
+    font-weight: bold;
+}
+.item_logo_text{
+    font-weight: bold;
+}
+.item_phone{
+    font-weight: bold;
+}
+.item_font_bold{
+    font-weight: bold  !important;
+}
+.item_title_block{
+    font-size: 2em !important;
+    font-weight: bold !important;
+}
+.item_utp{
+    padding: 0.5em  !important;
+    font-weight: bold !important;
+    color: #fff ;
+    background-color: #000 ;
+}
+.item_utp_a{
+    background-color: #FF1744;
+}
+.item_utp_b{
+    background-color: #ff5722 ;
+}
+.item_utp_c{
+    background-color: #ffea00;
+}
+.item_utp_d{
+    background-color: #7ed40d;
+}
+.item_utp_e{
+    background-color: #0d9dd4;
+}
+.item_utp_f{
+    background-color: #0d13d4;
+}
+.item_utp_g{
+    background-color: #d40d4d;
+}
+
