@@ -8,60 +8,49 @@ use Yii;
  * This is the model class for table "order".
  *
  * @property int $id
- * @property string $datetime
- * @property string $ip
+ * @property string $name
  * @property string $phone
- * @property string $car_id
- * @property string $text
- * @property string $count_view
- * @property string $status
+ * @property string $email
+ * @property string $text_query
+ * @property string $date_cr
+ * @property int $status
  */
 class Order extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-
-    const T_Q = 'qpay';
-
-    const ST_N = 0;
-    const ST_P = 1;
-
-
-
-    public static  $arrTxtStatus = [ self::ST_N => 'нулевой', self::ST_P =>'оплачен быстрым платежом'];
-
     public static function tableName()
     {
         return 'order';
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['datetime','car_id','phone'], 'required','text'],
-            [['count_view','car_id','status'],'integer'],
-            [['datetime'], 'safe'],
-            [['type','phone'], 'string', 'max' => 45],
-            [['ip','text'], 'string', 'max' => 255],
+            [['date_cr'], 'safe'],
+            [['status'], 'integer'],
+            [['text_query'], 'default','value'=>''],
+            [['name', 'phone', 'email', 'text_query'], 'string', 'max' => 512],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
-            'datetime' => 'Datetime',
-            'ip' => 'Ip',
-            'type' => 'type',
+            'name' => 'Name',
+            'phone' => 'Phone',
+            'email' => 'Email',
+            'text_query' => 'Text Query',
+            'date_cr' => 'Date Cr',
+            'status' => 'Status',
         ];
     }
-
-
 }

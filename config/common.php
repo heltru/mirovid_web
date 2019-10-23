@@ -61,7 +61,11 @@ return [
                         '<_m:[\w\-]+>/<_c:[\w\-]+>' => '<_m>/<_c>/index',
                     ],
                 ],
-
+                [
+                    'pattern' => 'sitemap',
+                    'route' => 'sitemap/default/sitemap',
+                    'suffix' => '.xml',
+                ],
               
                 '' => 'main/default/index',
                 'contact' => 'main/contact/index',

@@ -32,22 +32,22 @@
                         <form  >
                             <div class="row ">
                                 <div class="input-field col s12 ">
-                                    <input placeholder="Имя" id="first_name" type="text" class="validate">
+                                    <input name="name" placeholder="Имя" id="first_name" type="text" class="validate">
                                     <label style=" color: #515751;   font-weight: bold;
     font-size: 2.4em;" for="first_name">Имя</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input  placeholder="Телефон" id="last_name" type="text" class="validate">
+                                    <input name="phone"  placeholder="Телефон" id="last_name" type="text" class="validate">
                                     <label style="color: #515751;    font-weight: bold;
     font-size: 2.4em;" for="last_name">Телефон</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input  placeholder="Email" id="Email" type="text" class="validate">
+                                    <input name="email"  placeholder="Email" id="Email" type="text" class="validate">
                                     <label style="color: #515751;    font-weight: bold;
     font-size: 2.4em;" for="email">Email</label>
                                 </div>
                                 <div class="col s12">
-                                    <a style="background-color: #ffd400;color: black;font-weight: bold" class="waves-effect waves-light btn-large   ">Оставить заявку</a>
+                                    <a style="background-color: #ffd400;color: black;font-weight: bold" class="waves-effect waves-light btn-large send-order  ">Оставить заявку</a>
                                 </div>
                             </div>
 
@@ -112,7 +112,7 @@
 </div>
 
 
-<div class="parallax-container valign-wrapper">
+<div class="parallax-container valign-wrapper ">
     <div class="section no-pad-bot">
         <div class="container">
             <div class="row center">
@@ -162,49 +162,54 @@
 </div>
 
 
-<div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-        <div class="container">
-            <div class="row center">
-                <h4  style="color: black">Есть вопросы?</h4>
-            </div>
-            <div class="row center">
-                <form>
-                    <div class="row ">
-                        <div class="input-field col s12 ">
-                            <input style="color: #515751;
-    font-size: 2.4em;"    type="text" class="validate">
-                            <label style="    color: black;
-    font-size: 2.4em;"   class="active">Имя</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <input style="color: #515751;
-    font-size: 2.4em;"    type="text" class="validate">
-                            <label style="color: black;
-    font-size: 2.4em;"  class="active">Телефон</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <input style="color: #515751;    font-weight: bold;
-    font-size: 2.4em;"    type="text" class="validate">
-                            <label style=" color: black;
-    font-size: 2.4em;"  class="active">Email</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <textarea style="color: #515751;
-    font-size: 2.4em;"   class="materialize-textarea"></textarea>
-                            <label style="color: black;  font-size: 2.4em;">Текст</label>
-                        </div>
-                        <div class="col s12">
-                            <a style="background-color: #ffd400;color: black;font-weight: bold"  class="waves-effect waves-light btn-large  ">Оставить вопрос</a>
-                        </div>
-                    </div>
+<div class="parallax-container  "  >
 
-                </form>
+        <div class=" no-pad-bot quest" >
+            <div class="container">
+                <div class="row center">
+                    <h4  style="color: black">Есть вопросы?</h4>
+                </div>
+                <div class="row center">
+                    <form>
+                        <div class="row ">
+                            <div class="input-field col s12 ">
+                                <input name="name" style="color: #515751;
+    font-size: 2.4em;"    type="text" class="validate">
+                                <label style="    color: black;
+    font-size: 2.4em;"   class="active">Имя</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input style="color: #515751;
+    font-size: 2.4em;"    type="text" name="phone" class="validate">
+                                <label style="color: black;
+    font-size: 2.4em;"  class="active">Телефон</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input name="email" style="color: #515751;    font-weight: bold;
+    font-size: 2.4em;"    type="text" class="validate">
+                                <label style=" color: black;
+    font-size: 2.4em;"  class="active">Email</label>
+                            </div>
+                            <div class="input-field col s12">
+                            <textarea name="text" style="color: #515751;
+    font-size: 2.4em;"   class="materialize-textarea"></textarea>
+                                <label style="color: black;  font-size: 2.4em;">Текст</label>
+                            </div>
+                            <div class="col s12">
+                                <a style="background-color: #ffd400;color: black;font-weight: bold"  class="waves-effect waves-light btn-large send-order ">Оставить вопрос</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
+        <div class="parallax"><img src="/themes/one/background3.jpg" alt="Unsplashed background img 3"></div>
+
     </div>
-    <div class="parallax"><img src="/themes/one/background3.jpg" alt="Unsplashed background img 3"></div>
-</div>
+
+
+
 
 <footer style=" padding-top: 0;"  class="page-footer white">
 
@@ -215,8 +220,52 @@
     </div>
 </footer>
 <script>
+    $(document).ready(function() {
+        M.updateTextFields();
+    });
 // $(document).ready(function (){
-        $('#index-banner').height ($( window ).height() );
+    var heigh = $( window ).height();
+    if ( heigh < 420){
+
+        $('#index-banner').height(1500);
+
+        $('nav .brand-logo').css('font-size','2rem');
+        $('.item_h1').css('font-size','3.2rem');
+
+        $('.quest').height(800);
+
+
+
+    } else{
+        $('#index-banner').height (heigh);
+    }
+
+
+
+        $('.send-order').click( function (e) {
+            var $this = $(this);
+
+
+
+            $.ajax({
+                type:"POST",
+                url:"/order/default/send-order",
+
+                data:{
+                    _csrffe:$('meta[name=csrf-token]').attr('content'),
+                    name:$($this).parent().parent().find("input[name='name']").val(),
+                    phone:$($this).parent().parent().find("input[name='phone']").val(),
+                    email:$($this).parent().parent().find("input[name='email']").val(),
+                    text:$($this).parent().parent().find("textarea[name='text']").val(),
+                },
+                success:function (data) {
+                    if (parseInt(data) > 0){
+                        alert('Заявка создана!  №' + parseInt(data) );
+                    }
+                    console.log(data);
+                }
+            });
+        });
 
     //});
 </script>

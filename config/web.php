@@ -135,6 +135,11 @@ $config = [
             'controllerNamespace' => 'app\modules\url\controllers\frontend',
             'viewPath' => '@app/modules/url/views/frontend',
         ],
+        'sitemap' => [
+            'class' => 'app\modules\sitemap\SitemapModule',
+            'controllerNamespace' => 'app\modules\sitemap\controllers\frontend',
+            'viewPath' => '@app/modules/sitemap/views/frontend',
+        ],
     ],
     'components' => [
 
