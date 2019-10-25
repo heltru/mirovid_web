@@ -224,7 +224,7 @@
         M.updateTextFields();
     });
 // $(document).ready(function (){
-    var heigh = $( window ).height();
+    var heigh = $( window ).width();
     if ( heigh < 420){
 
         $('#index-banner').height(1500);
@@ -237,7 +237,7 @@
 
 
     } else{
-        $('#index-banner').height (heigh);
+      //  $('#index-banner').height (heigh);
     }
 
 
