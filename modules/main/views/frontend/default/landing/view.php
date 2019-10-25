@@ -139,7 +139,7 @@
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center blue-text "><i  class="material-icons ">local_movies</i></h2>
-                    <h5 class="center"><span class="item_font_bold"> Видео</span> или <span class="item_font_bold">изображение</span> с желаемом контентом</h5>
+                    <h5 class="center"><span class="item_font_bold"> Видео</span> или <span class="item_font_bold">изображение</span> с желаемым контентом</h5>
                 </div>
             </div>
 
