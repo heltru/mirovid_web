@@ -28,11 +28,20 @@
 .item_utp{
     padding: 0.5em  !important;
     font-weight: bold !important;
-    color: #fff ;
-    background-color: #000 ;
+    color: #00090d ;
+    font-size: 1.8rem  !important;
+    padding-left: 0 !important;
+    padding-bottom: 0 !important;
 }
+
+.item_utp_subtitle{
+    margin-top: 0;
+    font-size: 1.4rem  !important;
+    color: #00090d;
+}
+
 .item_h1{
-    color: #fff100;
+    color: #00090d;
     font-weight: bold;
     text-transform: uppercase;
     padding: 0.191em;
@@ -59,3 +68,36 @@
     background-color: #d40d4d;
 }
 
+.avg_h1{
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+.avg_reclame_title{
+    text-transform: uppercase;
+    font-size: 52px;
+    line-height: 48px;
+    font-weight: bold;
+}
+
+span.avg_reclame_title{
+    display: block;
+    font-size: 36px;
+    font-weight: normal;
+}
+
+.avg_reclame_price{
+    font-size: 24px;
+}
+
+.avg_reclame_val{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.avg_sale_img{
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+}

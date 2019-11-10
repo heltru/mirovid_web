@@ -174,7 +174,7 @@ $config = [
     ],
 ];
 
-if (true /*YII_ENV_DEV*/) {
+if ( $_SERVER['HTTP_HOST'] != 'mirovid.ru' /*YII_ENV_DEV*/) {
     
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';

@@ -1,12 +1,14 @@
 <nav class="white" role="navigation" xmlns="http://www.w3.org/1999/html">
     <div class="nav-wrapper container">
-        <a id="logo-container" href="#"  class="brand-logo red-text text-accent-4 item_logo_text"><span class="red-text text-accent-4">☀</span> MIROVID</a>
+        <a id="logo-container" href="/"  class="brand-logo red-text text-accent-4 item_logo_text"><span class="red-text text-accent-4">☀</span> MIROVID</a>
         <ul class="right hide-on-med-and-down">
                 <li><a class="item_phone" style="font-size: 1.5em;color: black" href="#">8(999)-100-2878</a></li>
         </ul>
 
-        <ul id="nav-mobile" style="background-color: #ffff00;   " class="sidenav">
+        <ul id="nav-mobile" style="background-color: #e1e6ff;   " class="sidenav">
             <li><a href="#" style="font-size: 1.5em;">89991002878</a></li>
+            <li><a href="/zakazat-reklamu-v-seti-mirovid-led" style="font-size: 1.5em;">Заказать рекламу</a></li>
+            <li><a href="/kupit-led-panel-mirovid" style="font-size: 1.5em;">Купить панель</a></li>
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i style="color: black;" class="material-icons">menu</i></a>
     </div>
@@ -16,15 +18,35 @@
     <div class="section no-pad-bot">
         <div class="container">
 
-            <h1 class=" header center red-text.text-darken-4 text-darken- text-lighten-2 item_h1">Сообщения на авто в Хлынове</h1>
+            <h1 class=" header center    item_h1">Реклама в сети Mirovid</h1>
             <div class="row ">
                 <div class="col s12 m7 ">
-                    <h5 class="header col s12 light item_utp ">Новый формат - LED RGB панели - 16М цветов, Яркость 2000 cd/m2, Площать 2048 см2</h5>
-                    <h5 class="header col s12 light item_utp ">Изображение либо Видеоролик транслируется на заднем стекле авто</h5>
-                    <h5 class="header col s12 light item_utp ">В час пик самые интересные видео</h5>
-                    <h5 class="header col s12 light item_utp ">Новости всегда акутальны</h5>
-                    <h5 class="header col s12 light item_utp ">Водители ездят по всему городу</h5>
-                    <h5 class="header col s12 light item_utp ">Самая разная аудитория</h5>
+                    <div>
+                        <h5 class="header  light item_utp ">Уникальная рекламная площадка</h5>
+                        <p class="item_utp_subtitle">Ролик транслируется в разных частях города на множестве автомобилей.</p>
+                    </div>
+                    <div>
+                        <h5 class="header  light item_utp ">Новые горизонты</h5>
+                        <p class="item_utp_subtitle">"Поймайте" неисследованные аудитории </p>
+                    </div>
+                    <div>
+                        <h5 class="header  light item_utp ">Быстродействие</h5>
+                        <p class="item_utp_subtitle">Один клик и рекламный ролик на всех авто </p>
+                    </div>
+                    <div>
+                        <h5 class="header  light item_utp ">Новый формат</h5>
+                        <p class="item_utp_subtitle">LED RGB панели - 16М цветов, Яркость 2000 cd/m2, Площать 2048 см2 </p>
+                    </div>
+
+                    <div>
+                        <h5 class="header  light item_utp ">Отслеживание</h5>
+                        <p class="item_utp_subtitle">Каждый показ фиксируется в личном кабинете </p>
+                    </div>
+                    <div>
+                        <h5 class="header  light item_utp ">Время и место</h5>
+                        <p class="item_utp_subtitle">Вы сами решаете где и когда будет показана Ваша реклама</p>
+                    </div>
+
                 </div>
 
                 <div class="col s12 m5 card  push-m2">
@@ -112,11 +134,11 @@
 </div>
 
 
-<div class="parallax-container valign-wrapper ">
+<div class="parallax-container valign-wrapper " style="min-height: 414px;">
     <div class="section no-pad-bot">
         <div class="container">
             <div class="row center">
-                <h5 class="header col s12 light item_title_block">Полная свобода, в тестирование гипотез, комерческих бонусов, промо кодов, акции, новинок, товаров услуг.</h5>
+                <h5 class="header col s12 light item_title_block">Полная свобода в тестирование гипотез, комерческих бонусов, промо кодов, акции, новинок, товаров услуг.</h5>
             </div>
         </div>
     </div>
@@ -146,14 +168,14 @@
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center yellow-text"><i class="material-icons ">local_taxi</i></h2>
-                    <h5 class="center"><span class="item_font_bold"> Показывается</span> на машинах такстистов, курьеров, доставки</h5>
+                    <h5 class="center"><span class="item_font_bold"> Показывается</span> на машинах такстистов, курьеров, служб  доставки</h5>
                 </div>
             </div>
 
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center red-text text-accent-4"><i class="material-icons ">whatshot</i></h2>
-                    <h5 class="center"><span class="item_font_bold"> 700 минут </span> <span>2 машины</span> </h5>
+                    <h5 class="center"><span class="item_font_bold"> 700 минут </span> <span>2 машины </span><span style="display: block">за 1 день</span> </h5>
                 </div>
             </div>
         </div>

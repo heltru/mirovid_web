@@ -68,6 +68,8 @@ return [
                 ],
               
                 '' => 'main/default/index',
+                'kupit-led-panel-mirovid'=>'main/default/sale-panel',
+                'zakazat-reklamu-v-seti-mirovid-led'=>'main/default/order-reclame',
                 'contact' => 'main/contact/index',
                 '<_a:error>' => 'main/default/<_a>',
 
