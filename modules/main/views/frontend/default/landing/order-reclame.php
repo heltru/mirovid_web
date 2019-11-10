@@ -184,12 +184,57 @@
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="parallax-container valign-wrapper " >
+    <div class="section no-pad-bot review">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center">
+                    <h4 style="color: black">Результат 1 часа показов MIROVID LED</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m6">
+                    <img class="img-responsive rev_photo"   src="/themes/one/image/rev_klapan_1.jpg">
+                </div>
+                <div class="col s12 m6">
+                    <img class="img-responsive rev_photo"  src="/themes/one/image/rev_klapan_2.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="/themes/one/background1.jpg" alt="Unsplashed background img 2"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
 <div class="parallax-container  "  >
 
         <div class=" no-pad-bot quest" >
             <div class="container">
                 <div class="row center">
-                    <h4  style="color: black">Есть вопросы?</h4>
+                    <h4  style="color: black">Задать вопрос</h4>
                 </div>
                 <div class="row center">
                     <form>
@@ -215,10 +260,11 @@
                             <div class="input-field col s12">
                             <textarea name="text" style="color: #515751;
     font-size: 2.4em;"   class="materialize-textarea"></textarea>
-                                <label style="color: black;  font-size: 2.4em;">Текст</label>
+                                <label style="color: black;  font-size: 2.4em;">Вопрос</label>
                             </div>
                             <div class="col s12">
-                                <a style="background-color: #ffd400;color: black;font-weight: bold"  class="waves-effect waves-light btn-large send-order ">Оставить вопрос</a>
+                                <a style="background-color: #ffd400;color: black;font-weight: bold"  class="waves-effect waves-light btn-large send-order ">
+                                    Отправить</a>
                             </div>
                         </div>
 
@@ -256,7 +302,8 @@
 
         $('.quest').height(800);
 
-
+        $('.review').height(1300);
+        $('.review').removeClass('section');
 
     } else{
       //  $('#index-banner').height (heigh);

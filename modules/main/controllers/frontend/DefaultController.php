@@ -67,7 +67,7 @@ class DefaultController extends Controller
     public function actionOrderReclame()
     {
         //  ex(4);
-        $title = 'Заказать редкаму Mirovid LED  в Кирове';
+        $title = 'Заказать рекламу Mirovid LED  в Кирове';
         $descr = 'Живые объявления в Кирове. Динамичный стиль. Заметно тысячам человек. Ночью и Днем светит LED огонь Вашей идеи!';
         $key = 'Объвяление, Реклама, авто, сообщения, новости, led, Киров';
         $this->view->title =$title;
