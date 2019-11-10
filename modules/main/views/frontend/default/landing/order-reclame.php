@@ -134,11 +134,11 @@
 </div>
 
 
-<div class="parallax-container valign-wrapper " style="min-height: 414px;">
+<div class="parallax-container valign-wrapper " style="min-height: 470px;">
     <div class="section no-pad-bot">
         <div class="container">
             <div class="row center">
-                <h5 class="header col s12 light item_title_block">Полная свобода в тестирование гипотез, комерческих бонусов, промо кодов, акции, новинок, товаров услуг.</h5>
+                <h5 class="header col s12 light item_title_block">Полная свобода в тестирование гипотез, комерческих бонусов, промо кодов, акции, новинок, товаров услуг</h5>
             </div>
         </div>
     </div>
@@ -230,7 +230,6 @@
 
 
 <div class="parallax-container  "  >
-
         <div class=" no-pad-bot quest" >
             <div class="container">
                 <div class="row center">
@@ -272,7 +271,7 @@
                 </div>
             </div>
         </div>
-        <div class="parallax"><img src="/themes/one/background3.jpg" alt="Unsplashed background img 3"></div>
+        <div class="parallax"><img src="/themes/one/white_bg.jpg" alt="Unsplashed background img 3"></div>
 
     </div>
 
@@ -300,7 +299,7 @@
         $('nav .brand-logo').css('font-size','2rem');
         $('.item_h1').css('font-size','3.2rem');
 
-        $('.quest').height(800);
+        $('.quest').height(472);
 
         $('.review').height(1300);
         $('.review').removeClass('section');
