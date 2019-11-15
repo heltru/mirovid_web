@@ -28,6 +28,9 @@ AssetLandingEnd::register($this);
         <?php $this->head() ?>
         <!--[if lt IE 9]> <script src="scripts/html5.js"></script> <![endif]-->
 
+        <meta name="google-site-verification" content="0gKCpSSCzrXXR8msLiqatdtq2WkExrKywNjjzphJBX0" />
+        <meta name="yandex-verification" content="60ae4dfb8a3cd3d6" />
+
     </head>
     <body>
 
