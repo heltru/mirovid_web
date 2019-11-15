@@ -29,12 +29,10 @@ AssetLandingEnd::register($this);
 
         <!--[if lt IE 9]> <script src="scripts/html5.js"></script> <![endif]-->
         <?php $this->head() ?>
-
-
-
+        <?php echo $this->render('//gtm/inhead') ?>
     </head>
     <body>
-
+    <?php echo $this->render('//gtm/openbody') ?>
     <?php $this->beginBody() ?>
 
         <?= $content ?>
