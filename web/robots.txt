@@ -1,6 +1,6 @@
 User-agent: *
-Host: http://mirovid.ru
-Sitemap: http://mirovid.ru/sitemap.xml
+Host: https://mirovid.ru
+Sitemap: https://mirovid.ru/sitemap.xml
 
 Disallow: /admin
 Disallow: /assets
