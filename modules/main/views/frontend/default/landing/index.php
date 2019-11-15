@@ -16,19 +16,15 @@
     </div>
 </nav>
 
-<div class="section no-pad-bot" id="index-banner">
+
+
+<div class="section" style="background-image: url(themes/one/image/bg/6.jpg);" >
     <div class="container">
 
-        <h1 class="header center avg_h1">пассивный доход и реклама Mirovid</h1>
-
-
-    </div>
-</div>
-
-
-<div class="section"  >
-    <div class="container">
-        <br><br>
+        <div class="row ">
+            <h1 class="header center avg_h1">пассивный доход и реклама Mirovid</h1>
+            <br><br>
+        </div>
 
         <div class="row ">
             <div class="col s12 m7 ">
@@ -68,7 +64,7 @@
 </div>
 
 
-<div class="section"  >
+<div class="section"  style="background-image: url(themes/one/image/bg/10.jpg);" >
     <div class="container">
         <br><br>
 
@@ -102,8 +98,8 @@
             </div>
 
             <div class="col s12 m7  push-m2">
-               <img class="avg_sale_img img-responsive hide-on-med-and-down" src="/themes/one/image/scrooge-coloring10.gif">
-                <!-- https://qph.fs.quoracdn.net/main-qimg-5369be2d38953cfd039f8e2f371ba88b.webp -->
+               <img class="avg_sale_img img-responsive hide-on-med-and-down" src="/themes/one/image/scrooge_white.png">
+
             </div>
 
 

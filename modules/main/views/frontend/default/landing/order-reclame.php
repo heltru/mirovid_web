@@ -21,56 +21,94 @@
             <h1 class=" header center    item_h1">Реклама в сети Mirovid</h1>
             <div class="row ">
                 <div class="col s12 m7 ">
-                    <div>
-                        <h5 class="header  light item_utp ">Уникальная рекламная площадка</h5>
-                        <p class="item_utp_subtitle">Ролик транслируется в разных частях города на множестве автомобилей.</p>
-                    </div>
-                    <div>
-                        <h5 class="header  light item_utp ">Новые горизонты</h5>
-                        <p class="item_utp_subtitle">"Поймайте" неисследованные аудитории </p>
-                    </div>
-                    <div>
-                        <h5 class="header  light item_utp ">Быстродействие</h5>
-                        <p class="item_utp_subtitle">Один клик и рекламный ролик на всех авто </p>
-                    </div>
-                    <div>
-                        <h5 class="header  light item_utp ">Новый формат</h5>
-                        <p class="item_utp_subtitle">LED RGB панели - 16М цветов, Яркость 2000 cd/m2, Площать 2048 см2 </p>
+
+                    <div class="cont_utm">
+                        <div class=" cont_utm_col_icon">
+                            <i class=" utm_icon small material-icons">track_changes</i>
+                        </div>
+                        <div  class="cont_utm_col_text" >
+                            <h5 class="header  light item_utp ">Уникальная рекламная площадка</h5>
+                            <p class="item_utp_subtitle">Ролик транслируется в разных частях города на множестве автомобилей.</p>
+                        </div>
                     </div>
 
-                    <div>
-                        <h5 class="header  light item_utp ">Отслеживание</h5>
-                        <p class="item_utp_subtitle">Каждый показ фиксируется в личном кабинете </p>
+                    <div class="cont_utm">
+                        <div class=" cont_utm_col_icon">
+                            <i class=" utm_icon small material-icons">language</i>
+                        </div>
+                        <div class="cont_utm_col_text">
+                            <h5 class="header  light item_utp ">Новые горизонты</h5>
+                            <p class="item_utp_subtitle">"Поймайте" неисследованные аудитории </p>
+                        </div>
+
                     </div>
-                    <div>
-                        <h5 class="header  light item_utp ">Время и место</h5>
-                        <p class="item_utp_subtitle">Вы сами решаете где и когда будет показана Ваша реклама</p>
+
+                    <div class="cont_utm">
+                        <div class=" cont_utm_col_icon">
+                            <i class=" utm_icon small material-icons">flash_on</i>
+                        </div>
+                        <div class="cont_utm_col_text">
+                            <h5 class="header  light item_utp ">Быстродействие</h5>
+                            <p class="item_utp_subtitle">Один клик и рекламный ролик на всех авто </p>
+                        </div>
                     </div>
+
+
+
+                    <div class="cont_utm">
+                        <div class=" cont_utm_col_icon">
+                            <i class=" utm_icon small material-icons">build</i>
+                        </div>
+
+                        <div class="cont_utm_col_text">
+                            <h5 class="header  light item_utp ">Новый формат</h5>
+                            <p class="item_utp_subtitle">LED RGB панели - 16М цветов, Яркость 2000 cd/m2, Площать 2048 см2 </p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="cont_utm">
+                        <div class=" cont_utm_col_icon">
+                            <i class=" utm_icon small material-icons">explore</i>
+                        </div>
+                        <div class="cont_utm_col_text">
+                            <h5 class="header  light item_utp ">Отслеживание</h5>
+                            <p class="item_utp_subtitle">Каждый показ фиксируется в личном кабинете </p>
+                        </div>
+                    </div>
+
+                    <div class="cont_utm">
+                        <div class=" cont_utm_col_icon">
+                            <i class=" utm_icon small material-icons">touch_app</i>
+                        </div>
+                        <div class="cont_utm_col_text">
+                            <h5 class="header  light item_utp ">Время и место</h5>
+                            <p class="item_utp_subtitle">Вы сами решаете где и когда будет показана Ваша реклама</p>
+                        </div>
+                    </div>
+
+
 
                 </div>
 
-                <div class="col s12 m5 card  push-m2">
-                    <div class="row card-content">
+                <div class="col s12 m5 card  push-m2 offer_cont" >
+                    <div class="row card-content offer_wrap" >
                         <form  >
                             <div class="row ">
                                 <div class="input-field col s12 ">
-                                    <input name="name" placeholder="Имя" id="first_name" type="text" class="validate">
-                                    <label style=" color: #515751;   font-weight: bold;
-    font-size: 2.4em;" for="first_name">Имя</label>
+                                    <p class="oferr_timer">14:00:55</p>
                                 </div>
-                                <div class="input-field col s12">
-                                    <input name="phone"  placeholder="Телефон" id="last_name" type="text" class="validate">
-                                    <label style="color: #515751;    font-weight: bold;
-    font-size: 2.4em;" for="last_name">Телефон</label>
+                                <div class="col s12 center">
+                                    <a style="background-color: #ffd400;color: black;font-weight: bold" class="offer_btn waves-effect waves-light btn-large send-order  ">
+                                       Загрузить рекламу</a>
                                 </div>
-                                <div class="input-field col s12">
-                                    <input name="email"  placeholder="Email" id="Email" type="text" class="validate">
-                                    <label style="color: #515751;    font-weight: bold;
-    font-size: 2.4em;" for="email">Email</label>
+                                <div class="input-field col s12 ">
+                                  <p class="offer_promo_text">
+                                      Зерегистриируйся сейчас и получи на счет <span style="color: red;">300</span> руб. для своей рекламы
+                                  </p>
                                 </div>
-                                <div class="col s12">
-                                    <a style="background-color: #ffd400;color: black;font-weight: bold" class="waves-effect waves-light btn-large send-order  ">Оставить заявку</a>
-                                </div>
+
                             </div>
 
                         </form>
@@ -84,7 +122,7 @@
 
         </div>
     </div>
-    <div class="parallax"><img src="/themes/one/background1.jpg" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="/themes/one/image/bg/2.jpg" alt="Unsplashed background img 1"></div>
 </div>
 
 
@@ -145,6 +183,8 @@
     <div class="parallax"><img src="/themes/one/background2.jpg" alt="Unsplashed background img 2"></div>
 </div>
 
+
+
 <div class="container">
     <div class="section">
 
@@ -168,7 +208,7 @@
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center yellow-text"><i class="material-icons ">local_taxi</i></h2>
-                    <h5 class="center"><span class="item_font_bold"> Показывается</span> на машинах такстистов, курьеров, служб  доставки</h5>
+                    <h5 class="center"><span class="item_font_bold"> Показывается</span> на автомобилях, торговых и бизнес центрах, остановках и других рекламных площадках города</h5>
                 </div>
             </div>
 
@@ -187,7 +227,48 @@
 
 
 
+<div class="parallax-container valign-wrapper " >
+    <div class="section no-pad-bot review">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center">
+                    <h3><i class="mdi-content-send brown-text"></i></h3>
+                    <h4>Как работает Ваш Личный кабинет Mirovid</h4>
 
+
+                </div>
+            </div>
+
+            <div class="row" style="    margin-top: 3rem">
+
+                <div class="col s12 m6" style="    padding-right: 4rem">
+                    <img style="width: 99%;" class="img-responsive materialboxed" src="/themes/one/image/screens/admin_map_show.png">
+                </div>
+
+                <div class="col s12 m6" style="padding-left: 4rem;">
+                    <p class="admin_opt_info_text"><span style="font-weight: bold">Карта города с отчетом по показам.</span><br> Карта Mirovid LED отображает <strong>что</strong>,
+                        <strong>где</strong> и <strong>когда</strong> было показано! </p>
+                </div>
+
+            </div>
+
+            <div class="row" style="margin-top: 6rem;">
+
+                <div class="col s12 m6" style="    padding-right: 4rem">
+                    <p class="admin_opt_info_text" ><span style="font-weight: bold">Опции для загрузки рекламы.</span> <br>Выбор района и времени показа рекламного ролика</p>
+
+                </div>
+                <div class="col s12 m6" style="padding-left: 4rem;">
+                    <img class="img-responsive materialboxed" src="/themes/one/image/screens/place_and_time.png">
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="/themes/one/image/bg/5.jpg" alt="Unsplashed background img 2"></div>
+</div>
 
 
 
@@ -289,19 +370,20 @@
 <script>
     $(document).ready(function() {
         M.updateTextFields();
+        $('.materialboxed').materialbox();
     });
 // $(document).ready(function (){
     var heigh = $( window ).width();
     if ( heigh < 420){
 
-        $('#index-banner').height(1500);
+        $('#index-banner').height(1700);
 
         $('nav .brand-logo').css('font-size','2rem');
         $('.item_h1').css('font-size','3.2rem');
 
         $('.quest').height(472);
 
-        $('.review').height(1300);
+        $('.review').height(1500);
         $('.review').removeClass('section');
 
     } else{

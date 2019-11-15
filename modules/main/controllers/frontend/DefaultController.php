@@ -36,7 +36,7 @@ class DefaultController extends Controller
         $this->view->registerMetaTag(['property' => 'og:image',
                 'content' => \Yii::$app->request->hostInfo .'']);
 
-        $this->layout = 'landing';
+        $this->layout = 'landing_index';
         return $this->render('landing/index');
     }
 
@@ -59,7 +59,7 @@ class DefaultController extends Controller
         $this->view->registerMetaTag(['property' => 'og:image',
             'content' => \Yii::$app->request->hostInfo .'']);
 
-        $this->layout = 'landing';
+        $this->layout = 'landing_sale';
         return $this->render('landing/sale-panel');
     }
 

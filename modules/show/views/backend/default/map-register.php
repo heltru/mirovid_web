@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'method' => 'get',
                 ]); ?>
 
-                <?= $form->field($tour, 'date_from')->widget(\dosamigos\datetimepicker\DateTimePicker::className(), [
+                <?= $form->field($searchModel, 'date_from')->widget(\dosamigos\datetimepicker\DateTimePicker::className(), [
                     'language' => 'es',
                     'size' => 'ms',
                     'template' => '{input}',
@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 ]);?>
 
-                <?= $form->field($tour, 'date_from')->widget(\dosamigos\datetimepicker\DateTimePicker::className(), [
+                <?= $form->field($searchModel, 'date_from')->widget(\dosamigos\datetimepicker\DateTimePicker::className(), [
                     'language' => 'es',
                     'size' => 'ms',
                     'template' => '{input}',

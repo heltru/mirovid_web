@@ -49,9 +49,10 @@ return [
                     'prefix' => 'admin',
                     'routePrefix' => 'admin',
                     'rules' => [
-                     //   '' => 'block/default/index',
-                        //'' => 'block/block-utils/product-of-pop',
-                        '' => 'file/default/index',
+                        '' => 'block/default/index',
+
+
+                      //  '' => 'file/default/index',
                         '/' => 'admin',
                         '<_m:[\w\-]+>' => '<_m>/default/index',
                         '<_m:[\w\-]+>/<id:\d+>' => '<_m>/default/view',

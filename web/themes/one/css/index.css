@@ -1,3 +1,6 @@
+body{
+    color: #fff !important;
+}
 .li_item_comp{
     margin: 1em;
     list-style-type: disc !important;
@@ -70,7 +73,7 @@
 
 .avg_h1{
     text-transform: uppercase;
-    font-size: 2.2rem;
+    font-size: 3.9rem;
     font-weight: bold;
 }
 

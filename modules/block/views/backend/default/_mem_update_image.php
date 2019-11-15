@@ -93,7 +93,7 @@ $this->registerCssFile('/css/jquery.Jcrop.css',['position' => yii\web\View::POS_
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                             <div class="box-body">
-                                    <?= 1 //$this->render('_mem_update_time',['mem'=>$mem,'form'=>$form]); ?>
+                                    <?=  $this->render('_mem_update_time',['mem'=>$mem,'form'=>$form]); ?>
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@ $this->registerCssFile('/css/jquery.Jcrop.css',['position' => yii\web\View::POS_
                         </div>
                         <div id="collapseFour" class="panel-collapse collapse" aria-expanded="false" >
                             <div class="box-body">
-                                <?= 1//$this->render('_mem_update_locale',['mem'=>$mem,'form'=>$form]); ?>
+                                <?=  $this->render('_mem_update_locale',['mem'=>$mem,'form'=>$form]); ?>
                             </div>
                         </div>
                     </div>
