@@ -25,9 +25,8 @@ AssetLandingEnd::register($this);
         <?= Html::csrfMetaTags() ?>
         <?= ( $this->title ) ? '<title>'.Html::encode($this->title).'</title>' : '' ?>
 
-        <meta name="google-site-verification" content="0gKCpSSCzrXXR8msLiqatdtq2WkExrKywNjjzphJBX0" />
-        <meta name="yandex-verification" content="60ae4dfb8a3cd3d6" />
-        
+
+
         <!--[if lt IE 9]> <script src="scripts/html5.js"></script> <![endif]-->
         <?php $this->head() ?>
 

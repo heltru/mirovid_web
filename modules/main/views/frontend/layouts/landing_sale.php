@@ -25,8 +25,9 @@ AssetLandingEnd::register($this);
         <?= Html::csrfMetaTags() ?>
         <?= ( $this->title ) ? '<title>'.Html::encode($this->title).'</title>' : '' ?>
 
-        <?php $this->head() ?>
         <!--[if lt IE 9]> <script src="scripts/html5.js"></script> <![endif]-->
+        <?php $this->head() ?>
+
 
     </head>
     <body>
