@@ -100,7 +100,9 @@
                                     <p class="oferr_timer">14:00:55</p>
                                 </div>
                                 <div class="col s12 center">
-                                    <a style="background-color: #ffd400;color: black;font-weight: bold" class="offer_btn waves-effect waves-light btn-large send-order  ">
+                                    <a
+                                            href="/signup"
+                                            style="background-color: #ffd400;color: black;font-weight: bold" class="offer_btn waves-effect waves-light btn-large send-order  ">
                                        Загрузить рекламу</a>
                                 </div>
                                 <div class="input-field col s12 ">
