@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="input-field col s12 ">
                                   <p class="offer_promo_text">
-                                      Зерегистриируйся сейчас и получи на счет <span style="color: red;">300</span> руб. для своей рекламы
+                                      Зарегистрируйся сейчас и получи на счет <span style="color: red;">300</span> руб. для своей рекламы
                                   </p>
                                 </div>
 

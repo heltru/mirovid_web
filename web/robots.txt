@@ -1,2 +1,42 @@
 User-agent: *
-Disallow:
+Host: http://mirovid.ru
+Sitemap: http://mirovid.ru/sitemap.xml
+
+Disallow: /admin
+Disallow: /assets
+Disallow: /css
+Disallow: /font
+Disallow: /jcrop
+Disallow: /js
+Disallow: /mirovid
+Disallow: /uploads
+Disallow: /docs
+Disallow: /fancy
+Disallow: /images
+
+Disallow: /themes/one/css
+Disallow: /themes/one/js
+Disallow: /themes/one/scripts
+Disallow: /*?*
+Disallow: /*&*
+
+
+
+User-agent: Yandex
+Disallow: /admin
+Disallow: /assets
+Disallow: /css
+Disallow: /font
+Disallow: /jcrop
+Disallow: /js
+Disallow: /mirovid
+Disallow: /uploads
+Disallow: /docs
+Disallow: /fancy
+Disallow: /images
+
+Disallow: /themes/one/css
+Disallow: /themes/one/js
+Disallow: /themes/one/scripts
+Disallow: /*?*
+Disallow: /*&*
