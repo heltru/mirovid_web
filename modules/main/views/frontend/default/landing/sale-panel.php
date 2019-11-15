@@ -103,7 +103,10 @@
     font-size: 2.4em;" for="email">Email</label>
                                 </div>
                                 <div class="col s12">
-                                    <a style="background-color: #ffd400;color: black;font-weight: bold" class="waves-effect waves-light btn-large send-order  ">Оставить заявку</a>
+                                    <a
+                                            onclick="window.dataLayer.push({'event': 'order_panel'});"
+                                            style="background-color: #ffd400;color: black;font-weight: bold"
+                                       class="waves-effect waves-light btn-large send-order  ">Оставить заявку</a>
                                 </div>
                             </div>
 
