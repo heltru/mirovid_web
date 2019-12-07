@@ -2,12 +2,7 @@
 use yii\widgets\ActiveForm;
 ?>
 
-<p>Exsist Video:</p>
-<?php
-foreach ($video as $name ){
-    echo "<span class='video_item'>$name </span>". '</br>';
-}
-?>
+
 
 <br>
 
@@ -19,9 +14,7 @@ foreach ($video as $name ){
 
 <?php ActiveForm::end() ?>
 
-<br>
 
-<?=\yii\helpers\Html::a('update files to car',['/admin/api/default/update-files-car'])?>
 
 <script>
     $(document).ready(function () {

@@ -18,12 +18,14 @@ class  AssetLanding extends AssetBundle
 
         'css/materialize.css',
         'css/style.css',
+        'css/timer.css',
 
     ];
     public $js = [
         'scripts/jquery-3.2.1.min.js',
         'js/materialize.js',
-        'js/init.js'
+        'js/init.js',
+        'scripts/timer.js'
     ];
     public $jsOptions = ['position' => \yii\web\View::POS_BEGIN];
 

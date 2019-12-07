@@ -13,14 +13,7 @@ use yii\web\Controller;
  */
 class DefaultController extends Controller
 {
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
+
 
     public function actionPayInfo()
     {
@@ -35,15 +28,14 @@ class DefaultController extends Controller
             $summ = (int)\Yii::$app->request->post('summ');
             $paymentType = \Yii::$app->request->post('paymentType');
 
-            $app_pay_make = new AppYaPayMake();
-            $app_pay_make->summ = $summ;
-            $app_pay_make->paymentType = $paymentType;
-            $location = $app_pay_make->make_form(); // make_redirect to yandex
+            try{
 
-            if ( empty($app_pay_make->error)){
-                header("Location: $location");
+                $ya_windows_pay_location =  \Yii::$app->getModule('pay')->makeFormPay($summ,$paymentType);  // make_redirect to yandex
+                header("Location: $ya_windows_pay_location");
+
                 die();
-
+            } catch (   \Exception $e){
+                ex('ошибка при создании формы платежа actionMakeFormPay ' . $e->getMessage());
             }
 
         }

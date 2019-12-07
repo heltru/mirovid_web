@@ -41,11 +41,28 @@
 
 
             points.forEach(function(item, i, arr) {
+                let balloon = {
+                    balloonContentHeader: item.date + ' ' + item.time ,
 
+                };
+                let bc = '<div>';
+
+              //  bc += '<span>' +item.time + '</span>';
+                bc +=  '<div style="float: left;width: 20%">';
+                bc += '<div style="width:22px;height:22px; margin-top: 16px; border-radius: 10px;background:red;text-align: center;color: white; font-size: 12px;font-weight: bold;" ><span>'+item.num+'</span></div>';
+                bc += '</div>';
+
+                bc += '<div style="float: right; width: 80%;"><img style="width:96px" src="/'+item.src+'"></div>';
+
+                bc += '</div>';
+
+                balloon.balloonContent = bc;
+                /*
+                if (item.src){
+                    balloon.balloonContent ='<img src="/'+item.src+'">'
+                }*/
                 myMap.geoObjects
-                    .add(new ymaps.Placemark([item.lat,item.long], {
-                        balloonContent: '<strong>'+item.id+'</strong>' + ' ' + item.time
-                    }, {
+                    .add(new ymaps.Placemark([item.lat,item.long],balloon, {
                         preset: 'islands#icon',
                         iconColor: '#0095b6'
                     }))

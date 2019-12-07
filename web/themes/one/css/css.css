@@ -133,7 +133,7 @@ h4 {
     font-size: 3.3rem !important;
 }
 
-.oferr_timer{
+.offer_timer{
     color: red;
     font-weight: bold;
     font-size: 91px;
@@ -150,7 +150,7 @@ h4 {
 }
 
 .offer_promo_text{
-    color: white !important;
+    color: #fff !important;
     font-size: 26px !important;
     line-height: 26px !important;
     text-align: center !important;
@@ -159,10 +159,10 @@ h4 {
 }
 
 .offer_cont{
-    background-color: #000000 !important;
+    background-color: #000 !important;
 }
 .offer_wrap{
-    background-color: #000000 !important;
+    background-color: #000 !important;
 }
 
 .admin_opt_info_text{

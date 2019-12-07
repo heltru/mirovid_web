@@ -56,7 +56,7 @@ class SignupForm extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
 
-            ['verifyCode', 'captcha', 'captchaAction' => '/user/default/captcha'],
+          //  ['verifyCode', 'captcha', 'captchaAction' => '/user/default/captcha'],
         ];
     }
 
@@ -83,61 +83,11 @@ class SignupForm extends Model
     {
         if ($this->validate()) {
 
-            $user = new User();
-            $user->username = $this->username;
-            $user->email = $this->email;
-            $user->setPassword($this->password);
-            $user->status = User::STATUS_WAIT;
-            $user->phone = $this->phone;
+            $app = AppNovaVidAdminClient::Instance();
+            if (  $user = $app->addNewUser($this) ){
 
-            $user->generateAuthKey();
-            $user->generateEmailConfirmToken();
-
-
-            $connection = \Yii::$app->db;
-            $transaction = $connection->beginTransaction();
-
-            try {
-
-                if ($user->save()) {
-                    $app = AppNovaVidAdminClient::Instance();
-                   if (  $app->addNewUser($user) ){
-
-                       $auth = Yii::$app->authManager;
-                       $client = $auth->getRole('client');
-                       $auth->assign($client, $user->id);
-
-                       $transaction->commit();
-
-                       mail($this->email,
-                           'Email confirmation for ' . Yii::$app->name,
-                           Yii::$app->getView()->renderFile('@app/modules/user/mails/emailConfirm.php',['user' => $user])
-                       );
-                       /* Yii::$app->mailer->compose(['text' => '@app/modules/user/mails/emailConfirm'], ['user' => $user])
-                      ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
-                      ->setTo($this->email)
-                      ->setSubject('Email confirmation for ' . Yii::$app->name)
-                      ->send();*/
-
-                       return $user;
-                   }
-
-
-                }
-
-                $transaction->rollBack();
-                return null;
-
-            }catch (\Exception $e) {
-                $transaction->rollBack();
-                Logs::log('addNewUser',[$e]);
-                return null;
-            } catch (\Throwable $e) {
-                $transaction->rollBack();
-                Logs::log('addNewUser',[$e]);
-                return null;
+                   return $user;
             }
-
 
         }
         return null;

@@ -13,12 +13,17 @@ use Yii;
  * @property string $info
  * @property string $sys_name
  * @property int $type
+ * @property int $account_id
+ *
  */
 class Pay extends \yii\db\ActiveRecord
 {
 
     const INIT_PAY = 'initpay';
     const YACLI_PAY = 'yaclipay';
+    const YAWOFF_PAY = 'yawriteoff';
+
+
 
     const ST_ACTIVE = 0;
     const ST_DELETE = 1;
@@ -41,7 +46,7 @@ class Pay extends \yii\db\ActiveRecord
     {
         return [
             [['val'], 'number'],
-            [['status','type'], 'integer'],
+            [['status','type','account_id'], 'integer'],
             [['info','type'], 'string'],
         ];
     }
@@ -58,6 +63,8 @@ class Pay extends \yii\db\ActiveRecord
             'info' => 'info',
             'sys_name' => 'sys_name',
             'type' => 'type',
+            'account_id' => 'account_id',
+
         ];
     }
 }

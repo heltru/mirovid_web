@@ -15,20 +15,25 @@ use app\modules\pay\models\Pay;
 class AppBalance
 {
 
+
+
     public function getBalanceByCurrAccount(){
         $app_acc = new AppAccount();
         $acc = $app_acc->getAccount();
         if ($acc !== null){
 
-            $ac_pay = AccountPay::findOne(['account_id'=>$acc->id]);
 
-            $pay_user = Pay::findOne(['id'=>$ac_pay->pay_id]);
+            $pay_user = Pay::findOne(['account_id'=>$acc->id]);
 
             return $pay_user->val;
         }
 
         return 0;
 
+    }
+
+    public function debitByAccount($account_id,$summ){
+        $pay_user = Pay::findOne(['account_id'=>$account_id]);
     }
 
 }

@@ -20,6 +20,16 @@ $config = [
             ],
 
             'modules' => [
+                'bid' => [
+                    'class' => 'app\modules\bid\BidModule',
+                    'controllerNamespace' => 'app\modules\bid\controllers\backend',
+                    'viewPath' => '@app/modules/bid/views/backend',
+                ],
+                'reklamir' => [
+                    'class' => 'app\modules\reklamir\ReklamirModule',
+                    'controllerNamespace' => 'app\modules\reklamir\controllers\backend',
+                    'viewPath' => '@app/modules/reklamir/views/backend',
+                ],
                 'file' => [
                     'class' => 'app\modules\file\FileModule',
                     'controllerNamespace' => 'app\modules\file\controllers\backend',
@@ -70,9 +80,35 @@ $config = [
                     'controllerNamespace' => 'app\modules\pay\controllers\backend',
                     'viewPath' => '@app/modules/pay/views/backend',
                 ],
+                'balance' => [
+                    'class' => 'app\modules\balance\BalanceModule',
+                    'controllerNamespace' => 'app\modules\balance\controllers\backend',
+                    'viewPath' => '@app/modules/balance/views/backend',
+                ],
 
 
             ]
+        ],
+        'bid' => [
+            'class' => 'app\modules\bid\BidModule',
+            'controllerNamespace' => 'app\modules\bid\controllers\backend',
+            'viewPath' => '@app/modules/bid/views/backend',
+        ],
+        'balance' => [
+            'class' => 'app\modules\balance\BalanceModule',
+            'controllerNamespace' => 'app\modules\balance\controllers\frontend',
+            'viewPath' => '@app/modules/balance/views/frontend',
+        ],
+        'pay' => [
+            'class' => 'app\modules\pay\PayModule',
+            'controllerNamespace' => 'app\modules\pay\controllers\frontend',
+            'viewPath' => '@app/modules/pay/views/frontend',
+        ],
+
+        'reklamir' => [
+            'class' => 'app\modules\reklamir\ReklamirModule',
+            'controllerNamespace' => 'app\modules\reklamir\controllers\frontend',
+            'viewPath' => '@app/modules/reklamir/views/frontend',
         ],
 
         'file' => [
@@ -80,7 +116,7 @@ $config = [
             'controllerNamespace' => 'app\modules\file\controllers\frontend',
             'viewPath' => '@app/modules/file/views/frontend',
         ],
-         'test' => [
+        'test' => [
             'class' => 'app\modules\test\TestModule',
             'controllerNamespace' => 'app\modules\test\controllers\frontend',
             'viewPath' => '@app/modules/test/views/frontend',
@@ -130,7 +166,7 @@ $config = [
         'order' => [
             'class' => 'app\modules\order\OrderModule',
         ],
-         'url' => [
+        'url' => [
             'class' => 'app\modules\url\UrlModule',
             'controllerNamespace' => 'app\modules\url\controllers\frontend',
             'viewPath' => '@app/modules/url/views/frontend',
@@ -155,6 +191,7 @@ $config = [
             'decimalSeparator' => '.',
             'thousandSeparator' => ' ',
         ],
+
         'user' => [
             'identityClass' => 'app\modules\user\models\User',
             'enableAutoLogin' => true,
@@ -177,6 +214,7 @@ $config = [
 if ( $_SERVER['HTTP_HOST'] != 'mirovid.ru' /*YII_ENV_DEV*/) {
     
     // configuration adjustments for 'dev' environment
+
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug']= [
         'class'=>'yii\debug\Module',
@@ -184,10 +222,15 @@ if ( $_SERVER['HTTP_HOST'] != 'mirovid.ru' /*YII_ENV_DEV*/) {
 
     ];
   //
+
     $config['bootstrap'][] = 'gii';
+
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        'allowedIPs' => [ '127.0.0.1', '::1', '192.168.0.*', '192.168.178.20' ],
+        'allowedIPs' => [
+            '*',
+            '127.0.0.1', '::1', '192.168.0.*', '192.168.178.20'
+        ],
         'generators' => [ //here
             'crud' => [
                 'class' => 'yii\gii\generators\crud\Generator',

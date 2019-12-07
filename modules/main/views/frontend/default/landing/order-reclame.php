@@ -28,7 +28,7 @@
                         </div>
                         <div  class="cont_utm_col_text" >
                             <h5 class="header  light item_utp ">Уникальная рекламная площадка</h5>
-                            <p class="item_utp_subtitle">Ролик транслируется в разных частях города на множестве автомобилей.</p>
+                            <p class="item_utp_subtitle">Ролик транслируется в разных частях города на множестве автомобилей сети MIROVID</p>
                         </div>
                     </div>
 
@@ -97,19 +97,26 @@
                         <form  >
                             <div class="row ">
                                 <div class="input-field col s12 ">
-                                    <p class="oferr_timer">14:00:55</p>
+                                    <p class="offer_promo_text">
+                                        Зарегистрируйся сейчас и получи на счет <span style="color: red;">300</span> руб. для своей рекламы
+                                    </p>
+                                </div>
+                                <div class="input-field col s12 ">
+                                    <p style="font-size: 38px;
+                                    color: #fff;
+    text-transform: uppercase;
+    line-height: 38px;
+    text-align: center;">До конца акции</p>
+                                    <p class="timer offer_timer"></p>
+
                                 </div>
                                 <div class="col s12 center">
                                     <a onclick="window.dataLayer.push({'event': 'load_reclame'});"
-                                            href="/signup"
+                                            href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>"
                                             style="background-color: #ffd400;color: black;font-weight: bold" class="offer_btn waves-effect waves-light btn-large send-order  ">
                                        Загрузить рекламу</a>
                                 </div>
-                                <div class="input-field col s12 ">
-                                  <p class="offer_promo_text">
-                                      Зарегистрируйся сейчас и получи на счет <span style="color: red;">300</span> руб. для своей рекламы
-                                  </p>
-                                </div>
+
 
                             </div>
 
@@ -248,8 +255,8 @@
                 </div>
 
                 <div class="col s12 m6" style="padding-left: 4rem;">
-                    <p class="admin_opt_info_text"><span style="font-weight: bold">Карта города с отчетом по показам.</span><br> Карта Mirovid LED отображает <strong>что</strong>,
-                        <strong>где</strong> и <strong>когда</strong> было показано! </p>
+                    <p class="admin_opt_info_text"><span style="font-weight: bold">Отчётность</span><br>
+                        В личном кабинете Mirovid фиксируются <strong style="font-weight: bold;">показы</strong> по каждой рекламе</p>
                 </div>
 
             </div>
@@ -257,11 +264,13 @@
             <div class="row" style="margin-top: 6rem;">
 
                 <div class="col s12 m6" style="    padding-right: 4rem">
-                    <p class="admin_opt_info_text" ><span style="font-weight: bold">Опции для загрузки рекламы.</span> <br>Выбор района и времени показа рекламного ролика</p>
+                    <p class="admin_opt_info_text" ><span style="font-weight: bold">Опции для загрузки рекламы</span> <br>
+                        Самостоятельный выбор цены в зависимости от спроса на место и время
+                    </p>
 
                 </div>
                 <div class="col s12 m6" style="padding-left: 4rem;">
-                    <img class="img-responsive materialboxed" src="/themes/one/image/screens/place_and_time.png">
+                    <img class="img-responsive materialboxed" style="width: 130%" src="/themes/one/image/screens/place_and_time.png">
                 </div>
 
 
@@ -371,6 +380,52 @@
 </footer>
 <script>
     $(document).ready(function() {
+
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+
+        // Set the date we're counting down to
+        var countDownDate = new Date();
+        countDownDate.setDate(countDownDate.getDate() + 1);
+
+        var hour = getRandomInt(23);
+        var minute = getRandomInt(59);
+        countDownDate.setHours(countDownDate.getHours() + hour);
+        countDownDate.setMinutes(countDownDate.getMinutes() + minute);
+        countDownDate.getTime();
+
+// Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("demo").innerHTML =  hours + ":"
+                + minutes + ":" + seconds ;
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+
+
+
+
+
         M.updateTextFields();
         $('.materialboxed').materialbox();
     });

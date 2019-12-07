@@ -13,7 +13,7 @@ $this->title = 'Аккаунт подтвержден';
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="/"><b>☀novavid</b><br>Панель управления</a>
+        <a href="/"><b>MIR☀VID</b><br>Панель управления</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

@@ -43,6 +43,12 @@ class DefaultController extends Controller
         }
     }
 
+    public function actionTestShowReg(){
+      ex(
+          file_get_contents('http://mirovid/api/car/register-show?file_name=1_5_output-onlinepngtools.png&lat=1&long=2')
+      );
+    }
+
     public function actionGenTestData(){
 
         $block = Block::findOne(['status'=>Block::ST_TEST]);

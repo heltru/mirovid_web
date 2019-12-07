@@ -13,7 +13,79 @@
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i style="color: black;" class="material-icons">menu</i></a>
     </div>
 </nav>
+<style>
+    p.offer{
 
+        font-family: 'Gilroy-Bold',Arial,sans-serif;
+        font-size: 20px;
+        line-height: 27px;
+        font-weight: 400;
+        color: inherit;
+        letter-spacing: 1px;
+        text-align: center;
+        text-transform: uppercase;
+        margin: 0;
+        background: #fff;
+        color:#000 !important;
+        padding: 0 0 50px;
+        background: transparent url(../images/shadow-line.png) no-repeat center bottom;
+    }
+    p.info {
+        font-family: 'Gilroy-Bold',Arial,sans-serif;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 400;
+        color: #000 !important;
+        letter-spacing: 1px;
+        text-align: center;
+        margin: 0 0 20px !important;
+
+    }
+    .columnsa {
+        background: none;
+        margin: 0 0 5px  !important;
+    }
+    .columnsa {
+        display: inline-block;
+        float: none;
+        width: 100%;
+    }
+      .columnsa p {
+          display: block;
+          float: left;
+          width: 40%;
+          font-size: 20px;
+          line-height: 27px;
+          font-weight: 400;
+          color: inherit;
+          letter-spacing: 1px;
+          margin: 0 5% 20px  !important;
+          color:#000 !important;
+    }
+    .columnsa p.old-price {
+        font-family: inherit;
+        text-decoration: line-through;
+        text-align: right;
+        color:#000 !important;
+    }
+    .columnsa p.new-price {
+        font-family: 'Gilroy-Heavy',Arial,sans-serif;
+        text-align: left;
+        color:#000 !important;
+    }
+    .columnsa p {
+        margin-bottom: 10px !important;
+    }
+    .old-price {
+        font-family: inherit;
+        text-decoration: line-through;
+        text-align: right;
+    }
+    .new-price {
+        font-family: 'Gilroy-Heavy',Arial,sans-serif;
+        text-align: left;
+    }
+</style>
 <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot" style="background-image: url(themes/one/image/bg/9.jpg);">
         <div class="container">
@@ -24,6 +96,7 @@
 
                 <div class="col s12 m7 ">
 
+                    <!--
                     <div class="cont_utm">
                         <div class=" cont_utm_col_icon">
                             <i class=" utm_icon small material-icons">monetization_on</i>
@@ -33,6 +106,20 @@
                             <p class="item_utp_subtitle">Ездишь по своим делам и получаешь деньги от показа рекламы</p>
                         </div>
                     </div>
+
+-->
+
+                    <div class="cont_utm">
+                        <div class=" cont_utm_col_icon">
+                            <i class=" utm_icon small material-icons">color_lens</i>
+                        </div>
+                        <div  class="cont_utm_col_text" >
+                            <h5 class="header  light item_utp ">Самовыражение свей стены</h5>
+                            <p class="item_utp_subtitle">Загрузи свой брен, лого, хештег, ссылку, телефон, герб</p>
+                        </div>
+                    </div>
+
+
 
                     <div class="cont_utm">
                         <div class=" cont_utm_col_icon">
@@ -87,21 +174,34 @@
                     <div class="row card-content">
                         <form  >
                             <div class="row ">
+                                <div class="input-field col s12">
+                                    <p  style="font-weight: bold" class="offer">Акция!</p>
+                                    <p class="info" style="font-size: 18px;font-weight: bold"><span class="form-date" data-text="">до 28.11</span>
+                                        <span style="color: red">выгода <span class="discount">20</span>%</span></p>
+                                    <div class="columnsa">
+                                        <p class="old-price">31 300 руб.</p>
+                                        <p class="new-price" style="font-weight: bold">24 990 руб.</p>
+                                    </div>
+
+                                </div>
                                 <div class="input-field col s12 ">
-                                    <input name="name" placeholder="Имя" id="first_name" type="text" class="validate">
+                                    <select class="select_product">
+                                        <option value="product_litle" selected>Mirovid P5 МИНИ</option>
+                                        <option value="product_full">Mirovid P5</option>
+                                    </select>
+
+                                </div>
+                                <div class="input-field col s12 ">
+                                    <input name="name" placeholder="Ваше имя" id="first_name" type="text" class="validate">
                                     <label style=" color: #515751;   font-weight: bold;
-    font-size: 2.4em;" for="first_name">Имя</label>
+    font-size: 2.4em;" for="first_name">Ваше имя</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input name="phone"  placeholder="Телефон" id="last_name" type="text" class="validate">
+                                    <input name="phone"  placeholder="Ваш телефон" id="last_name" type="text" class="validate">
                                     <label style="color: #515751;    font-weight: bold;
-    font-size: 2.4em;" for="last_name">Телефон</label>
+    font-size: 2.4em;" for="last_name">Ваш телефон</label>
                                 </div>
-                                <div class="input-field col s12">
-                                    <input name="email"  placeholder="Email" id="Email" type="text" class="validate">
-                                    <label style="color: #515751;    font-weight: bold;
-    font-size: 2.4em;" for="email">Email</label>
-                                </div>
+
                                 <div class="col s12">
                                     <a
                                             onclick="window.dataLayer.push({'event': 'order_panel'});"
@@ -141,7 +241,32 @@
 <script>
     $(document).ready(function() {
         M.updateTextFields();
+        $('select').formSelect();
     });
+
+    $('.select_product').change(function (e){
+
+        if ($(this).val() == 'product_litle'){
+            $('.old-price').text("31 300 руб.");
+            $('.new-price').text("24 990 руб.");
+        }
+
+
+        if ($(this).val() == 'product_full'){
+            $('.old-price').text("61 800 руб.");
+            $('.new-price').text("49 990 руб.");
+
+        }
+
+
+
+
+
+    });
+
+
+
+
     // $(document).ready(function (){
     var heigh = $( window ).width();
     if ( heigh < 420){

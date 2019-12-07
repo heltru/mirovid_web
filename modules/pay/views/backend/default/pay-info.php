@@ -10,7 +10,7 @@ use yii\helpers\Html;
 
 $this->title = 'Баланс';
 
-$app_b = new \app\modules\app\app\AppBalance();
+
 ?>
 
 <div class="row">
@@ -20,7 +20,7 @@ $app_b = new \app\modules\app\app\AppBalance();
 
             <div class="info-box-content">
                 <br>
-                <span class="info-box-number"><?= $app_b->getBalanceByCurrAccount() ?></span>
+                <span class="info-box-number"><?= Yii::$app->getModule('balance')->getBalance() ?></span>
             </div>
             <!-- /.info-box-content -->
         </div>

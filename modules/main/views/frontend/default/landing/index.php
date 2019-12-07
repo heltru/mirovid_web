@@ -1,3 +1,6 @@
+<?php
+use yii\helpers\Json;
+?>
 <nav class="white" role="navigation" xmlns="http://www.w3.org/1999/html">
     <div class="nav-wrapper container">
         <a id="logo-container" href="/"  class="brand-logo red-text text-accent-4 item_logo_text">
@@ -9,7 +12,7 @@
 
         <ul id="nav-mobile" style="background-color: #e1e6ff;   " class="sidenav">
             <li><a href="#" style="font-size: 1.5em;">89991002878</a></li>
-            <li><a href="/zakazat-reklamu-v-seti-mirovid-led" style="font-size: 1.5em;">Заказать рекламу</a></li>
+            <li>3 000<a href="/zakazat-reklamu-v-seti-mirovid-led" style="font-size: 1.5em;">Заказать рекламу</a></li>
             <li><a href="/kupit-led-panel-mirovid" style="font-size: 1.5em;">Купить панель</a></li>
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i style="color: black;" class="material-icons">menu</i></a>
@@ -22,13 +25,18 @@
     <div class="container">
 
         <div class="row ">
-            <h1 class="header center avg_h1">пассивный доход и реклама Mirovid</h1>
+            <h1 class="header center avg_h1">реклама  в сети Mirovid и таблички</h1>
             <br><br>
         </div>
 
         <div class="row ">
             <div class="col s12 m7 ">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/b3S7QJK_fZU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/b3S7QJK_fZU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+                <?php echo $this->render('map',[
+                    'tracks'=>$tracks,
+                    'tracks_session'=>$tracks_session,
+                    'colors'=>$colors
+                ]);?>
             </div>
 
             <div class="col s12 m5   push-m2">
@@ -38,12 +46,9 @@
 
                             <div class="col s12">
 
-                                <p class="avg_reclame_title">Показы
-                                <span class="avg_reclame_title">и рекламный ролик</span>
+                                <p class="avg_reclame_title">Загрузить
+                                <span class="avg_reclame_title"> Online сообщение </span>
                                 </p>
-                            </div>
-                            <div class="col s12">
-                                <p class="avg_reclame_price">Цена от <span class="avg_reclame_val">10 000</span> руб.</p>
                             </div>
 
                             <div class="col s12">
@@ -77,13 +82,11 @@
 
                             <div class="col s12">
 
-                                <p class="avg_reclame_title">Пассивный доход
-                                    <span class="avg_reclame_title">на панелях</span>
+                                <p class="avg_reclame_title">Купить панель Mirovid LED
+                                    <span class="avg_reclame_title">в Хлынове</span>
                                 </p>
                             </div>
-                            <div class="col s12">
-                                <p class="avg_reclame_price">От <span class="avg_reclame_val">3 000</span> руб. ежемесячно</p>
-                            </div>
+
 
                             <div class="col s12">
                                 <a style="background-color: #2d6dbc;color: white;font-weight: bold"
@@ -98,11 +101,52 @@
             </div>
 
             <div class="col s12 m7  push-m2">
-               <img class="avg_sale_img img-responsive hide-on-med-and-down" src="/themes/one/image/scrooge_white.png">
+                <img class="avg_sale_img img-responsive hide-on-med-and-down" src="/themes/one/image/scrooge_white.png">
 
             </div>
 
 
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="section" style="background-image: url(themes/one/image/bg/9.jpg);" >
+    <div class="container">
+
+
+
+        <div class="row ">
+            <div class="col s12 m7 ">
+                <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/b3S7QJK_fZU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+
+            </div>
+
+            <div class="col s12 m5   push-m2">
+                <div class="row ">
+                    <form>
+                        <div class="row ">
+
+                            <div class="col s12">
+
+                                <p class="avg_reclame_title">Пассивный доход
+                                    <span class="avg_reclame_title"> с панели </span>
+                                </p>
+                            </div>
+
+                            <div class="col s12">
+                                <a style="background-color: #ffd400;color: black;font-weight: bold"
+                                   href="/zakazat-reklamu-v-seti-mirovid-led"
+                                   class="waves-effect waves-light btn-large send-order  ">Подробности</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
 
         </div>
 

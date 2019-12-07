@@ -50,7 +50,7 @@ class Logs extends \yii\db\ActiveRecord
     public static  function log($key='',$data){
         $r = new Logs();
         $r->key = $key;
-        $r->val = var_export($data,true); /* json_encode($data); *///var_export($data,true);/*json_encode($data);*/ //var_export($data,true);
+        $r->val = print_r($data,true); /* json_encode($data); *///var_export($data,true);/*json_encode($data);*/ //var_export($data,true);
         $r->date =   date('Y-m-d H:i:s');
         if (! $r->save()) {
             ex($r->getErrors());

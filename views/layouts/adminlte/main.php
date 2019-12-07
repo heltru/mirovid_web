@@ -4,6 +4,9 @@ use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+$bid_logs = \app\modules\bid\models\BidLog::find()->joinWith(['reklamir_r'])->where(['account_id'=>Yii::$app->getModule('account')->getAccount()->id])->limit(3)->all();
+$bid_logs_total = \app\modules\bid\models\BidLog::find()->joinWith(['reklamir_r'])
+    ->where(['account_id'=>Yii::$app->getModule('account')->getAccount()->id])->count();
 
 if (Yii::$app->controller->action->id === 'login') { 
 /**
@@ -15,13 +18,19 @@ if (Yii::$app->controller->action->id === 'login') {
         ['content' => $content]
     );
 } else {
-  //  dmstr\web\AdminLteAsset::register($this);
-    \app\assets\AppLteAsset::register($this);
-    app\assets\AppAsset::register($this);
+
+    /*
+    if (class_exists('backend\assets\AppAsset')) {
+        backend\assets\AppAsset::register($this);
+    } else {
+        app\assets\AppAsset::register($this);
+    }
+*/
+    \app\assets\AdminLteAsset::register($this);
+    \app\assets\AppMirovid::register($this);
+    //dmstr\web\AdminLteAsset::register($this);
 
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
-
-
     ?>
     <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -32,23 +41,19 @@ if (Yii::$app->controller->action->id === 'login') {
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
-
-        <link rel="stylesheet" type="text/css" href="/css/adminLTE.css">
     </head>
-    <body class="<?= \dmstr\helpers\AdminLteHelper::skinClass() ?>  layout-boxed"
-          data-temp="hold-transition skin-blue sidebar-mini">
-
+    <body class="hold-transition skin-black sidebar-mini">
     <?php $this->beginBody() ?>
     <div class="wrapper">
 
         <?= $this->render(
             'header.php',
-            ['directoryAsset' => $directoryAsset ]
+            ['directoryAsset' => $directoryAsset,'bid_logs'=>$bid_logs,'bid_logs_total'=>$bid_logs_total]
         ) ?>
 
         <?= $this->render(
             'left.php',
-            ['directoryAsset' => $directoryAsset]
+            ['directoryAsset' => $directoryAsset,'bid_logs'=>$bid_logs,'bid_logs_total'=>$bid_logs_total]
         )
         ?>
 

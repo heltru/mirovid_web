@@ -181,44 +181,51 @@ final class AppNovaVidAdminClient
     public function addNewUser($user){
         $summ = 500;
 
-        $acc = new Account();
-        $acc->user_id = (int) $user->id;
-        $acc->balance = $summ;
-        $acc->status = Account::ST_OK;
-        $acc->date_cr = HelperModule::convertDateToDatetime();
-        $acc->save();
+        $connection = \Yii::$app->db;
+        $transaction = $connection->beginTransaction();
+        try {
+            $acc = new Account();
+            $acc->user_id = (int) $user->id;
+            $acc->status = Account::ST_OK;
+            $acc->date_cr = HelperModule::convertDateToDatetime();
+            $acc->save();
 
-        $pay_user = new Pay();
-        $pay_user->val = $summ;
-        $pay_user->save();
+            $pay_user = new Pay();
+            $pay_user->val = $summ;
+            $pay_user->account_id = $acc->id;
+            $pay_user->save();
 
-        $account_pay = new AccountPay();
-        $account_pay->account_id = $acc->id;
-        $account_pay->pay_id = $pay_user->id;
-        if (! $account_pay->save()){
-            ex($account_pay->getErrors());
+
+
+            $pay_init = Pay::findOne(['sys_name'=>Pay::INIT_PAY]);
+
+            $trx = new Trx();
+            $trx->dt = $pay_init->id;
+            $trx->kt = $pay_user->id;
+            $trx->summ = $summ;
+            $trx->date =  HelperModule::convertDateToDatetime();
+            if (! $trx->save()){
+                ex($trx->getErrors());
+            }
+
+            $pay_init->val += $summ;
+            $pay_init->update(false,['val']);
+
+            $transaction->commit();
+            return true;
+        }catch (\Exception $e) {
+            $transaction->rollBack();
+            Logs::log('addNewUser',[$e]);
+            return null;
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+            Logs::log('addNewUser',[$e]);
+            return null;
         }
 
 
 
 
-
-        $pay_init = Pay::findOne(['sys_name'=>Pay::INIT_PAY]);
-
-        $trx = new Trx();
-        $trx->dt = $pay_init->id;
-        $trx->kt = $pay_user->id;
-        $trx->summ = $summ;
-        $trx->date =  HelperModule::convertDateToDatetime();
-        if (! $trx->save()){
-            ex($trx->getErrors());
-        }
-
-        $pay_init->val += $summ;
-        $pay_init->update(false,['val']);
-
-
-        return true;
     }
 
     public function removeUser($user){

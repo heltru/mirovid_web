@@ -6,11 +6,17 @@ use app\modules\app\app\AppAccount;
 use app\modules\app\app\AppNovaVidShow;
 use app\modules\block\models\Block;
 
+use app\modules\helper\models\Helper;
 use app\modules\show\models\ShowRegister;
 use app\modules\show\models\ShowRegisterSearch;
+
+use app\modules\show\models\ShowRegisterSearchTable;
+use app\modules\show\models\TrackAuto;
+use app\modules\show\models\TrackPoint;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Json;
 use yii\web\Controller;
+use yii\web\Response;
 
 /**
  * Default controller for the `show` module
@@ -21,14 +27,17 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
+
 
     public function actionTest()
     {
         return $this->render('test');
+    }
+
+
+    public function actionPixelEditor(){
+        $this->layout = false;
+        return $this->render('pixel-editor');
     }
 
     public function actionWhileLenta()
@@ -56,6 +65,34 @@ class DefaultController extends Controller
         ]);
     }
 
+    public function actionCalcPostCar(){
+        \Yii::$app->response->format  = Response::FORMAT_JSON;
+        \Yii::$app->session->open();
+        $tracks = \Yii::$app->session->get('tracks');
+
+        $track_index = (int)\Yii::$app->request->get('track_index');
+
+        if (isset($tracks[$track_index])){
+
+            $save_item = $tracks[$track_index];
+            if ((count($save_item['points'])-1) == $save_item['point_index'] ){
+                $tracks[$track_index]['point_index'] = 0;
+            } else {
+                $tracks[$track_index]['point_index'] = (int)$tracks[$track_index]['point_index']  + 1;
+            }
+            $point = $tracks[$track_index]['points'][ $tracks[$track_index]['point_index'] ];
+
+            \Yii::$app->session->set('tracks',$tracks);
+            \Yii::$app->session->close();
+            return ['active_index'=>$tracks[$track_index]['point_index'] ,'lat'=>$point[0],'long'=>$point[1]];
+        }
+
+        [];
+
+        \Yii::$app->session->close();
+
+    }
+
     public function actionMapRegister(){
         $searchModel = new ShowRegisterSearch();
 
@@ -64,23 +101,34 @@ class DefaultController extends Controller
         $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
         
         $points = [];
-        foreach ($dataProvider->getModels()  as $model){
-            $date = explode(' ',$model->date_sh);
+
+        foreach ($dataProvider->getModels() as $num => $model){
+            $date = strtotime($model->date_sh);
             $points[] =  [
                 'lat'=>$model->lat,
                 'long'=>$model->long,
-                'id'=>$model->msg_id,
-                'time'=> $date[1],
-                'date'=> $date[0]
+                'id'=>$model->id,
+                'num'=>$num,
+                'time'=> date( 'H:i:s',$date),
+                'date'=> date('d.m.y',$date),
+                'src'=>$model->reklamir_r->file_r->path_preview
             ];
         }
-
-
 
         return $this->render('map-register', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'points'=> Json::encode( $points)
         ]);
+    }
+
+
+    public function actionAddTrackPoint(){
+        $tp = new TrackPoint();
+        $tp->lat = \Yii::$app->request->get('lat');
+        $tp->long = \Yii::$app->request->get('long');
+        $tp->track_id = \Yii::$app->request->get('track_id');
+        $tp->save();
+        ex($tp->getErrors());
     }
 }

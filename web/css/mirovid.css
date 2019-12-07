@@ -1,0 +1,20 @@
+.skin-black .main-header .logo {
+    background-color: #222d32;
+    color: #f00;
+    border-bottom: 0 solid transparent;
+    border-right: 1px solid #b8c7ce;
+}
+.skin-black .main-header .navbar>.sidebar-toggle {
+    color: #b8c7ce;
+    border-right: 1px solid #b8c7ce;
+}
+.skin-black .main-header .navbar .navbar-custom-menu .navbar-nav>li>a, .skin-black .main-header .navbar .navbar-right>li>a {
+    border-left: 1px solid #b8c7ce;
+    border-right-width: 0;
+}
+.skin-black .main-header .navbar .nav>li>a {
+    color: #b8c7ce;
+}
+.skin-black .main-header .navbar {
+    background-color: #222d32;
+}

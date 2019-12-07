@@ -10,6 +10,10 @@ namespace app\modules\app\fileupload;
 use app\components\utils\Transliteration;
 use app\modules\admin\models\UploadVideoForm;
 use app\modules\file\models\File;
+use app\modules\file\models\FilePreview;
+use FFMpeg\Coordinate\TimeCode;
+use FFMpeg\FFMpeg;
+use yii\helpers\FileHelper;
 use yii\helpers\StringHelper;
 use yii\web\UploadedFile;
 use Yii;
@@ -18,29 +22,40 @@ class FileUpload
 {
 
 
-    private $dir = 'mirovid/files';
+    public $dir = 'mirovid/files';
     private $temp_file;
 
     private $name_file;
 
 
     public $is_add=false;
+    public $form_name = 'Reklamir';
+    public $field_name = 'uploadFile';
+
+    private $file_db;
+
+    public function __construct($dir = 'mirovid/files',$form_name='Reklamir',$field_name='uploadFile')
+    {
+        $this->form_name = $form_name;
+        $this->field_name = $field_name;
+        $this->dir = $dir;
+    }
 
     public function getModelHtmlForm(){
         return new UploadVideoForm();
     }
 
 
-
     public function begin(){
-
-
+        if (isset($_FILES['Reklamir']) && isset($_FILES['Reklamir']['name']) && isset($_FILES['Reklamir']['name']['uploadFile']) &&
+            $_FILES['Reklamir']['name']['uploadFile'] == ''   ){
+            return ;
+        }
         if (! count($_FILES)){
             return;
         }
 
-
-        $connection = Yii::$app->db;
+       $connection = Yii::$app->db;
         $transaction = $connection->beginTransaction();
         try {
 
@@ -49,26 +64,34 @@ class FileUpload
             $this->checkOldCreateDb();
             $this->saveFile();
 
+
+
             $this->is_add = true;
 
             $transaction->commit();
         } catch (\Exception $e) {
+            ex($e->getMessage());
             $transaction->rollBack();
             throw $e;
         }
 
 
+
+
     }
 
     private function setNameFilefromFile(){
-
-        $this->name_file = $_FILES['UploadVideoForm']['name']['videoFile'];
-        $this->temp_file =  $_FILES['UploadVideoForm']['tmp_name']['videoFile'];
-
+        $this->name_file = $_FILES[$this->form_name]['name'][$this->field_name];
+        $this->temp_file =  $_FILES[$this->form_name]['tmp_name'][$this->field_name];
     }
 
     private function saveFile(){
-        $new_file_path = 'mirovid/files/'.$this->name_file;
+
+        if (! is_dir($this->dir)){
+            FileHelper::createDirectory($this->dir);
+        }
+
+        $new_file_path = $this->dir . '/' . $this->name_file;
 
         file_put_contents(  $new_file_path,file_get_contents($this->temp_file) );
         chmod($new_file_path, 0660);
@@ -96,30 +119,104 @@ class FileUpload
 
 
 
-        $file = new File();
-        $file->name = $this->name_file;
-        $file->path = $this->dir . '/' . $this->name_file;
-        $file->save();
+        if ( ! is_object($this->file_db)){
+            $this->file_db = new File();
+        } else {
+            @unlink($this->file_db->path);
+        }
 
-        $file_id = $file->id;
+
+        $this->file_db->name = $this->name_file;
+        $this->file_db->path = $this->dir . '/' . $this->name_file;
+        $this->file_db->save();
+
+
+
+        $reklamir_id = $this->file_db->id;
 
         $ord = $this->getFileOrd();
 
-        $this->name_file = $ord . '_' .  $file_id .'_'. $this->name_file;
+        $this->name_file = $ord . '_' .  $reklamir_id .'_'. $this->name_file;
 
-        $file->name = $this->name_file;
-        $file->path = $this->dir . '/' . $this->name_file;
-        $file->update(false,['name','path']);
+        $this->file_db->name = $this->name_file;
+        $this->file_db->path = $this->dir . '/' . $this->name_file;
+        $this->file_db->update(false,['name','path']);
 
         //check exsisit calc ID  set num thorut db table calcName for File
 
 
     }
 
+
+    public function create_preview(){
+
+        $slides = 10;
+
+        $sec = 5;
+        $movie = $this->file_db->path;
+
+        $pathinfo = pathinfo($this->name_file);
+        $filename = $pathinfo['filename'];
+
+        $ext = $pathinfo['extension'];
+
+        if (in_array($ext,['png','jpg','jpeg','gif','bmp'])){
+            return;
+        }
+
+
+        $thumbnail = $this->dir. '/' . $filename. '.png';
+
+        $ffmpeg =  FFMpeg::create(['ffmpeg.binaries'  => 'C:/FFmpeg/bin/ffmpeg.exe', // the path to the FFMpeg binary
+            'ffprobe.binaries' => 'C:/FFmpeg/bin/ffprobe.exe', // the path to the FFProbe binary
+            'timeout'          => 3600, // the timeout for the underlying process
+            'ffmpeg.threads'   => 12,   // the number of threads that FFMpeg should use
+            ]);
+        $video = $ffmpeg->open($movie);
+        /*
+        $duration =
+            $video->getFFProbe()->format($movie)
+                ->get('duration');
+        $duration = (int) floor($duration);
+        $slide_dx =  $duration / $slides;
+        for ($i=0;$i<=9;$i++){
+
+            $thumbnail = $this->dir. '/' . $filename . '_' . $i. '.png';
+            $frame = $video->frame(TimeCode::fromSeconds(round($i*$slide_dx)));
+            $frame->save($thumbnail);
+
+            $fp = new FilePreview();
+            $fp->file_id = $this->file_db->id;
+            $fp->path_preview = $thumbnail;
+            $fp->save();
+            if (count($fp->getErrors())){
+                ex($fp->getErrors());
+            }
+        }
+*/
+       // ex($duration);
+
+        $thumbnail = $this->dir. '/' . $filename. '.png';
+        $frame = $video->frame(TimeCode::fromSeconds($sec));
+        $frame->save($thumbnail);
+
+        $this->file_db->path_preview =  $thumbnail;
+        $this->file_db->update(false,['path_preview']);
+
+    }
+
+
     private function getFileOrd(){
         return  (int) File::find()->count() ;
     }
 
+    public function getFileModel(){
+        return $this->file_db;
+    }
+
+    public function setFileModel($model){
+        return $this->file_db = $model;
+    }
 
     private function safeFileName()
     {
@@ -143,7 +240,9 @@ class FileUpload
 
         $filename = preg_replace('/\s+/', '', $filename);
 
-        $filename = StringHelper::truncate($filename,230);
+        $filename = StringHelper::truncate($filename,220);
+
+        $filename = $filename . '_' . time();
 
         $filename = $this->normalizeString($filename);
 

@@ -27,7 +27,8 @@
 		"mervick/yii2-emojionearea": "*",
 		"mervick/emojionearea": "^3.4",
 		"kartik-v/yii2-slider": "1.3.2",
-		"2amigos/yii2-date-time-picker-widget" : "~1.0"
+		"2amigos/yii2-date-time-picker-widget" : "~1.0",
+		"php-ffmpeg/php-ffmpeg": "^0.14.0"
 
 
 	},

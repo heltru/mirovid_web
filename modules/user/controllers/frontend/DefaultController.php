@@ -2,6 +2,7 @@
 
 namespace app\modules\user\controllers\frontend;
 
+use app\modules\app\app\AddNewUser;
 use app\modules\helper\models\Logs;
 use app\modules\user\forms\frontend\EmailConfirmForm;
 use app\modules\user\forms\LoginForm;
@@ -96,15 +97,38 @@ class DefaultController extends Controller
     {
         $this->layout = '/adminlte/main-login';
         $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
-            $user = $model->signup();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
+            $app_create_user = new AddNewUser();
 
 
-            if ($user) {
-                Yii::$app->getSession()->setFlash('success', Module::t('module', 'FLASH_EMAIL_CONFIRM_REQUEST'));
-                return $this->render('adminlte/success-signup');
+            if ($app_create_user->addNewUser($model)) {
+
+                $user = $app_create_user->getUser();
+
+
+
+
+                mail($model->email,
+                    'Email confirmation for ' . Yii::$app->name,
+                    Yii::$app->getView()->renderFile('@app/modules/user/mails/emailConfirm.php',['user' => $user])
+                );
+                /* Yii::$app->mailer->compose(['text' => '@app/modules/user/mails/emailConfirm'], ['user' => $user])
+               ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
+               ->setTo($this->email)
+               ->setSubject('Email confirmation for ' . Yii::$app->name)
+               ->send();*/
+
+
+                Yii::$app->getSession()->setFlash('success', 'Добро пожаловать в Mirovid!');
+                return $this->redirect('admin');
             } else {
-                Yii::$app->getSession()->setFlash('danger', 'Ошибка создания аккаунта ');
+                $estr = '';
+                foreach ($model->getErrors() as $att_name =>$errs){
+                    $estr .= $model->getAttributeLabel($att_name) . ': ' . join(', ',$errs);
+                }
+
+                Yii::$app->getSession()->setFlash('danger', 'Ошибка создания аккаунта ' . $estr . ' ' .$app_create_user->error);
             }
         }
 

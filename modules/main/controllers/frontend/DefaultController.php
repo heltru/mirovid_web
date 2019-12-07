@@ -2,6 +2,11 @@
 
 namespace app\modules\main\controllers\frontend;
 
+use app\modules\helper\models\Helper;
+use app\modules\show\models\ShowRegister;
+use app\modules\show\models\TrackAuto;
+use app\modules\show\models\TrackPoint;
+use yii\helpers\Json;
 use yii\web\Controller;
 
 class DefaultController extends Controller
@@ -19,15 +24,61 @@ class DefaultController extends Controller
         */
     }
 
+    public function actionRedirectMain(){
+
+        header("HTTP/1.1 301 Moved Permanently");
+        header("Location: ". \Yii::$app->request->hostInfo);
+        exit();
+    }
+
+    public function actionRegisterTrackPoint(){
+
+        $data = ShowRegister::find()->all();
+
+
+        return $this->render('landing/map_register_track_points',['data'=>$data]);
+    }
+
+    public function actionSession(){
+        \Yii::$app->session->open();
+        ex( \Yii::$app->session->get('tracks'));
+
+    }
+
     public function actionIndex()
     {
-      //  ex(4);
+
+        $data = TrackAuto::find()->joinWith(['trackPoints_r'])->all();
+
+        $tracks = [];
+        $colors = [];
+
+        $common_points = [];
+        foreach ($data as $num => $item){
+            $points = [];
+            foreach ($item->trackPoints_r as $point){
+
+                $points[] = [$point->lat,$point->long];
+                $common_points[] = [$point->lat,$point->long];
+            }
+
+            if (!count($points)){
+                continue;
+            }
+
+            $colors[$num] = '#' . Helper::genColorCodeFromText( $item->id) ;
+            $tracks[$num] = ['tracks_index'=>$num,'points'=>$points];
+            $tracks_session[$num] = ['point_index'=>rand(0,count($points)-1),'points','points'=>$points];
+
+        }
+
+
         $title = 'Заказать рекламу на авто машинах в Кирове. Пассивный заработок для авто';
         $descr = 'Динамичная и цветная релкама, продукт или услуга дойдет до сознания. Увеличь доход от авто на 2000 руб в месяц';
         $key = 'Объвяление, Реклама, авто, сообщения, новости, led, Киров';
         $this->view->title =$title;
         $this->view->registerMetaTag([ 'name' => 'description', 'content' =>$descr]);
-       $this->view->registerMetaTag([ 'name' => 'keywords', 'content' => $key]);
+        $this->view->registerMetaTag([ 'name' => 'keywords', 'content' => $key]);
         $this->view->registerMetaTag([ 'property' => 'og:type', 'content' =>  'product.group']);
         $this->view->registerMetaTag([ 'property' => 'og:locale', 'content' =>  'ru_RU']);
         $this->view->registerMetaTag([ 'property' => 'og:description', 'content' => $descr]);
@@ -37,7 +88,11 @@ class DefaultController extends Controller
                 'content' => \Yii::$app->request->hostInfo .'']);
 
         $this->layout = 'landing_index';
-        return $this->render('landing/index');
+        return $this->render('landing/index',[
+            'tracks'=>Json::encode($tracks),
+            'tracks_session'=>Json::encode($tracks_session),
+            'colors'=>Json::encode($colors)
+        ]);
     }
 
 

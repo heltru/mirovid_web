@@ -1,0 +1,12 @@
+.b-car { width: 56px; height: 27px; margin-left:-27px; margin-top:-27px; }
+.b-car.b-car_blue { background: url(Stinger-GTA2_7.png) no-repeat 0 0; }
+.b-car.b-car-direction-e {background-position:0 0}
+
+.b-car.b-car-direction-n {background-position:0 0}
+
+
+.b-car.b-car-direction-w {background-position:0 0}
+
+
+.b-car.b-car-direction-s {background-position:0 0}
+

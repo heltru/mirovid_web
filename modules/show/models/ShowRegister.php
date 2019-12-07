@@ -2,17 +2,17 @@
 
 namespace app\modules\show\models;
 
+use app\modules\reklamir\models\Reklamir;
 use Yii;
 
 /**
  * This is the model class for table "show_register".
  *
  * @property int $id
- * @property int $file_id
+ * @property int $reklamir_id
  * @property string $date_sh
  * @property int $lat
  * @property int $long
- * @property int $time
  */
 class ShowRegister extends \yii\db\ActiveRecord
 {
@@ -30,8 +30,8 @@ class ShowRegister extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['file_id', 'date_sh'], 'required'],
-            [['file_id', 'time'], 'integer'],
+            [[ 'date_sh'], 'required'],
+            [['reklamir_id','file_id'], 'integer'],
             [[  'lat', 'long' ], 'number'],
 
             [['date_sh'], 'safe'],
@@ -45,11 +45,17 @@ class ShowRegister extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'file_id' => 'Msg ID',
+            'reklamir_id' => 'Реклама',
             'date_sh' => 'Date Sh',
             'lat' => 'Lat',
             'long' => 'Long',
-            'time' => 'time',
+            'date_from' => 'От',
+            'date_to' => 'До',
         ];
     }
+
+    public function getReklamir_r(){
+        return $this->hasOne( Reklamir::class, ['id' => 'reklamir_id']);
+    }
+
 }

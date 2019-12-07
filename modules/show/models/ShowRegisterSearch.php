@@ -3,10 +3,12 @@
 namespace app\modules\show\models;
 
 use app\modules\app\app\AppAccount;
+use app\modules\reklamir\models\Reklamir;
 use app\modules\show\models\ShowRegister;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 
 
 /**
@@ -22,15 +24,26 @@ class ShowRegisterSearch extends ShowRegister
     public $date_from;
     public $date_to;
 
+    public $count_items=100;
+
 
 
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['reklamir_id','count_items'], 'integer'],
             [['name','date_from','date_to'], 'safe'],
         ];
     }
+
+    public function attributeLabels()
+    {
+        return parent::attributeLabels() + [
+                'count_items' => 'Меток на странице',
+            ];
+
+    }
+
 
 
   public $time_filter;
@@ -54,36 +67,40 @@ class ShowRegisterSearch extends ShowRegister
      */
     public function search($params)
     {
-        $appAc = AppAccount::Instance();
 
-        $query = ShowRegister::find();
 
+        $query = ShowRegister::find()->joinWith(['reklamir_r','reklamir_r.file_r']);
         $query->limit(3);
 
+        $this->load($params);
 
 
         if ($this->date_from && $this->date_to){
-            $query->where(['between', 'date', $this->date_from, $this->date_to]);
+            $query->where(['between', 'date_sh', $this->date_from, $this->date_to]);
         }
 
-
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 1500,
+                'pageSize' => $this->count_items,
             ],
         ]);
 
-        $this->load($params);
 
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
+        if ($this->reklamir_id){
+            $query->andWhere(['reklamir_id'=>$this->reklamir_id]);
+        } else {
+            $query->andWhere(['reklamir_id'=> ArrayHelper::getColumn(
+                Reklamir::find()->where(['account_id'=>Yii::$app->getModule('account')->getAccount()->id])->all(),'id') ]);
         }
 
+
+
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+      // ex($query->createCommand()->rawSql);
 
         return $dataProvider;
     }

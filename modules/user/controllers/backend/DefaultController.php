@@ -3,6 +3,8 @@
 namespace app\modules\user\controllers\backend;
 
 use app\modules\app\app\AppNovaVidAdminClient;
+use app\modules\app\app\AppRemoveUser;
+use app\modules\image\services\Exception;
 use app\modules\user\forms\backend\search\UserSearch;
 use app\modules\user\models\backend\User;
 use Yii;
@@ -103,11 +105,14 @@ class DefaultController extends Controller
     public function actionDelete($id)
     {
 
-        $app = AppNovaVidAdminClient::Instance();
-        $res = $app->removeUser($this->findModel($id));
-        if ($res){
+        $app = new AppRemoveUser($id);
+        try{
+            $app->begin();
             Yii::$app->session->setFlash('success','Юзер удален!');
+        } catch ( \Exception $e){
+
         }
+
 
         return $this->redirect(['/admin/user/default/index']);
     }

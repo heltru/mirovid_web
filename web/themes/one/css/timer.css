@@ -1,0 +1,47 @@
+.timer{
+	display: block;
+	width: 320px;
+	height: 117px;
+	font-family: Tahoma, sans-serif;
+	font-size: 79px;
+	line-height: 100px;
+	font-weight: bold;
+	color: #ff0000;
+	padding: 0;
+	margin: 0 auto !important;
+	background: none;
+	border: none;
+	text-align: center;
+	text-shadow: 0 0 1px #000000;
+}
+.timer .countbox-num{
+	float: left;
+	width: 28%;
+	height: 22px;
+}
+.timer .countbox-space{
+	display: block;
+    float: left;
+	width: 8%;
+	height: 22px;
+    text-align: center;
+}
+.countbox-days1, .countbox-days2, .countbox-hours1,.countbox-mins1,.countbox-secs1,.countbox-hours2,.countbox-mins2,.countbox-secs2{
+	background: none;
+}
+.countbox-days1,.countbox-hours1,.countbox-mins1,.countbox-secs1{
+	float: left;
+	text-align: right;
+	margin: 0;
+	height: 22px;
+	width: 50%;
+	z-index:1;
+}
+.countbox-days2,.countbox-hours2,.countbox-mins2,.countbox-secs2{
+	float: left;
+	text-align: left;
+	margin: 0;
+	height: 22px;
+	width: 50%;
+	z-index:1;
+}

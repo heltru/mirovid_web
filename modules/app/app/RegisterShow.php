@@ -9,6 +9,11 @@ namespace app\modules\app\app;
 
 use app\modules\app\app\AppPrice;
 use app\modules\block\models\Msg;
+use app\modules\helper\models\Helper;
+use app\modules\helper\models\Logs;
+use app\modules\pay\models\Pay;
+use app\modules\pay\models\Trx;
+use app\modules\reklamir\models\Reklamir;
 use app\modules\show\models\ShowRegister;
 use yii\db\Transaction;
 use app\modules\helper\HelperModule;
@@ -18,86 +23,77 @@ class RegisterShow
 
 
     public $show_register;
-    public $msg;
+    private $lat;
+    private $long;
+    private $reklamir_id;
 
-    public function __construct()
+    public $result;
+
+    public function __construct($lat,$long,$reklamir_id)
     {
         $this->show_register = new ShowRegister();
 
+        $this->lat = $lat;
+        $this->long = $long;
+        $this->reklamir_id = $reklamir_id;
+
+
+
     }
 
-    public function register_show($data){
+    public function begin(){
 
-        $this->show_register->setAttributes($data);
+
+
+        $this->show_register->reklamir_id = $this->reklamir_id;
+        $this->show_register->long = $this->long;
+        $this->show_register->lat = $this->lat;
+
         $this->show_register->date_sh = date("Y-m-d H:i:s" ) ;
+        $this->show_register->save();
 
-        /*
-        if (! $this->show_register->save()){
-            return $this->show_register->getErrors();
+
+
+        try{
+            $reklama = Reklamir::find()->where(['reklamir.id'=>$this->reklamir_id])->joinWith(['thing_r','thing_r.place_r'])->one();
+        } catch (\Exception $e){
+            Logs::log('find Reklamir', $e->getMessage());
+            return;
         }
-        */
-
-        $reg = new ShowRegister();
-        $reg->date_sh = HelperModule::convertDateToDatetime();
-        $reg->lat = $data['lat'];
-        $reg->long = $data['long'];
-        $reg->file_id = $data['file_id'];
-        $reg->save();
 
 
-        /*
-        $msg = Msg::find()->joinWith(['block_r.account_r'])->where(['msg.id'=> $this->show_register->msg_id])->one();
+        if ($reklama !== null){
 
-        if ($msg !== null){
-            $app = new AppPrice();
+            $price_show = $reklama->thing_r->place_r->price_show;
+            $reklama->show = (int)$reklama->show + 1;
 
+            $reklama->update(false,['show']);
 
-            if (
-                true
-            //    $msg->count_show < $msg->count_limit && $msg->block_r->account_r->balance > 0
-            ){
-                $msg->count_show += 1;
-                $msg->count_total += 1;
-
-                $msg->block_r->account_r->balance -= $app->getPriceMsg();
-
-                $transaction = \Yii::$app->db->beginTransaction(
-                    Transaction::SERIALIZABLE
-                );
-                try {
-
-                    $msg->block_r->account_r->update(false,['balance']);
-                    $msg->update(false,['count_show','count_total']);
+            $pay_user = Pay::find()->where(['account_id'=>$reklama->account_id])->andWhere([ '>','val',0])->one();
+            if ($pay_user !== null){
+                $pay_user->val -= $price_show;
+                $pay_user->update(false,['val']);
 
 
-                    $reg = new ShowRegister();
-                    $reg->date_sh = HelperModule::convertDateToDatetime();
-                    $reg->lat = $data['lat'];
-                    $reg->long = $data['long'];
-                    $reg->msg_id = $msg->id;
-                    $reg->save();
+                $pay_yandex = Pay::findOne(['sys_name'=>Pay::YAWOFF_PAY]);
+                $pay_yandex->val += $price_show;
+                $pay_yandex->update(false,['val']);
 
-
-                    $transaction->commit();
-                } catch (\Exception $e) {
-                    $transaction->rollBack();
-                    throw $e;
-                } catch (\Throwable $e) {
-                    $transaction->rollBack();
-                    throw $e;
+                $trx = new Trx();
+                $trx->dt = $pay_user->id;
+                $trx->kt = $pay_yandex->id;
+                $trx->summ = $price_show;
+                $trx->type = 1;
+                $trx->date =  HelperModule::convertDateToDatetime();
+                if (! $trx->save()){
+                    Logs::log('$trxNotSave', $trx->getMessage());
                 }
-
-
             }
 
-
         }
-*/
+
+
         return true;
-    }
-
-    public function actionRegisterShowOffline(){
-
     }
 
 }

@@ -110,11 +110,11 @@ class AppYaPayIncome
 
             $app_acc = AppAccount::Instance();
             $acc = $app_acc ->getAccount($pay_form->user_id);
-            $ac_pay = AccountPay::findOne(['account_id'=>$acc->id]);
+
 
 
             //recal value
-            $pay_user = Pay::findOne(['id'=>$ac_pay->pay_id]);
+            $pay_user = Pay::findOne(['account_id'=>$acc->id]);
             $pay_user->val += $summpay;
             $pay_user->update(false,['val']);
 

@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property int $dt
  * @property int $kt
+ * @property int $type
  * @property string $summ
  * @property string $date
  */
@@ -29,7 +30,7 @@ class Trx extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['dt', 'kt'], 'integer'],
+            [['dt', 'kt','type'], 'integer'],
             [['summ'], 'number'],
             [['date'], 'required'],
             [['date'], 'safe'],

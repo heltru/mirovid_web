@@ -51,8 +51,8 @@ return [
                     'rules' => [
                      //   '' => 'block/default/index',
 
-
-                        '' => 'file/default/index',
+                        '' => 'reklamir/default/index',
+                        //'' => 'file/default/index',
                       //  '/' => 'admin',
                         '<_m:[\w\-]+>' => '<_m>/default/index',
                         '<_m:[\w\-]+>/<id:\d+>' => '<_m>/default/view',
@@ -67,10 +67,19 @@ return [
                     'route' => 'sitemap/default/sitemap',
                     'suffix' => '.xml',
                 ],
-              
+
+                /*
                 '' => 'main/default/index',
                 'kupit-led-panel-mirovid'=>'main/default/sale-panel',
                 'zakazat-reklamu-v-seti-mirovid-led'=>'main/default/order-reclame',
+                */
+
+                'kupit-led-panel-mirovid'=>'main/default/redirect-main',
+                'zakazat-reklamu-v-seti-mirovid-led'=>'main/default/redirect-main',
+
+                ''=>'main/default/order-reclame',
+
+
                 'contact' => 'main/contact/index',
                 '<_a:error>' => 'main/default/<_a>',
 
