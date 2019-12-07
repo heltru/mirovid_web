@@ -180,7 +180,7 @@
                             toastr.info(data.response);
 
                             $btn.parent().parent().find('.myval').attr('disabled', 'disabled');
-                            $btn.parent().parent().find('.bid_status').removeClass('btn-danger').removeClass('btn-success').addClass('bg-purple');
+                            $btn.parent().parent().find('.bid_status').removeClass('btn-danger').removeClass('btn-success').removeClass('btn-default').addClass('bg-purple');
                             $btn.parent().parent().find('.rewrite_price').attr('disabled', 'disabled');
                             $btn.parent().parent().find('.rate').text(99);
 
