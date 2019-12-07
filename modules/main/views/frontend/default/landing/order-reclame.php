@@ -2,13 +2,15 @@
     <div class="nav-wrapper container">
         <a id="logo-container" href="/"  class="brand-logo red-text text-accent-4 item_logo_text"><span class="red-text text-accent-4">☀</span> MIROVID</a>
         <ul class="right hide-on-med-and-down">
-                <li><a class="item_phone" style="font-size: 1.5em;color: black" href="#">8(999)-100-2878</a></li>
+                <li><a class="item_phone" style="font-size: 1.5em;color: black" href="tel:89991002878">8(999)-100-2878</a></li>
         </ul>
 
         <ul id="nav-mobile" style="background-color: #e1e6ff;   " class="sidenav">
-            <li><a href="#" style="font-size: 1.5em;">89991002878</a></li>
+            <li><a href="tel:89991002878" style="font-size: 1.5em;">89991002878</a></li>
+            <!--
             <li><a href="/zakazat-reklamu-v-seti-mirovid-led" style="font-size: 1.5em;">Заказать рекламу</a></li>
             <li><a href="/kupit-led-panel-mirovid" style="font-size: 1.5em;">Купить панель</a></li>
+            -->
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i style="color: black;" class="material-icons">menu</i></a>
     </div>
@@ -150,7 +152,7 @@
                     <h5 class="center com_title">Просто наклейка</h5>
 
                     <ul class="ul_comp">
-                        <li class="li_item_comp" >Невидно в темноте</li>
+                        <li class="li_item_comp" >Не видно в темноте</li>
                         <li  class="li_item_comp">Мелкий и неразборчивый текст при отдалении</li>
                         <li  class="li_item_comp">За 3 сек не поменять на другое сообщение</li>
                     </ul>
@@ -166,7 +168,7 @@
 
                     <ul class="ul_comp">
                         <li  class="li_item_comp"> В любое время суток заметно. В темное время еще лучше</li>
-                        <li  class="li_item_comp">За счет якрости модулей, на всей видимой дистанции виден модуль</li>
+                        <li  class="li_item_comp">За счет яркости модулей рекламу видно издалека</li>
                         <li  class="li_item_comp"> Обновление в любой момент, через интернет. Online 24/7</li>
                     </ul>
 
@@ -185,7 +187,7 @@
     <div class="section no-pad-bot">
         <div class="container">
             <div class="row center">
-                <h5 class="header col s12 light item_title_block">Полная свобода в тестирование гипотез, комерческих бонусов, промо кодов, акции, новинок, товаров услуг</h5>
+                <h5 class="header col s12 light item_title_block">Полная свобода в тестировании гипотез, коммерческих бонусов, промо кодов, акций, новинок, товаров и услуг</h5>
             </div>
         </div>
     </div>
@@ -255,7 +257,7 @@
                 </div>
 
                 <div class="col s12 m6" style="padding-left: 4rem;">
-                    <p class="admin_opt_info_text"><span style="font-weight: bold">Отчётность</span><br>
+                    <p class="admin_opt_info_text"><span style="font-weight: bold">Отчетность</span><br>
                         В личном кабинете Mirovid фиксируются <strong style="font-weight: bold;">показы</strong> по каждой рекламе</p>
                 </div>
 
@@ -354,7 +356,8 @@
                                 <label style="color: black;  font-size: 2.4em;">Вопрос</label>
                             </div>
                             <div class="col s12">
-                                <a style="background-color: #ffd400;color: black;font-weight: bold"  class="waves-effect waves-light btn-large send-order ">
+                                <a style="background-color: #ffd400;color: black;font-weight: bold"
+                                   class="waves-effect waves-light btn-large send-order">
                                     Отправить</a>
                             </div>
                         </div>
@@ -452,7 +455,22 @@
         $('.send-order').click( function (e) {
             var $this = $(this);
 
-
+            var name = $($this).parent().parent().find("input[name='name']").val();
+            var phone = $($this).parent().parent().find("input[name='phone']").val();
+            var email = $($this).parent().parent().find("input[name='email']").val();
+            var text = $($this).parent().parent().find("textarea[name='text']").val();
+            if (! name){
+                alert('Заполните имя'); return;
+            }
+            if (! phone){
+                alert('Заполните телефон'); return;
+            }
+            if (! email){
+                alert('Заполните email'); return;
+            }
+            if (! text){
+                alert('Запишите вопроc'); return;
+            }
 
             $.ajax({
                 type:"POST",
@@ -460,14 +478,18 @@
 
                 data:{
                     _csrffe:$('meta[name=csrf-token]').attr('content'),
-                    name:$($this).parent().parent().find("input[name='name']").val(),
-                    phone:$($this).parent().parent().find("input[name='phone']").val(),
-                    email:$($this).parent().parent().find("input[name='email']").val(),
-                    text:$($this).parent().parent().find("textarea[name='text']").val(),
+                    name:name,
+                    phone:phone,
+                    email:email,
+                    text:text,
                 },
                 success:function (data) {
                     if (parseInt(data) > 0){
-                        alert('Заявка создана!  №' + parseInt(data) );
+                        alert('Спасибо!');
+                        $($this).parent().parent().find("input[name='name']").val('');
+                        $($this).parent().parent().find("input[name='phone']").val('');
+                        $($this).parent().parent().find("input[name='email']").val('');
+                        $($this).parent().parent().find("textarea[name='text']").val('');
                     }
                     console.log(data);
                 }

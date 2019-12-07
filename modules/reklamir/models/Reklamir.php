@@ -30,8 +30,10 @@ class Reklamir extends \yii\db\ActiveRecord
     const ST_ON = 0;
     const ST_OFF = 1;
     const ST_MODERATE = 2;
+    const ST_BLOCK = 3;
 
-    public static  $arrTxtStatus = [ self::ST_ON => 'Активен', self::ST_OFF =>'Неактивен', self::ST_MODERATE =>'Модерация'];
+    public static  $arrTxtStatus = [ self::ST_ON => 'Идут показы', self::ST_OFF =>'Выключено',
+        self::ST_MODERATE =>'Модерация',self::ST_BLOCK =>'Отклонено'];
 
 
     public $uploadFile;
@@ -54,6 +56,7 @@ class Reklamir extends \yii\db\ActiveRecord
             [['thing_id', 'file_id', 'account_id', 'show', 'status'], 'integer'],
             [['uploadFile'], 'file',  /*'extensions' => 'png, jpg'*/],
             [['name'], 'string','max' => 255],
+            [['msg'], 'string','max' => 9000],
             [['times','areas'], 'safe'],
 
         ];
@@ -72,6 +75,7 @@ class Reklamir extends \yii\db\ActiveRecord
             'show' => 'Показы',
             'status' => 'Статус',
             'name' => 'Название',
+            'msg' => 'Сообщение',
         ];
     }
 
@@ -86,6 +90,11 @@ class Reklamir extends \yii\db\ActiveRecord
     public function getFile_r(){
         return $this->hasOne( File::class, ['id' => 'file_id']);
     }
+
+    public function getBid_r(){
+        return $this->hasMany( Bid::class, ['reklamir_id' => 'id']);
+    }
+
 
     public function getDaytime_r(){
         return $this->hasMany( ReklamirDaytime::class, ['reklamir_id' => 'id']);

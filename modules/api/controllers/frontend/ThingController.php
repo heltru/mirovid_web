@@ -39,11 +39,15 @@ class ThingController extends Controller
             if (! is_object($item->file_r)){
                 continue;
             }
+
+
+
             $list[] = [
                 'reklamir_id'=>$item->id,
                 'file'=>str_replace(    'mirovid/files/','',$item->file_r->path),
                 'area'=>ArrayHelper::getColumn($item->area_r,'area_id'),
-                'daytime'=>ArrayHelper::getColumn($item->daytime_r,'time_id')
+                'daytime'=>ArrayHelper::getColumn($item->bid_r,'time_id')
+
             ];
         }
 

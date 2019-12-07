@@ -270,13 +270,18 @@ class DefaultController extends Controller
 
         $hour_num = (int) \Yii::$app->request->post('hour_num');
         $datetime = (int) \Yii::$app->request->post('datetime');
+        $thing_id = (int) \Yii::$app->request->post('thing_id');
+
+
 
         $day_id = (int) date('d',$datetime);
         $mount_id = (int) date('m',$datetime);
         $year_id = (int) date('Y',$datetime);
 
 
-        $bid = Bid::find()->joinWith(['reklamir_r'])->where(['hour_id'=>$hour_num,'mount_id'=>$mount_id,
+        $bid = Bid::find()->joinWith(['reklamir_r'])->where([
+            'reklamir.thing_id'=> $thing_id,
+            'hour_id'=>$hour_num,'mount_id'=>$mount_id,
             'year_id'=>$year_id,'day_id'=>$day_id])->all();
 
         $bid_minute = ArrayHelper::index($bid,'minute_id');

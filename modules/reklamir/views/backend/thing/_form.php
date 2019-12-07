@@ -18,7 +18,19 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'cat_id')->dropDownList(ArrayHelper::map(ThingCat::find()->all(),'id','name')) ?>
 
-    <?= $form->field($model, 'global_config_local')->textarea(['rows' => 10])->hint('--led-rgb-sequence=RBG') ?>
+
+
+
+    <?php
+    /*
+    echo $form->field($model, 'data')->widget(
+        JsonEditor::class,
+        [
+            'clientOptions' => ['modes' => ['code', 'tree']],
+            'decodedValue' => $model->data,
+        ]
+    );*/
+    echo $form->field($model, 'global_config_local')->textarea(['rows' => 10])->hint('--led-rgb-sequence=RBG') ?>
 
 
 

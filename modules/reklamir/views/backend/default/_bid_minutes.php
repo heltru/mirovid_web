@@ -5,7 +5,7 @@ $account_id = Yii::$app->getModule('account')->getAccount()->id;
 
 ?>
 <div class="row">
-    <?php   foreach( [ [1,20],[21,40],[41,60] ]  as $minute_block ){
+    <?php   foreach( [ [1,20],[21,40],[41,59] ]  as $minute_block ){
         $c_success = 0;
         for ($i = $minute_block[0]; $i <= $minute_block[1]; $i++) {
             if (isset($bid_minute[$i])) {
@@ -67,6 +67,11 @@ $account_id = Yii::$app->getModule('account')->getAccount()->id;
                             $bid_status = 'btn-danger';
                             $bid_status_color = 'bid_status_brone';
                             $rewrite_val = $myval +1;
+
+                            if ($bid_minute[$i]->val === 99){
+                                $disable_rewriteprice = true;
+                            }
+
                         }
 
                         if ($bid_minute[$i]->val === 99){
@@ -183,7 +188,7 @@ $account_id = Yii::$app->getModule('account')->getAccount()->id;
                 <div class="timeline-item">
 
 
-                    <h3 class="timeline-header no-border">Что бы перекупить время в столбце "твоя цена" укажи новую цену и поставь галочку.<br> В данном случае вы не можете отменить бронь.</h3>
+                    <h3 class="timeline-header no-border">Чтобы перекупить время в столбце "твоя цена" укажи новую цену и поставь галочку.<br> В данном случае вы не можете отменить бронь.</h3>
                 </div>
             </li>
             <li>
@@ -193,7 +198,7 @@ $account_id = Yii::$app->getModule('account')->getAccount()->id;
 
 
                     <h3 class="timeline-header no-border">Если Вашу цену перекупают, на вашу электронную почту приходит письмо с уведомлением. <br>
-                        Вы можете войти в личный кабинет и предложить новую цену
+                        Вы можете войти в личный кабинет и предложить новую цену.
                     </h3>
                 </div>
             </li>
@@ -201,8 +206,8 @@ $account_id = Yii::$app->getModule('account')->getAccount()->id;
                 <i class="fa fa-diamond bg-purple"></i>
                 <div class="timeline-item">
                     <h3 class="timeline-header no-border">
-                        Что бы полностью выкупить время нажмите на кнопку в столбце "выкупить время".<br> В этом случае, Вы на 100% бронируете данное время.
-                        И ни кто не может его перекупить.
+                        Чтобы полностью выкупить время нажмите на кнопку в столбце "выкупить время".<br> В этом случае, Вы на 100% бронируете данное время.
+                        И никто не может его перекупить.
                     </h3>
                 </div>
             </li>

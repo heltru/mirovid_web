@@ -40,7 +40,13 @@ class Thing extends \yii\db\ActiveRecord
             [['my_ip'], 'string', 'max' => 45],
             [['name'], 'string', 'max' => 255],
             [['global_config_local'], 'string', 'max' => 1024],
-
+/*
+            [
+                ['global_config_local'],
+                'k-json',
+                'prettify' => true, // set this to false if you do not wish to prettify the json input
+            ],
+*/
         ];
     }
 

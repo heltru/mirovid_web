@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\modules\reklamir\models\Thing;
 use app\modules\reklamir\models\Reklamir;
+use app\modules\helper\models\Helper;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\reklamir\models\Reklamir */
@@ -38,15 +39,18 @@ use app\modules\reklamir\models\Reklamir;
     ?>
 
     <?php
-    if ($model->status == Reklamir::ST_MODERATE){
-        echo $form->field($model, 'status')->dropDownList([Reklamir::ST_MODERATE],['options'=>[Reklamir::ST_MODERATE=>['disabled' => true]]]);
+
+    if (Helper::getIsAdmin(Yii::$app->user->id)){
+        echo $form->field($model, 'status')->dropDownList(Reklamir::$arrTxtStatus);
     } else {
-        if ($model->isNewRecord) {
-            echo $form->field($model, 'status')->dropDownList(Reklamir::$arrTxtStatus);
+        if ($model->isNewRecord){
+            $model->status = Reklamir::ST_OFF;
         } else {
-            echo $form->field($model, 'status')->dropDownList(Reklamir::$arrTxtStatus, ['options' => [Reklamir::ST_MODERATE => ['disabled' => true]]]);
+            echo $form->field($model, 'status')->dropDownList([ Reklamir::ST_ON => 'Идут показы', Reklamir::ST_OFF =>'Выключено']);
         }
+
     }
+
     ?>
 
     <?php if ( !$model->isNewRecord) {  ?>

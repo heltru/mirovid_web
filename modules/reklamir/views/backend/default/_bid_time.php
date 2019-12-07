@@ -331,7 +331,7 @@
             $.ajax({
                 type: "POST",
                 url: "<?= \yii\helpers\Url::to(['/admin/reklamir/default/bid-minute-table'])?>",
-                data: {_csrfbe: yii.getCsrfToken(), hour_num: hour_num, datetime: datetime_active},
+                data: {_csrfbe: yii.getCsrfToken(), hour_num: hour_num, datetime: datetime_active,thing_id:$('#reklamir-thing_id').val()},
                 success: function (data) {
                     if (typeof data == 'object') {
                         if (data.status == 'success') {
