@@ -21,6 +21,8 @@ class ThingController extends Controller
 
         \Yii::$app->response->format =  \yii\web\Response::FORMAT_JSON;
 
+        header("Access-Control-Allow-Origin: *");
+
         $thing_id = (int) \Yii::$app->request->get('thing_id') ;
 
         /*

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\modules\reklamir\models\ThingCat;
 use yii\helpers\ArrayHelper;
+use app\modules\reklamir\models\Place;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\reklamir\models\Thing */
@@ -18,7 +19,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'cat_id')->dropDownList(ArrayHelper::map(ThingCat::find()->all(),'id','name')) ?>
 
-
+    <?= $form->field($model, 'place_id')->dropDownList(ArrayHelper::map( Place::find()->all(),'id','name')) ?>
 
 
     <?php

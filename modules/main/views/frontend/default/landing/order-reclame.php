@@ -115,7 +115,7 @@
                                 <div class="col s12 center">
                                     <a onclick="window.dataLayer.push({'event': 'load_reclame'});"
                                             href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>"
-                                            style="background-color: #ffd400;color: black;font-weight: bold" class="offer_btn waves-effect waves-light btn-large send-order  ">
+                                            style="background-color: #ffd400;color: black;font-weight: bold" class="offer_btn waves-effect waves-light btn-large    ">
                                        Загрузить рекламу</a>
                                 </div>
 
