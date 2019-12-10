@@ -66,12 +66,17 @@ use app\modules\helper\models\Helper;
                     </a>
                 </h4>
             </div>
-            <div id="collapseTime" class="panel-collapse collapse in" aria-expanded="false" >
+            <div id="collapseTime" class="panel-collapse collapse" aria-expanded="false" >
                 <div class="box-body">
 
-                    <?php echo  $this->render('_bid_time',
+                    <?php
+
+                     echo  $this->render('_mem_update_time',
+                         ['model'=>$model,'form'=>$form, 
+                         ]);
+                    /* echo  $this->render('_bid_time',
                         ['model'=>$model,'form'=>$form, 'bid_hour' => $bid_hour,
-                          ]); ?>
+                          ]);*/ ?>
 
 
                 </div>

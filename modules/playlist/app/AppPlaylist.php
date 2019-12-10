@@ -18,10 +18,8 @@ class AppPlaylist
     private $thing_id;
 
     private $playlist = [];
-
     private $balanceStruct = [];
 
-    private $broadcast = [];
     private $maxAccount = 0;
 
 
@@ -29,15 +27,15 @@ class AppPlaylist
     public function __construct($thing_id)
     {
         $this->thing_id = $thing_id;
-
         $this->begin();
     }
 
     private function begin(){
+
         $this->reklamirSelect();
         $this->reklamirBalance();
-ex($this->balanceStruct);
-        ex($this->broadcast);
+
+
     }
 
 
@@ -53,15 +51,6 @@ ex($this->balanceStruct);
                 } else {
                     $this->balanceStruct[$num]['index_active'] = (int)$this->balanceStruct[$num]['index_active']+1;
                 }
-
-                /*
-                if ((count($save_item['points'])-1) == $save_item['point_index'] ){
-                    $tracks[$track_index]['point_index'] = 0;
-                } else {
-                    $tracks[$track_index]['point_index'] = (int)$tracks[$track_index]['point_index']  + 1;
-                }
-                */
-
 
             }
         }
@@ -90,18 +79,20 @@ ex($this->balanceStruct);
                 $this->maxAccount = $countReklamirInAccount;
             }
 
-            /*[
+            $this->playlist['reklamir'][$item->id] =
+            [
                 'reklamir_id'=>$item->id,
                 'file'=>str_replace(    'mirovid/files/','',$item->file_r->path),
                 'area'=>ArrayHelper::getColumn($item->area_r,'area_id'),
                 'daytime'=>ArrayHelper::getColumn($item->daytime_r,'time_id')
-            ];*/
+            ];
         }
 
     }
 
 
     private function addBroadcastItem($id){
+        $this->playlist['broadcast'][] = $id;
         $this->broadcast[] = $id;
     }
 

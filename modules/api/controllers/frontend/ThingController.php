@@ -25,15 +25,15 @@ class ThingController extends Controller
 
         $thing_id = (int) \Yii::$app->request->get('thing_id') ;
 
-        /*
+
 
 
         $app = new AppPlaylist($thing_id);
 
         return $app->getPlaylist();
-*/
 
 
+/*
         $list = [];
 
         $all = Reklamir::find()->joinWith(['file_r','area_r'])->where(['thing_id'=>$thing_id,'status'=>Reklamir::ST_ON])->all();
@@ -54,7 +54,7 @@ class ThingController extends Controller
         }
 
         return $list;
-
+*/
     }
 
 
