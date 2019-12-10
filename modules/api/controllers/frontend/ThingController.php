@@ -93,10 +93,13 @@ class ThingController extends Controller
         $thing = Thing::findOne(['id'=>$thing_id]);
 
         if ($thing !== null){
-
-            return Json::decode($thing->global_config_local);
+            $config_data = Json::decode($thing->global_config_local);
+            if ($config_data !== null){
+                return $config_data;
+            }
         }
-        return ['test'=>'ok'];
+
+        return [];
     }
 
     public function actionMyIp(){
