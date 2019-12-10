@@ -43,6 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute'=>'file_id',
                     'format'=>'raw',
                     'value'=>function ($data){
+                        if ( ! is_object($data->file_r)){
+                            return '';
+                        }
 
                         $pathinfo = pathinfo($data->file_r->path);
                         $ext = $pathinfo['extension'];
