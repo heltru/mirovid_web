@@ -102,7 +102,7 @@ class DefaultController extends Controller
                 $app_file->begin();
                 if ($app_file->is_add){
                     $file = $app_file->getFileModel();
-                    $app_file->create_preview();
+                    //$app_file->create_preview();
                 }
 
                 $model->file_id = $file->id;
@@ -155,7 +155,7 @@ class DefaultController extends Controller
             $app_file->begin();
             if ($app_file->is_add){
                 $file = $app_file->getFileModel();
-                $app_file->create_preview();
+               // $app_file->create_preview();
             }
 
             $model->file_id = $app_file->getFileModel()->id;

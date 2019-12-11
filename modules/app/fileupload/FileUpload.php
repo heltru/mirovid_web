@@ -174,7 +174,7 @@ class FileUpload
             */
             'ffmpeg.binaries'  => 'ffmpeg.exe', // the path to the FFMpeg binary
             'ffprobe.binaries' => 'ffprobe.exe', // the path to the FFProbe binary
-            
+
             'timeout'          => 3600, // the timeout for the underlying process
             'ffmpeg.threads'   => 12,   // the number of threads that FFMpeg should use
             ]);
