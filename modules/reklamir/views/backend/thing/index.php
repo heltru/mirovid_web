@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'cat_r.name',
             'place_r.name',
+            'my_ip',
 
             ['class' => 'yii\grid\ActionColumn','template'=>'{update} {delete}'],
         ],
