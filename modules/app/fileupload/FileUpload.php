@@ -167,8 +167,14 @@ class FileUpload
 
         $thumbnail = $this->dir. '/' . $filename. '.png';
 
-        $ffmpeg =  FFMpeg::create(['ffmpeg.binaries'  => 'C:/FFmpeg/bin/ffmpeg.exe', // the path to the FFMpeg binary
+        $ffmpeg =  FFMpeg::create([
+            /*
+            'ffmpeg.binaries'  => 'C:/FFmpeg/bin/ffmpeg.exe', // the path to the FFMpeg binary
             'ffprobe.binaries' => 'C:/FFmpeg/bin/ffprobe.exe', // the path to the FFProbe binary
+            */
+            'ffmpeg.binaries'  => 'ffmpeg.exe', // the path to the FFMpeg binary
+            'ffprobe.binaries' => 'ffprobe.exe', // the path to the FFProbe binary
+            
             'timeout'          => 3600, // the timeout for the underlying process
             'ffmpeg.threads'   => 12,   // the number of threads that FFMpeg should use
             ]);
