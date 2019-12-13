@@ -30,7 +30,7 @@
 
 <script>
     const thing_id = "<?=Yii::$app->request->get('id') ? Yii::$app->request->get('id') : 3?>";
-    const host = 'mirovid';
+    const host = '<?=Yii::$app->request->hostInfo?>';
     var fs = null;
     const dir_web = 'mirovid';
     const dir_files = 'files';
@@ -98,7 +98,7 @@
 
 
         $.ajax({
-            url: 'http://' + host + "/api/thing/playlist?thing_id="+thing_id,
+            url:host + "/api/thing/playlist?thing_id="+thing_id,
             success: (data) => {
                 let playlist_new = data;
                 loop(data);
