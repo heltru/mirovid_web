@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\reklamir\models\Reklamir */
 
-$this->title = 'Добавить рекламу';
+$this->title = 'Загрузить рекламу';
 $this->params['breadcrumbs'][] = ['label' => 'Реклама', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -31,9 +31,10 @@ class Reklamir extends \yii\db\ActiveRecord
     const ST_OFF = 1;
     const ST_MODERATE = 2;
     const ST_BLOCK = 3;
+    const ST_TEST = 4;
 
     public static  $arrTxtStatus = [ self::ST_ON => 'Идут показы', self::ST_OFF =>'Выключено',
-        self::ST_MODERATE =>'Модерация',self::ST_BLOCK =>'Отклонено'];
+        self::ST_MODERATE =>'Модерация',self::ST_BLOCK =>'Отклонено',self::ST_TEST =>'Предтестовый запуск'];
 
 
     public $uploadFile;

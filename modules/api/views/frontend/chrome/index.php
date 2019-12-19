@@ -71,21 +71,7 @@
 
         const emitter = new EventEmitter();
 
-        navigator.webkitPersistentStorage.requestQuota(1024 * 1024 * 300, () => {
-            window.webkitRequestFileSystem(window.PERSISTENT, 1024 * 1024 * 300, (a) => {
-                fs = a;
-                emitter.emit('event:fileSystem-init');
-            },errorHandler);
-        });
-
-        emitter.subscribe('event:fileSystem-init', data => {
-            $.ajax({
-                url: 'http://' + host + "/api/thing/playlist?thing_id=2",
-                success: (data) => {
-                    emitter.emit('event:playlist-download', data);
-                }
-            });
-        });
+        ferrorHandler
 
 
 

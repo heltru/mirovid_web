@@ -29,6 +29,36 @@
 
 
 <script>
+
+    class EventEmitter {
+        constructor() {
+            this.events = {};
+        }
+
+        subscribe(eventName, fn) {
+            if (!this.events[eventName]) {
+                this.events[eventName] = [];
+            }
+
+            this.events[eventName].push(fn);
+
+            return () => {
+                this.events[eventName] = this.events[eventName].filter(eventFn => fn !== eventFn);
+            }
+        }
+
+        emit(eventName, data) {
+            const event = this.events[eventName];
+            if (event) {
+                event.forEach(fn => {
+                    fn.call(null, data);
+                });
+            }
+        }
+    }
+    const emitter = new EventEmitter();
+
+
     const thing_id = "<?=Yii::$app->request->get('id') ? Yii::$app->request->get('id') : 3?>";
     const host = '<?=Yii::$app->request->hostInfo?>';
     var fs = null;
@@ -73,9 +103,14 @@
                     let file_ext = file.split('.').pop();
 
                     if (img_types.indexOf(file_ext) !== -1) {
-                        $('#viewer_img').attr('src', file);
-                        $('#viewer_img').show();
-                        console.log('show ',file);
+                        file_path_use_cache(file,function (file){
+
+                            $('#viewer_img').attr('src', file);
+                            $('#viewer_img').show();
+                            console.log('show ',file);
+                            register_show(reklamir_id,0,0);
+                        });
+
                     }
                     if (video_types.indexOf(file_ext) !== -1) {
                         let video = '<video autoplay="autoplay" loop="" preload="auto" muted>' +
@@ -86,6 +121,7 @@
                         $(video_block).html(video);
                         $('#viewer_video').show();
                         console.log('show ',file);
+                        register_show(reklamir_id,0,0);
                     }
                 }
                 await delay(10000);
@@ -97,13 +133,77 @@
         }
 
 
-        $.ajax({
-            url:host + "/api/thing/playlist?thing_id="+thing_id,
-            success: (data) => {
-                let playlist_new = data;
-                loop(data);
-            }
+        emitter.subscribe('event:fileSystem-init', data => {
+            $.ajax({
+                url:host + "/api/thing/playlist?thing_id="+thing_id,
+                success: (data) => {
+                    let playlist_new = data;
+                    loop(data);
+                }
+            });
         });
+
+
+
+        function file_path_use_cache(file,cb) {
+            fs.getFile(file, {create : false}, function() {
+                cb(file);
+                console.log('file_path_use_cache create',file
+                    );
+            }, function() {
+                cb(file);
+                console.log('file_path_use_cache NOT_ create',file)
+            });
+        }
+
+
+        function register_show(reklamir_id,lat,long) {
+            $.ajax({
+                url:host + "/api/thing/register-show",
+                data:{'reklamir_id':reklamir_id,'lat':lat,'long':long},
+            });
+        }
+
+
+
+        function errorHandler(e) {
+            var msg = '';
+            console.log(e);
+            switch (e.code) {
+
+                case FileError.QUOTA_EXCEEDED_ERR:
+                    msg = 'QUOTA_EXCEEDED_ERR';
+                    break;
+                case FileError.NOT_FOUND_ERR:
+                    msg = 'NOT_FOUND_ERR';
+                    break;
+                case FileError.SECURITY_ERR:
+                    msg = 'SECURITY_ERR';
+                    break;
+                case FileError.INVALID_MODIFICATION_ERR:
+                    msg = 'INVALID_MODIFICATION_ERR';
+                    break;
+                case FileError.INVALID_STATE_ERR:
+                    msg = 'INVALID_STATE_ERR';
+                    break;
+                default:
+                    msg = 'Unknown Error';
+                    break;
+            }
+            ;
+
+            console.log('Error: ' + msg);
+        }
+
+
+        navigator.webkitPersistentStorage.requestQuota(1024 * 1024 * 300, () => {
+            window.webkitRequestFileSystem(window.PERSISTENT, 1024 * 1024 * 300, (a) => {
+                fs = a;
+                emitter.emit('event:fileSystem-init');
+            },errorHandler);
+        });
+
+
 
 
     });

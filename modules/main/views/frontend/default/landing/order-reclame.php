@@ -2,7 +2,13 @@
     <div class="nav-wrapper container">
         <a id="logo-container" href="/"  class="brand-logo red-text text-accent-4 item_logo_text"><span class="red-text text-accent-4">☀</span> MIROVID</a>
         <ul class="right hide-on-med-and-down">
-                <li><a class="item_phone" style="font-size: 1.5em;color: black" href="tel:89991002878">8(999)-100-2878</a></li>
+
+            <li><a class="item_phone" style="font-size: 1.5em;color: black" href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>">Личный кабинет</a></li>
+            <?php if ( Yii::$app->user->isGuest ){ ?>
+                <li><a class="item_phone" style="font-size: 1.5em;color: black" href="/signup">Регистрация</a></li>
+            <?php } ?>
+            <li><a class="item_phone" style="font-size: 1.5em;color: black" href="tel:89991002878">8(999)-100-2878</a></li>
+
         </ul>
 
         <ul id="nav-mobile" style="background-color: #e1e6ff;   " class="sidenav">
@@ -20,7 +26,8 @@
     <div class="section no-pad-bot">
         <div class="container">
 
-            <h1 class=" header center    item_h1">Реклама в сети Mirovid</h1>
+            <h1 class=" header center    item_h1">Сайт для маркетологов и владельцев бизнеса</h1>
+            <h3 class="center">рекламная сеть планшетов в такси</h3>
             <div class="row ">
                 <div class="col s12 m7 ">
 
@@ -29,42 +36,31 @@
                             <i class=" utm_icon small material-icons">track_changes</i>
                         </div>
                         <div  class="cont_utm_col_text" >
-                            <h5 class="header  light item_utp ">Уникальная рекламная площадка</h5>
-                            <p class="item_utp_subtitle">Ролик транслируется в разных частях города на множестве автомобилей сети MIROVID</p>
+                            <h5 class="header  light item_utp ">Охват</h5>
+                            <p class="item_utp_subtitle">19 машин / 28 800 мин / 100 человек / в день</p>
                         </div>
                     </div>
 
                     <div class="cont_utm">
                         <div class=" cont_utm_col_icon">
-                            <i class=" utm_icon small material-icons">language</i>
+                            <i class=" utm_icon small material-icons">attach_money</i>
                         </div>
                         <div class="cont_utm_col_text">
-                            <h5 class="header  light item_utp ">Новые горизонты</h5>
-                            <p class="item_utp_subtitle">"Поймайте" неисследованные аудитории </p>
+                            <h5 class="header  light item_utp ">Стоимость</h5>
+                            <p class="item_utp_subtitle">СРМ = 100 - 200 руб. <br>1 клик MT= 20 руб.<br>1 клик VK = 7 - 13 руб.<br>
+                                1 минута mirovid = 1 руб.
+                            </p>
                         </div>
 
                     </div>
 
                     <div class="cont_utm">
                         <div class=" cont_utm_col_icon">
-                            <i class=" utm_icon small material-icons">flash_on</i>
+                            <i class=" utm_icon small material-icons">assignment_turned_in</i>
                         </div>
                         <div class="cont_utm_col_text">
-                            <h5 class="header  light item_utp ">Быстродействие</h5>
-                            <p class="item_utp_subtitle">Один клик и рекламный ролик на всех авто </p>
-                        </div>
-                    </div>
-
-
-
-                    <div class="cont_utm">
-                        <div class=" cont_utm_col_icon">
-                            <i class=" utm_icon small material-icons">build</i>
-                        </div>
-
-                        <div class="cont_utm_col_text">
-                            <h5 class="header  light item_utp ">Новый формат</h5>
-                            <p class="item_utp_subtitle">LED RGB панели - 16М цветов, Яркость 2000 cd/m2, Площать 2048 см2 </p>
+                            <h5 class="header  light item_utp ">Доступность</h5>
+                            <p class="item_utp_subtitle">Личный кабинет <br> Статистика <br> Выбор места показа </p>
                         </div>
                     </div>
 
@@ -72,23 +68,17 @@
 
                     <div class="cont_utm">
                         <div class=" cont_utm_col_icon">
-                            <i class=" utm_icon small material-icons">explore</i>
+                            <i class=" utm_icon small material-icons">star</i>
                         </div>
+
                         <div class="cont_utm_col_text">
-                            <h5 class="header  light item_utp ">Отслеживание</h5>
-                            <p class="item_utp_subtitle">Каждый показ фиксируется в личном кабинете </p>
+                            <h5 class="header  light item_utp ">Новый канал</h5>
+                            <p class="item_utp_subtitle">Внимание клиента <br> Платёжеспособная аудитория </p>
                         </div>
                     </div>
 
-                    <div class="cont_utm">
-                        <div class=" cont_utm_col_icon">
-                            <i class=" utm_icon small material-icons">touch_app</i>
-                        </div>
-                        <div class="cont_utm_col_text">
-                            <h5 class="header  light item_utp ">Время и место</h5>
-                            <p class="item_utp_subtitle">Вы сами решаете где и когда будет показана Ваша реклама</p>
-                        </div>
-                    </div>
+
+
 
 
 
@@ -116,7 +106,7 @@
                                     <a onclick="window.dataLayer.push({'event': 'load_reclame'});"
                                             href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>"
                                             style="background-color: #ffd400;color: black;font-weight: bold" class="offer_btn waves-effect waves-light btn-large    ">
-                                       Загрузить рекламу</a>
+                                       Попробовать</a>
                                 </div>
 
 
@@ -138,18 +128,289 @@
 
 
 
+<div class="container">
+    <div class="section">
+
+        <div class="row">
+            <div class="col s12 center">
+                <h3><i class="mdi-content-send brown-text"></i></h3>
+                <h3>Как это работает</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="material-placeholder">
+                    <img style="width: 99%;" class="img-responsive materialboxed" src="/images/image-473158-galleryV9-nzot-473158.jpg"></div>
+            </div>
+
+            <div class="col s12 m6 ">
+                <div class="flow-text">
+                    <p>19 машин - 24 часа</p>
+
+                    <ul>
+                        <li>Что - вы получаете:</li>
+                        <li>Внимание каждого пассажира</li>
+                        <li>Платежеспособного клиента</li>
+                        <li>Средняя поездка 15 минут</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row" style="margin-top: 6em;">
+
+
+            <div class="col s12 m6 ">
+                <div class="flow-text">
+                    <p>Видео на стекле</p>
+                    <p>LED панель на транспортном средстве</p>
+                    <ul>
+                        <li><strong>Утро</strong> - распродажы  в торговых сетях, детских школ искусств, фитнес центров, парикмахерских, отделов торговых центров </li>
+                        <li><strong>День</strong> - инфобизнес, тренинги, банки, кредитные организаций</li>
+                        <li><strong>Вечер, выходные</strong> - кальянне, бары, ночные клубы, информирование об акциях в заведениях, горячих скидках</li>
+                        <li><strong>Выходные</strong> - Распродажи в ТЦ, бутики, стройматериалы, базы отдыха, бани ,сауны </li>
+                    </ul>
+                    <p>Ярко / необычно / привлекательно / анимированно</p>
+                    <p>Привязка к району времени</p>
+                    <p>Показывает только там где нужно</p>
+                </div>
+
+            </div>
+
+            <div class="col s12 m6">
+                <div class="material-placeholder">
+                    <img style="width: 99%;" class="img-responsive materialboxed" src="/images/Screenshot_20.png"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
 
 <div class="container">
     <div class="section">
+
+        <div class="row">
+            <div class="col s12 center">
+                <h3><i class="mdi-content-send brown-text"></i></h3>
+                <h3>Кому это нужно</h3>
+            </div>
+        </div>
+
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m6  ">
+                <div class="icon-block">
+                    <div class="hoy_need_cont_img">
+                        <img  class="hoy_need_img" src="/images/How-to-Become-a-Freelance-Digital-Marketer_blog.jpg">
+                    </div>
+
+
+                    <h5 class="center com_title">Маркетолог</h5>
+
+                    <ul class="ul_comp">
+                        <li class="li_item_comp" >Новый дешевый канал</li>
+                        <li  class="li_item_comp">Реклама</li>
+                        <li  class="li_item_comp">Статистика</li>
+                        <li  class="li_item_comp">Таргет по времени и месту</li>
+                    </ul>
+
+
+                </div>
+            </div>
+
+            <div class="col s12 m6  ">
+                <div class="icon-block">
+                    <div class="hoy_need_cont_img">
+                        <img class="hoy_need_img" src="/images/business-woman4-730x461.jpg">
+                    </div>
+                    <h5 class="center com_title">Владелец бизнеса</h5>
+
+                    <ul class="ul_comp">
+                        <li  class="li_item_comp">Просто</li>
+                        <li  class="li_item_comp">Прозрачно</li>
+                        <li  class="li_item_comp">Не требует спец. знаний</li>
+                        <li  class="li_item_comp">Клиенты</li>
+                    </ul>
+
+
+                </div>
+            </div>
+
+            <div class="col s12 m6  ">
+                <div class="icon-block">
+                    <div class="hoy_need_cont_img">
+                     <img  class="hoy_need_img" src="/images/108c3bddcc5c059c2d0d2e4c74c43c3b.jpg">
+                    </div>
+                    <h5 class="center com_title">Рекламное агенство</h5>
+
+                    <ul class="ul_comp">
+                        <li  class="li_item_comp">Сервис</li>
+                        <li  class="li_item_comp">Условия сотрудничества</li>
+                    </ul>
+
+
+                </div>
+            </div>
+
+            <div class="col s12 m6 ">
+                <div class="icon-block">
+                    <div class="hoy_need_cont_img">
+                        <img  class="hoy_need_img" src="/images/photo-1490650404312-a2175773bbf5.jpg">
+                    </div>
+
+                    <h5 class="center com_title">Такси</h5>
+
+                    <ul class="ul_comp">
+                        <li  class="li_item_comp">Заработок</li>
+                        <li  class="li_item_comp">до 1600 руб в день</li>
+                    </ul>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="section">
+
+        <div class="row">
+            <div class="col s12 center">
+                <h3><i class="mdi-content-send brown-text"></i></h3>
+                <h3>Примеры работ</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m4">
+
+                <div class="img-container">
+                    <div class="video" >
+                        <video controls >
+                            <source src="video/IMG_2464.MOV" type="video/mp4">
+                        </video>    </div>
+                </div>
+
+                <ul  >
+                    <li>Ремонт вмятин</li>
+                    <li>Охват 1000 мин</li>
+                    <li>Бюджет 1000 руб. привлечено 50 лидов.</li>
+                </ul>
+            </div>
+
+            <div class="col s12 m4">
+
+                <div class="img-container">
+                    <div class="video" >
+                        <video controls >
+                            <source src="video/MVI-8431-YouTube.mp4" type="video/mp4">
+                        </video>    </div>
+                </div>
+
+                <ul  >
+                    <li>Домашний вентеляционный клапан</li>
+                    <li>Охват 16000 мин</li>
+                    <li>Бюджет 16000 руб. привлечено 80 лидов.</li>
+                </ul>
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="section">
+
+        <div class="row">
+            <div class="col s12 center">
+                <h3><i class="mdi-content-send brown-text"></i></h3>
+                <h3>Личный кабинет</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="material-placeholder">
+                    <img style="width: 99%;" class="img-responsive materialboxed" src="/images/Screenshot_21.png"></div>
+            </div>
+
+            <div class="col s12 m6 ">
+                <ul class="tabs">
+                    <li class="tab"><a class="active" href="#tab_rekl">Рекламодатель</a></li>
+                    <li class="tab"><a  href="#rab_taxi">Таксист</a></li>
+
+                </ul>
+                <div id="tab_rekl" class="col s12">
+                    <div class="flow-text">
+
+                        <ul>
+                            <li>Таргетинг</li>
+                            <li>Ставки</li>
+                            <li>Отчётность</li>
+                            <li>Выбор вида устройства</li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div id="rab_taxi" class="col s12">
+                    <div class="flow-text">
+
+                        <ul>
+                            <li>Отчет по показам</li>
+                            <li>Начисления за месяц/день</li>
+
+                        </ul>
+
+                    </div>
+                </div>
+
+                <a href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>" style="    float: right;background-color: #ffd400;color: black;font-weight: bold" class="waves-effect waves-light btn-large ">
+                    Регистрация</a>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<div class="container">
+        <div class="section">
+
+
+            <div class="row">
+                <div class="col s12 center">
+                    <h3><i class="mdi-content-send brown-text"></i></h3>
+                    <h3>Почему мы</h3>
+                </div>
+            </div>
+
 
         <!--   Icon Section   -->
         <div class="row">
             <div class="col s12 m6">
                 <div class="icon-block">
-                    <h2 class="center  grey-text text-darken-2"><i class="material-icons red-text.text-accent-4">sentiment_very_dissatisfied
 
-                        </i></h2>
-                    <h5 class="center com_title">Просто наклейка</h5>
+                    <h5 class="center com_title">Наружка</h5>
 
                     <ul class="ul_comp">
                         <li class="li_item_comp" >Не видно в темноте</li>
@@ -163,8 +424,8 @@
 
             <div class="col s12 m6">
                 <div class="icon-block">
-                    <h2 class="center green-text"><i class="material-icons">sentiment_very_satisfied</i></h2>
-                    <h5 class="center com_title">MIROVID LED</h5>
+
+                    <h5 class="center com_title">Mirovid LED</h5>
 
                     <ul class="ul_comp">
                         <li  class="li_item_comp"> В любое время суток заметно. В темное время еще лучше</li>
@@ -196,179 +457,46 @@
 
 
 
+
+
+
+
 <div class="container">
     <div class="section">
+
 
         <div class="row">
             <div class="col s12 center">
                 <h3><i class="mdi-content-send brown-text"></i></h3>
-                <h4>Как работает MIROVID LED</h4>
-
-
+                <h3>Начать работать</h3>
             </div>
         </div>
+
 
         <div class="row">
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center blue-text "><i  class="material-icons ">local_movies</i></h2>
-                    <h5 class="center"><span class="item_font_bold"> Видео</span> или <span class="item_font_bold">изображение</span> с желаемым контентом</h5>
-                </div>
+            <div class="col s12 m6">
+
+                <a href="tel:89991002878"
+                   style="   background-color: #7000ff;color: #e1e6ff;font-weight: bold" class="waves-effect waves-light btn-large ">
+                    Позвоните
+                    8 999 100 2878</a>
+
             </div>
 
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center yellow-text"><i class="material-icons ">local_taxi</i></h2>
-                    <h5 class="center"><span class="item_font_bold"> Показывается</span> на автомобилях, торговых и бизнес центрах, остановках и других рекламных площадках города</h5>
-                </div>
+            <div class="col s12 m6">
+
+                <?php if ( true /* Yii::$app->user->isGuest */){ ?>
+                    <a href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>" style="    float: right;background-color: #ffd400;color: black;font-weight: bold" class="waves-effect waves-light btn-large ">
+                        Регистрация</a>
+                <?php } ?>
+
             </div>
 
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center red-text text-accent-4"><i class="material-icons ">whatshot</i></h2>
-                    <h5 class="center"><span class="item_font_bold"> 700 минут </span> <span>2 машины </span><span style="display: block">за 1 день</span> </h5>
-                </div>
-            </div>
+
         </div>
 
     </div>
 </div>
-
-
-
-
-
-<div class="parallax-container valign-wrapper " >
-    <div class="section no-pad-bot review">
-        <div class="container">
-            <div class="row">
-                <div class="col s12 center">
-                    <h3><i class="mdi-content-send brown-text"></i></h3>
-                    <h4>Как работает Ваш Личный кабинет Mirovid</h4>
-
-
-                </div>
-            </div>
-
-            <div class="row" style="    margin-top: 3rem">
-
-                <div class="col s12 m6" style="    padding-right: 4rem">
-                    <img style="width: 99%;" class="img-responsive materialboxed" src="/themes/one/image/screens/admin_map_show.png">
-                </div>
-
-                <div class="col s12 m6" style="padding-left: 4rem;">
-                    <p class="admin_opt_info_text"><span style="font-weight: bold">Отчетность</span><br>
-                        В личном кабинете Mirovid фиксируются <strong style="font-weight: bold;">показы</strong> по каждой рекламе</p>
-                </div>
-
-            </div>
-
-            <div class="row" style="margin-top: 6rem;">
-
-                <div class="col s12 m6" style="    padding-right: 4rem">
-                    <p class="admin_opt_info_text" ><span style="font-weight: bold">Опции для загрузки рекламы</span> <br>
-                        Самостоятельный выбор цены в зависимости от спроса на место и время
-                    </p>
-
-                </div>
-                <div class="col s12 m6" style="padding-left: 4rem;">
-                    <img class="img-responsive materialboxed" style="width: 130%" src="/themes/one/image/screens/place_and_time.png">
-                </div>
-
-
-
-            </div>
-        </div>
-    </div>
-    <div class="parallax"><img src="/themes/one/image/bg/5.jpg" alt="Unsplashed background img 2"></div>
-</div>
-
-
-
-
-
-
-
-
-
-
-<div class="parallax-container valign-wrapper " >
-    <div class="section no-pad-bot review">
-        <div class="container">
-            <div class="row">
-                <div class="col s12 center">
-                    <h4 style="color: black">Результат 1 часа показов MIROVID LED</h4>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col s12 m6">
-                    <img class="img-responsive rev_photo"   src="/themes/one/image/rev_klapan_1.jpg">
-                </div>
-                <div class="col s12 m6">
-                    <img class="img-responsive rev_photo"  src="/themes/one/image/rev_klapan_2.jpg">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="parallax"><img src="/themes/one/background1.jpg" alt="Unsplashed background img 2"></div>
-</div>
-
-
-
-
-
-
-
-
-
-
-<div class="parallax-container  "  >
-        <div class=" no-pad-bot quest" >
-            <div class="container">
-                <div class="row center">
-                    <h4  style="color: black">Задать вопрос</h4>
-                </div>
-                <div class="row center">
-                    <form>
-                        <div class="row ">
-                            <div class="input-field col s12 ">
-                                <input name="name" style="color: #515751;
-    font-size: 2.4em;"    type="text" class="validate">
-                                <label style="    color: black;
-    font-size: 2.4em;"   class="active">Имя</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input style="color: #515751;
-    font-size: 2.4em;"    type="text" name="phone" class="validate">
-                                <label style="color: black;
-    font-size: 2.4em;"  class="active">Телефон</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input name="email" style="color: #515751;    font-weight: bold;
-    font-size: 2.4em;"    type="text" class="validate">
-                                <label style=" color: black;
-    font-size: 2.4em;"  class="active">Email</label>
-                            </div>
-                            <div class="input-field col s12">
-                            <textarea name="text" style="color: #515751;
-    font-size: 2.4em;"   class="materialize-textarea"></textarea>
-                                <label style="color: black;  font-size: 2.4em;">Вопрос</label>
-                            </div>
-                            <div class="col s12">
-                                <a style="background-color: #ffd400;color: black;font-weight: bold"
-                                   class="waves-effect waves-light btn-large send-order">
-                                    Отправить</a>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="parallax"><img src="/themes/one/white_bg.jpg" alt="Unsplashed background img 3"></div>
-
-    </div>
 
 
 
@@ -383,6 +511,11 @@
 </footer>
 <script>
     $(document).ready(function() {
+
+
+        $('.tabs').tabs();
+
+
 
 
         function getRandomInt(max) {

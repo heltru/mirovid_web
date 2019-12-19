@@ -1,5 +1,5 @@
 .li_item_comp{
-    margin: 1em;
+    margin: 0.3em;
     list-style-type: disc !important;
     font-size: 1.618em  !important;
     font-weight: bold;
@@ -67,7 +67,13 @@
 .item_utp_g{
     background-color: #d40d4d;
 }
-
+.hoy_need_cont_img{
+    max-height: 169px;
+    overflow: hidden;
+}
+.hoy_need_img{
+    margin: 0 auto;width: 300px;display: block;
+}
 .avg_h1{
     text-transform: uppercase;
     font-size: 2.2rem;
@@ -169,4 +175,24 @@ h4 {
     font-size: 26px !important;
     line-height: 36px !important;
 
+}
+
+video {
+    width: 70%;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+    background-color: #84141400 !important;
+    color: #eef000 !important;
+}
+.tabs .tab a:hover, .tabs .tab a.active {
+    background-color: transparent !important;
+    color: #000000 !important ;
+    font-weight: bold !important;
+}
+.tabs .indicator {
+    background-color: #f3ff00 !important;
+}
+.tabs .tab a {
+    color: rgba(0, 0, 0, 0.72)  !important;
 }
