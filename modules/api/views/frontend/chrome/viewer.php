@@ -103,13 +103,13 @@
                     let file_ext = file.split('.').pop();
 
                     if (img_types.indexOf(file_ext) !== -1) {
-                        file_path_use_cache(file,function (file){
+                     //   file_path_use_cache(file,function (file){
 
                             $('#viewer_img').attr('src', file);
                             $('#viewer_img').show();
                             console.log('show ',file);
                             register_show(reklamir_id,0,0);
-                        });
+                        //});
 
                     }
                     if (video_types.indexOf(file_ext) !== -1) {
