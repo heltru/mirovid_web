@@ -14,6 +14,7 @@ use app\modules\show\models\ShowRegisterSearchTable;
 use app\modules\show\models\TrackAuto;
 use app\modules\show\models\TrackPoint;
 use yii\data\ArrayDataProvider;
+use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\Response;
@@ -104,6 +105,15 @@ class DefaultController extends Controller
 
         foreach ($dataProvider->getModels() as $num => $model){
             $date = strtotime($model->date_sh);
+
+            $pathinfo = pathinfo($model->reklamir_r->file_r->path);
+            $ext = $pathinfo['extension'];
+            if (in_array($ext, ['png', 'jpg', 'jpeg', 'gif', 'bmp'])) {
+                $src =  $model->reklamir_r->file_r->path;
+            } else {
+                $src =  $model->file_r->name ;
+            }
+
             $points[] =  [
                 'lat'=>$model->lat,
                 'long'=>$model->long,
@@ -111,7 +121,7 @@ class DefaultController extends Controller
                 'num'=>$num,
                 'time'=> date( 'H:i:s',$date),
                 'date'=> date('d.m.y',$date),
-                'src'=>$model->reklamir_r->file_r->path_preview
+                'src'=>$src
             ];
         }
 

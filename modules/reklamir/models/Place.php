@@ -30,6 +30,7 @@ class Place extends \yii\db\ActiveRecord
         return [
             [['name'], 'string', 'max' => 512],
             [['price_show'], 'integer'],
+            [['price_show'], 'default','value'=>1],
             [['gps'], 'string', 'max' => 45],
         ];
     }

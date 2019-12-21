@@ -11,13 +11,15 @@ use app\modules\reklamir\models\Reklamir;
  */
 class ReklamirSearch extends Reklamir
 {
+
+    public $place_id;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'thing_id', 'file_id', 'account_id', 'show', 'status'], 'integer'],
+            [['id', 'thing_id', 'file_id', 'account_id', 'show', 'status','place_id'], 'integer'],
         ];
     }
 
@@ -56,16 +58,23 @@ class ReklamirSearch extends Reklamir
             return $dataProvider;
         }
 
+        $query->innerJoin('thing','thing.id=reklamir.thing_id');
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'thing_id' => $this->thing_id,
             'file_id' => $this->file_id,
+            'place_id' => $this->place_id,
+
 
             'show' => $this->show,
             'status' => $this->status,
         ]);
 
+
+
         return $dataProvider;
     }
+
 }

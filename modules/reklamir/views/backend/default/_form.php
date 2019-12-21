@@ -23,7 +23,7 @@ use app\modules\helper\models\Helper;
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'thing_id')->dropDownList( ArrayHelper::map(Thing::find()->all(),'id',function ($model){
-        return  $model->place_r->name . ' ' . $model->cat_r->name . ' ' . $model->name;
+        return  $model->place_r->name . ' ' . $model->place_r->num . ' ' . $model->cat_r->name . ' ' . $model->name;
     }) ) ?>
     <?= $this->render('_file',['model'=>$model,'form'=>$form]); ?>
 

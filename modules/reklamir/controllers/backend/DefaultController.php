@@ -50,10 +50,23 @@ class DefaultController extends Controller
         $searchModel = new ReklamirSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+
+
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+
+
         ]);
+    }
+
+    public function actionChangeStatus(){
+        $rec = Reklamir::findOne(['id'=>(int) Yii::$app->request->post('id') ]);
+        if ($rec !== null){
+            $rec->status = (int)Yii::$app->request->post('status');
+            $rec->update(false,['status']);
+        }
     }
 
 

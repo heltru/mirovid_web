@@ -204,7 +204,7 @@
 
         <!--   Icon Section   -->
         <div class="row">
-            <div class="col s12 m6  ">
+            <div class="col s12 m3  ">
                 <div class="icon-block">
                     <div class="hoy_need_cont_img">
                         <img  class="hoy_need_img" src="/images/How-to-Become-a-Freelance-Digital-Marketer_blog.jpg">
@@ -224,7 +224,7 @@
                 </div>
             </div>
 
-            <div class="col s12 m6  ">
+            <div class="col s12 m3  ">
                 <div class="icon-block">
                     <div class="hoy_need_cont_img">
                         <img class="hoy_need_img" src="/images/business-woman4-730x461.jpg">
@@ -242,7 +242,7 @@
                 </div>
             </div>
 
-            <div class="col s12 m6  ">
+            <div class="col s12 m3  ">
                 <div class="icon-block">
                     <div class="hoy_need_cont_img">
                      <img  class="hoy_need_img" src="/images/108c3bddcc5c059c2d0d2e4c74c43c3b.jpg">
@@ -258,7 +258,7 @@
                 </div>
             </div>
 
-            <div class="col s12 m6 ">
+            <div class="col s12 m3 ">
                 <div class="icon-block">
                     <div class="hoy_need_cont_img">
                         <img  class="hoy_need_img" src="/images/photo-1490650404312-a2175773bbf5.jpg">
@@ -474,19 +474,24 @@
 
 
         <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m4 center-align">
 
                 <a href="tel:89991002878"
                    style="   background-color: #7000ff;color: #e1e6ff;font-weight: bold" class="waves-effect waves-light btn-large ">
                     Позвоните
                     8 999 100 2878</a>
-
             </div>
 
-            <div class="col s12 m6">
+
+            <div class="col s12 m4 center-align">
+                <a class="waves-effect waves-light btn-large modal-trigger" href="#modal1">Видеоинструкция</a>
+            </div>
+
+
+            <div class="col s12 m4 center-align">
 
                 <?php if ( true /* Yii::$app->user->isGuest */){ ?>
-                    <a href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>" style="    float: right;background-color: #ffd400;color: black;font-weight: bold" class="waves-effect waves-light btn-large ">
+                    <a href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>" style="    background-color: #ffd400;color: black;font-weight: bold" class="waves-effect waves-light btn-large ">
                         Регистрация</a>
                 <?php } ?>
 
@@ -502,16 +507,30 @@
 
 
 <footer style=" padding-top: 0;"  class="page-footer white">
-
     <div class="footer-copyright">
         <div class="container ">
-            <span class="text-gray">  Made by</span> <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+
         </div>
     </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div   >
+                <video style="width:100%" controls >
+                    <source src="/video/mirovid_wiki.webm" type="video/webm">
+                </video>    </div>
+        </div>
+        <div class="modal-footer">
+
+            <a  href="#!" class="  modal-close waves-effect waves-green btn-flat">Закрыть</a>
+
+        </div>
+    </div>
+
 </footer>
 <script>
     $(document).ready(function() {
-
+        $('.modal').modal();
 
         $('.tabs').tabs();
 
