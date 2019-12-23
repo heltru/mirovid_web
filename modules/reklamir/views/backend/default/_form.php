@@ -146,7 +146,7 @@ use app\modules\helper\models\Helper;
             </div>
         </div>
 
-<!--
+
         <div class="panel box box-success">
             <div class="box-header with-border">
                 <h4 class="box-title">
@@ -157,12 +157,12 @@ use app\modules\helper\models\Helper;
             </div>
             <div id="collapseArea" class="panel-collapse collapse" aria-expanded="false" >
                 <div class="box-body">
-                    <?php //echo $this->render('_mem_update_locale',['model'=>$model,'form'=>$form]); ?>
+                    <?php  echo $this->render('_mem_update_locale',['model'=>$model,'form'=>$form]); ?>
                 </div>
             </div>
         </div>
 
--->
+
     </div>
 <?php } ?>
 

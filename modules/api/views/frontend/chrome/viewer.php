@@ -94,12 +94,32 @@
     var img_types = ['png', 'gif', 'jpg'];
     var video_types = ['mp4', 'webm'];
 
-    var time_delay = 1000;// * 60 * 1;
+    var time_delay = 1000 * 10 * 1;
+
+    var lat = 0;
+    var long = 0;
+    var matrix_area = [[[58.63153527769201,49.511239887417005],[58.66744545273785,49.580136112582935]],[[58.63153527769198,49.58013611258283],[58.66744545273787,49.64903233774886]],[[58.63153527769201,49.64903233774886],[58.66744545273785,49.717928562914835]],[[58.595620373349945,49.511275223827596],[58.63153075030898,49.580100776172344]],[[58.59562037334996,49.580100776172344],[58.63153075030897,49.64892632851704]],[[58.595620373349945,49.64892632851694],[58.63153075030898,49.71775188086174]],[[58.5597052734611,49.54572325051421],[58.59561585246496,49.61447830183058]],[[58.55970527346108,49.61447830183053],[58.59561585246498,49.68323335314701]],[[58.5597052734611,49.68323335314701],[58.59561585246496,49.75198840446344]],[[58.52378997788079,49.51134563925065],[58.55970075906097,49.580030360749284]],[[58.52378997788079,49.580030360749284],[58.55970075906097,49.64871508224792]],[[58.52378997788082,49.64871508224792],[58.55970075906097,49.7173998037465]]];
 
     $(document).ready(function () {
 
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                lat = position.coords.latitude;
+                long = position.coords.longitude;
+                console.log(lat,long);
+            });
+        }
+
+        var watchId = navigator.geolocation.watchPosition(function(position) {
+            console.log(position.coords.latitude);
+            console.log(position.coords.longitude);
+        });
+
+        navigator.geolocation.clearWatch(watchId);
+
         var matrix_time = [];//build_matrix_time();
         var time_id_active = 0;
+        var area_id_active = 0;
 
         build_matrix_time();
 
@@ -134,6 +154,39 @@
             }
             return false;
         }
+
+        function check_area(areas){
+            if (area_id_active === 0){
+                return true;
+            }
+            if (areas.length < 1){
+                return true;
+            }
+            if ( areas.includes(area_id_active)){
+                return true;
+            }
+            return false;
+        }
+
+        function convert_gps_area_id(){
+
+            let curr_lat = lat;
+            let curr_long = long;
+
+            for (let area_num=0; area_num<= matrix_area.length-1;area_num++){
+                let coord = self.matrix_area[area_num];
+                let e_lat = curr_lat <= coord[1][0] && curr_lat >= coord[0][0];
+                let e_long = curr_long <= coord[1][1] && curr_long >= coord[0][1];
+                if (e_lat && e_long){
+                    area_id_active = area_num+1;
+                    console.log('area_id_active',area_id_active);
+                }
+
+            }
+
+
+        }
+
 
 
         function convert_datetime_time_id(){
@@ -329,10 +382,14 @@
             for (var i = 0; i < playlist_new.broadcast.length; i++) {
                 let reklamir_id = playlist_new.broadcast[i];
                 convert_datetime_time_id();
+                convert_gps_area_id();
 
                 if (playlist_new.reklamir.hasOwnProperty(reklamir_id)) {
 
                     if (! check_time(playlist_new.reklamir[reklamir_id].daytime)){
+                        continue;
+                    }
+                    if (! check_area(playlist_new.reklamir[reklamir_id].area)){
                         continue;
                     }
 
@@ -351,7 +408,7 @@
                 $('#viewer_video').hide();
             }
 
-            // location.reload();
+             location.reload();
 
         }
 
@@ -428,7 +485,7 @@
         }
 
 
-        function register_show(reklamir_id, lat, long) {
+        function register_show(reklamir_id) {
             $.ajax({
                 url: host + "/api/thing/register-show",
                 data: {'reklamir_id': reklamir_id, 'lat': lat, 'long': long},
