@@ -66,7 +66,9 @@ class AppPlaylist
 
         $all = Reklamir::find()->
         joinWith(['file_r', 'area_r'])->
-        where(['thing_id' => $this->thing_id, 'status' => Reklamir::ST_ON])->
+            innerJoin('reklamir_thing','reklamir_thing.reklamir_id=reklamir.id AND reklamir_thing.thing_id = :thing_id',
+            ['thing_id' => $this->thing_id])->
+        where([ 'status' => Reklamir::ST_ON])->
         all();
 
         foreach ($all as $item) {

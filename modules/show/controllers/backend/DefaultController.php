@@ -105,14 +105,17 @@ class DefaultController extends Controller
 
         foreach ($dataProvider->getModels() as $num => $model){
             $date = strtotime($model->date_sh);
-
-            $pathinfo = pathinfo($model->reklamir_r->file_r->path);
-            $ext = $pathinfo['extension'];
-            if (in_array($ext, ['png', 'jpg', 'jpeg', 'gif', 'bmp'])) {
-                $src =  $model->reklamir_r->file_r->path;
-            } else {
-                $src =  $model->file_r->name ;
+            $src = Helper::nophoto();
+            if (is_object($model->reklamir_r->file_r)){
+                $pathinfo = pathinfo($model->reklamir_r->file_r->path);
+                $ext = $pathinfo['extension'];
+                if (in_array($ext, ['png', 'jpg', 'jpeg', 'gif', 'bmp'])) {
+                    $src =  $model->reklamir_r->file_r->path;
+                } else {
+                    $src =  $model->reklamir_r->file_r->name;
+                }
             }
+
 
             $points[] =  [
                 'lat'=>$model->lat,

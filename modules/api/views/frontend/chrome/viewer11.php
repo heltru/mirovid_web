@@ -28,15 +28,6 @@
 
 
 
-    video {
-        position: fixed; right: 0; bottom: 0;
-        min-width: 100%; min-height: 100%;
-        width: auto; height: auto; z-index: -100;
-        background: url(polina.jpg) no-repeat;
-        background-size: cover;
-    }
-
-
 </style>
 
 <img id="viewer_img">
@@ -94,68 +85,9 @@
     var img_types = ['png', 'gif', 'jpg'];
     var video_types = ['mp4', 'webm'];
 
-    var time_delay = 1000;// * 60 * 1;
+    var time_delay = 1000 * 60 * 1;
 
     $(document).ready(function () {
-
-        var matrix_time = [];//build_matrix_time();
-        var time_id_active = 0;
-
-        build_matrix_time();
-
-        function build_matrix_time(){
-            let c = 1;
-            let dx = 60*60;
-            let start = 0;
-            let stop = dx;
-
-            for (let i=1; i<= 7;i++){
-                matrix_time[i] = [];
-
-                for (let j=1; j<= 24;j++){
-                    matrix_time[i].push( {'c':c,'start':start,'stop':stop} );
-                    start = stop;
-                    stop += dx;
-                    c += 1
-                }
-
-                start = 0;
-                stop = dx;
-            }
-
-        }
-
-        function check_time(times){
-            if (times.length < 1){
-                return true;
-            }
-            if (times.includes(time_id_active)) {
-                return true;
-            }
-            return false;
-        }
-
-
-        function convert_datetime_time_id(){
-            let now = new Date(); //Date.now() / 1000 | 0;
-            let hour = now.getHours();
-            let minute = now.getMinutes();
-            let week_day = now.getDay();
-
-            let search_between = ((hour*60*60)+(minute*60));
-            let day_cells = matrix_time[week_day];
-
-            for (let i=0;i<=day_cells.length;i++){
-                let item_time = day_cells[i];
-                let start = item_time['start'];
-                let stop = item_time['stop'];
-                if (search_between >= start && search_between <= stop){
-                    time_id_active = item_time['c'];
-                    return item_time['c']
-                }
-            }
-
-        }
 
 
         navigator.webkitPersistentStorage.requestQuota(1024 * 1024 * 300, () => {
@@ -297,8 +229,7 @@
             file_in_chache(file, function (file) {
                 $(video_block).html(video_tag(file));
                 $('#viewer_video').show();
-               // video_full_screen();
-
+                video_full_screen();
                 console.log('show ', file);
                 register_show(reklamir_id, 0, 0);
             }, function (file) {
@@ -328,14 +259,8 @@
 
             for (var i = 0; i < playlist_new.broadcast.length; i++) {
                 let reklamir_id = playlist_new.broadcast[i];
-                convert_datetime_time_id();
 
                 if (playlist_new.reklamir.hasOwnProperty(reklamir_id)) {
-
-                    if (! check_time(playlist_new.reklamir[reklamir_id].daytime)){
-                        continue;
-                    }
-
                     let file = dir_web + '/' + dir_files + '/' + playlist_new.reklamir[reklamir_id].file;
                     let file_ext = file.split('.').pop();
 

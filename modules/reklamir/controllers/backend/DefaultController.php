@@ -8,6 +8,7 @@ use app\modules\helper\models\Logs;
 use app\modules\reklamir\models\ReklamirArea;
 use app\modules\reklamir\models\ReklamirCommonSearch;
 use app\modules\reklamir\models\ReklamirDaytime;
+use app\modules\reklamir\models\ReklamirThing;
 use Yii;
 use app\modules\reklamir\models\Reklamir;
 use app\modules\reklamir\models\ReklamirSearch;
@@ -120,7 +121,7 @@ class DefaultController extends Controller
 
                 $model->file_id = $file->id;
                 $model->update(false,['file_id']);
-
+                $this->preseachReklamirThing($model);
 //ex($model->file_id);
 
             }catch (\Exception $e) {
@@ -161,6 +162,7 @@ class DefaultController extends Controller
         $model->areas = implode(',',ArrayHelper::getColumn( $model->area_r ,'area_id')) ;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             $app_file = new FileUpload('mirovid/files/' . Yii::$app->getModule('account')->getAccount()->id);
 
             $app_file->setFileModel($model->file_r);
@@ -175,7 +177,7 @@ class DefaultController extends Controller
             $model->update(false,['file_id']);
 
             $this->preseachTimeAndGeo($model);
-
+            $this->preseachReklamirThing($model);
             return $this->redirect(['index', 'id' => $model->id]);
         }
 
@@ -204,6 +206,42 @@ class DefaultController extends Controller
 
             'model' => $model,
         ]);
+    }
+
+    private function preseachReklamirThing($model){
+
+        $selected_things = Yii::$app->request->post('selected_things');
+        if ( $selected_things === null){
+            $selected_things = $this->selected_domains;
+        }
+
+        if ( is_string($selected_things) && strlen($selected_things)) {
+            $arrSets = explode(',', $selected_things);
+
+            $old_links = ReklamirThing::findAll(['reklamir_id'=>  $model->id]);
+            $old_thing = ArrayHelper::getColumn($old_links,'thing_id');
+
+            $del_thing_id = array_diff($old_thing,$arrSets);
+
+            foreach ($old_links as $link){
+                if ( in_array( $link->thing_id,$del_thing_id)){
+                    $link->delete();
+                }
+            }
+
+            $new_thing_ids = array_diff($arrSets,$old_thing);
+
+            foreach ( $new_thing_ids as $new_thing_id ){
+                $l = new ReklamirThing();
+                $l->reklamir_id = $model->id;
+                $l->thing_id = (int) $new_thing_id;
+                $l->save();
+            }
+
+
+        }  else {
+            ReklamirThing::deleteAll(['reklamir_id'=>  $model->id]);
+        }
     }
 
     private function preseachTimeAndGeo($model){

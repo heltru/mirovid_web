@@ -78,11 +78,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}'],
-
+/*
             [
-                'attribute' => 'thing_r.name',
+                'label' => 'Устройства',
                 'value'=>function ($model){
-                    return /*' id:' . $model->thing_r->id . ' ' .*/$model->thing_r->name ;
+                    $str = '';
+                    foreach ($model->thing_r as $thing){
+                        $str .= $thing->name
+                    }
+                    return $str;
                 },
                 'filter' =>
                     Html::dropDownList(
@@ -92,15 +96,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         (isset(Yii::$app->request->queryParams['ReklamirSearch']['thing_id'])) ?
                             Yii::$app->request->queryParams['ReklamirSearch']['thing_id'] : '',
                         \yii\helpers\ArrayHelper::map(
-                            \app\modules\reklamir\models\Thing::find()->innerJoin(
-                                'reklamir', 'reklamir.thing_id = thing.id AND reklamir.account_id = :acc',
-                                ['acc' => Yii::$app->getModule('account')->getAccount()->id]
-
-                            )->all(), 'id', 'name'
+                            \app\modules\reklamir\models\Thing::find()->all(), 'id', 'name'
                         )
 
                         , ['prompt' => 'нет', 'class' => 'form-control']),
             ],
+*/
+            /*
             [
                 'attribute' => 'thing_r.place_r.name',
                 'value'=> function ($model){
@@ -125,7 +127,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         , ['prompt' => 'нет', 'class' => 'form-control']),
             ],
-
+*/
 
             'id',
 

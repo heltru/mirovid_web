@@ -53,9 +53,9 @@ class Reklamir extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['thing_id', 'account_id','name'], 'required'],
-            [['thing_id', 'file_id', 'account_id', 'show', 'status'], 'integer'],
-            [['uploadFile'], 'file',  /*'extensions' => 'png, jpg'*/],
+            [[ 'account_id','name'], 'required'],
+            [[ 'file_id', 'account_id', 'show', 'status'], 'integer'],
+            [['uploadFile'], 'file',  'extensions' => 'png, jpg, gif, jpeg, bmp, mp4, avi, webm, mpeg, mpg, wmv, mkv'],
             [['name'], 'string','max' => 255],
             [['msg'], 'string','max' => 9000],
             [['times','areas'], 'safe'],
@@ -85,7 +85,7 @@ class Reklamir extends \yii\db\ActiveRecord
     }
 
     public function getThing_r(){
-        return $this->hasOne( Thing::class, ['id' => 'thing_id']);
+        return $this->hasMany(ReklamirThing::class,['reklamir_id'=>'id']);
     }
 
     public function getFile_r(){
@@ -114,6 +114,9 @@ class Reklamir extends \yii\db\ActiveRecord
             $item->delete();
         }
         foreach ( ReklamirArea::find()->where(['reklamir_id'=>$this->id])->all() as $item ){
+            $item->delete();
+        }
+        foreach ( ReklamirThing::find()->where(['reklamir_id'=>$this->id])->all() as $item ){
             $item->delete();
         }
         foreach ( Bid::find()->where(['reklamir_id'=>$this->id])->all() as $item ){

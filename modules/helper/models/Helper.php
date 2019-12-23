@@ -87,5 +87,9 @@ class Helper
         return $output;
     }
 
+    public static function nophoto(){
+        return '/images/noimage/noimage.jpg';
+    }
+
 
 }

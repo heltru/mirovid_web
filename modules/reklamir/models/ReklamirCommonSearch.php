@@ -17,7 +17,7 @@ class ReklamirCommonSearch extends Reklamir
     public function rules()
     {
         return [
-            [['id', 'thing_id', 'file_id', 'account_id', 'show', 'status'], 'integer'],
+            [['id',   'file_id', 'account_id', 'show', 'status'], 'integer'],
         ];
     }
 
@@ -59,7 +59,7 @@ class ReklamirCommonSearch extends Reklamir
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'thing_id' => $this->thing_id,
+
             'file_id' => $this->file_id,
 
             'show' => $this->show,

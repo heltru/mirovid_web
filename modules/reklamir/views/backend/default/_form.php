@@ -22,9 +22,72 @@ use app\modules\helper\models\Helper;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'thing_id')->dropDownList( ArrayHelper::map(Thing::find()->all(),'id',function ($model){
+    <div >
+        <label>На каких устройствах</label>
+        <?php
+        $df = []; $datadata = [ ];
+
+        $reklamir_thing = \app\modules\reklamir\models\ReklamirThing::find()
+            ->where(['reklamir_id'=>$model->id])->all();
+
+
+        foreach ($reklamir_thing as $link){// if old record
+            if (! is_object($link->thing_r)){
+                continue;
+            }
+
+            $df[] = [
+                'name'=>  $link->thing_r->place_r->name . ' ' . $link->thing_r->place_r->num . ' ' . $link->thing_r->cat_r->name . ' ' . $link->thing_r->name,
+                'value'=>$link->thing_id,
+            ];
+        }
+
+
+
+
+        if (count($df)){
+            $datadata = \yii\helpers\Json::encode( $df );
+        } else {
+            $datadata_raw = Thing::find()->all();
+            $datadata = [];
+            foreach ($datadata_raw as $thing){
+                $datadata[] = [
+                    'name'=> $thing->place_r->name . ' ' . $thing->place_r->num . ' ' . $thing->cat_r->name . ' ' . $thing->name,
+                    'value'=>$thing->id,
+                ];
+            }
+        }
+
+        echo  \yii2mod\selectize\Selectize::widget([
+            'name' => 'selected_things',
+            'id' => 'selected_things',
+
+            'options' => [
+                'data-data' => $datadata
+            ],
+
+            'url' => \yii\helpers\Url::to(['/admin/reklamir/thing/get-list-format']) ,
+            'pluginOptions' => [
+                //  'maxItems'=>1,
+                'valueField' => 'value',
+                'labelField' => 'name',
+                'searchField' => ['name'],
+
+                // define list of plugins
+                'plugins' => ['remove_button'],
+                'persist' => false,
+                'createOnBlur' => true,
+                'create' =>false
+            ]
+        ]);
+        ?>
+    </div>
+    <?php
+
+    /*echo  $form->field($model, 'thing_id')->dropDownList( ArrayHelper::map(Thing::find()->all(),'id',function ($model){
         return  $model->place_r->name . ' ' . $model->place_r->num . ' ' . $model->cat_r->name . ' ' . $model->name;
-    }) ) ?>
+    }) )*/
+    ?>
     <?= $this->render('_file',['model'=>$model,'form'=>$form]); ?>
 
 
@@ -83,7 +146,7 @@ use app\modules\helper\models\Helper;
             </div>
         </div>
 
-
+<!--
         <div class="panel box box-success">
             <div class="box-header with-border">
                 <h4 class="box-title">
@@ -94,12 +157,12 @@ use app\modules\helper\models\Helper;
             </div>
             <div id="collapseArea" class="panel-collapse collapse" aria-expanded="false" >
                 <div class="box-body">
-                    <?= $this->render('_mem_update_locale',['model'=>$model,'form'=>$form]); ?>
+                    <?php //echo $this->render('_mem_update_locale',['model'=>$model,'form'=>$form]); ?>
                 </div>
             </div>
         </div>
 
-
+-->
     </div>
 <?php } ?>
 

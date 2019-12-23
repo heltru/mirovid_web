@@ -8,6 +8,7 @@ use app\modules\reklamir\models\ThingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * ThingController implements the CRUD actions for Thing model.
@@ -124,4 +125,22 @@ class ThingController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionGetListFormat($query = null){
+        $things = Thing::find()->all();
+        $df = [];
+
+        foreach ($things as $thing){
+
+            $df[] = [
+                'name'=> $thing->place_r->name . ' ' . $thing->place_r->num . ' ' . $thing->cat_r->name . ' ' . $thing->name,
+                'value'=>$thing->id,
+            ];
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $df ;
+    }
+
+
 }

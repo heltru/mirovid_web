@@ -16,5 +16,12 @@ class ChromeController extends Controller
         return $this->render('viewer');
     }
 
+    public function actionViewer($id=null){
+        $this->layout = 'html';
+
+
+        return $this->render('viewer11');
+    }
+
 
 }
