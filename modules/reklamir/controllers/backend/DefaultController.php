@@ -9,6 +9,7 @@ use app\modules\reklamir\models\ReklamirArea;
 use app\modules\reklamir\models\ReklamirCommonSearch;
 use app\modules\reklamir\models\ReklamirDaytime;
 use app\modules\reklamir\models\ReklamirThing;
+use app\modules\reklamir\models\Thing;
 use Yii;
 use app\modules\reklamir\models\Reklamir;
 use app\modules\reklamir\models\ReklamirSearch;
@@ -210,18 +211,21 @@ class DefaultController extends Controller
 
     private function preseachReklamirThing($model){
 
-        $selected_things = Yii::$app->request->post('selected_things');
-        if ( $selected_things === null){
-            $selected_things = $this->selected_domains;
-        }
+        $selected_things = ArrayHelper::getColumn(Thing::find()->where(['cat_id'=>$model->thing_cat])->all(),
+            'id') ;
 
-        if ( is_string($selected_things) && strlen($selected_things)) {
-            $arrSets = explode(',', $selected_things);
+
+
+
+        if ( count($selected_things) ) {
+
 
             $old_links = ReklamirThing::findAll(['reklamir_id'=>  $model->id]);
             $old_thing = ArrayHelper::getColumn($old_links,'thing_id');
 
-            $del_thing_id = array_diff($old_thing,$arrSets);
+            $del_thing_id = array_diff($old_thing,$selected_things);
+
+
 
             foreach ($old_links as $link){
                 if ( in_array( $link->thing_id,$del_thing_id)){
@@ -229,13 +233,16 @@ class DefaultController extends Controller
                 }
             }
 
-            $new_thing_ids = array_diff($arrSets,$old_thing);
+            $new_thing_ids = array_diff($selected_things,$old_thing);
 
             foreach ( $new_thing_ids as $new_thing_id ){
                 $l = new ReklamirThing();
                 $l->reklamir_id = $model->id;
                 $l->thing_id = (int) $new_thing_id;
-                $l->save();
+                if ( !$l->save()){
+                    ex($l->getErrors());
+                }
+
             }
 
 

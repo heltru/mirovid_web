@@ -20,7 +20,7 @@ class ReklamirSearch extends Reklamir
     public function rules()
     {
         return [
-            [['id',   'file_id', 'account_id', 'show', 'status','place_id'], 'integer'],
+            [['id',   'file_id', 'account_id', 'show', 'status','place_id','thing_cat'], 'integer'],
         ];
     }
 
@@ -67,7 +67,7 @@ class ReklamirSearch extends Reklamir
 
             'file_id' => $this->file_id,
             'place_id' => $this->place_id,
-
+            'thing_cat' => $this->thing_cat,
 
             'show' => $this->show,
             'status' => $this->status,

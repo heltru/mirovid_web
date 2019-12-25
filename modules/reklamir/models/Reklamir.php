@@ -20,6 +20,8 @@ use Yii;
  * @property int $show
  * @property int $status
  * @property int $name
+ * @property int $thing_cat
+ *
  */
 class Reklamir extends \yii\db\ActiveRecord
 {
@@ -44,6 +46,7 @@ class Reklamir extends \yii\db\ActiveRecord
     public $times;
     public $areas;
 
+
     public static function tableName()
     {
         return 'reklamir';
@@ -55,8 +58,8 @@ class Reklamir extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[ 'account_id','name'], 'required'],
-            [[ 'file_id', 'account_id', 'show', 'status'], 'integer'],
+            [[ 'account_id','name','thing_cat'], 'required'],
+            [[ 'file_id', 'account_id', 'show', 'status','thing_cat'], 'integer'],
             [['uploadFile'], 'file',
                 'extensions' => 'png, jpg, gif, jpeg, bmp, mp4, avi, webm, mpeg, mpg, wmv, mkv, mov, MOV'],
             [['name'], 'string','max' => 255],
@@ -80,8 +83,17 @@ class Reklamir extends \yii\db\ActiveRecord
             'status' => 'Статус',
             'name' => 'Название',
             'msg' => 'Сообщение',
+            'thing_cat' => 'Категория устройств',
+            'uploadFile'=>'Выбрать файл'
+
         ];
     }
+
+
+    public function getThingCat_r(){
+        return $this->hasOne( ThingCat::class, ['id' => 'thing_cat']);
+    }
+
 
     public function getAccount_r(){
         return $this->hasOne( Account::class, ['id' => 'account_id']);

@@ -12,6 +12,13 @@ use Yii;
  */
 class ThingCat extends \yii\db\ActiveRecord
 {
+
+    const C_TABLE_AUTO  = 'table_auto';
+    const C_TABLET_TAXI  = 'tablet_taxi';
+
+
+
+
     /**
      * {@inheritdoc}
      */
@@ -26,7 +33,7 @@ class ThingCat extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'string', 'max' => 45],
+            [['name','sys_name'], 'string', 'max' => 45],
         ];
     }
 
@@ -38,6 +45,7 @@ class ThingCat extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Название категории',
+            'sys_name' => 'Системное имя',
         ];
     }
 }

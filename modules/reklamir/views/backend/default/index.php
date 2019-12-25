@@ -62,6 +62,25 @@ $this->params['breadcrumbs'][] = $this->title;
             'show',
 
             [
+                'attribute' => 'thing_cat',
+                'format' => 'raw',
+                'value' =>'thingCat_r.name'
+                /*
+                'value' => function ($model) {
+                    return Html::dropDownList('reklamir_status', $model->status,
+                        [ Reklamir::ST_ON => Reklamir::$arrTxtStatus[Reklamir::ST_ON ],
+                            Reklamir::ST_OFF=> Reklamir::$arrTxtStatus[Reklamir::ST_OFF ],
+                        ]
+                        , ['class' => 'reklamir_status form-control','data-id'=>$model->id,'prompt'=>'---']);
+                }
+                */
+                ,
+                'filter' => \yii\helpers\ArrayHelper::map(
+                        \app\modules\reklamir\models\ThingCat::findAll(['sys_name'=>[\app\modules\reklamir\models\ThingCat::C_TABLET_TAXI,
+                            \app\modules\reklamir\models\ThingCat::C_TABLE_AUTO]]),'id','name'
+                )
+            ],
+            [
                 'attribute' => 'status',
                 'format' => 'raw',
                 'value' => function ($model) {

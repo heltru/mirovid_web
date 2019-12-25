@@ -7,14 +7,9 @@ use app\modules\reklamir\models\Thing;
 use app\modules\reklamir\models\Reklamir;
 use app\modules\helper\models\Helper;
 
-use app\modules\reklamir\models\ThingCat;
-use app\modules\reklamir\models\ReklamirThing;
-
-
 /* @var $this yii\web\View */
 /* @var $model app\modules\reklamir\models\Reklamir */
 /* @var $form yii\widgets\ActiveForm */
-
 
 ?>
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=68531ae1-9ce3-44cf-95f9-a2a922bf7358" type="text/javascript"></script>
@@ -27,10 +22,72 @@ use app\modules\reklamir\models\ReklamirThing;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'thing_cat')->dropDownList(ArrayHelper::map(ThingCat::find()->where(['sys_name'=>
-        [ThingCat::C_TABLET_TAXI,ThingCat::C_TABLE_AUTO]])->orderBy('ord')->all() ,'id','name') ) ?>
+    <div >
+        <label>На каких устройствах</label>
+        <?php
+        $df = []; $datadata = [ ];
+
+        $reklamir_thing = \app\modules\reklamir\models\ReklamirThing::find()
+            ->where(['reklamir_id'=>$model->id])->all();
 
 
+        foreach ($reklamir_thing as $link){// if old record
+            if (! is_object($link->thing_r)){
+                continue;
+            }
+
+            $df[] = [
+                'name'=>  $link->thing_r->place_r->name . ' ' . $link->thing_r->place_r->num . ' ' . $link->thing_r->cat_r->name . ' ' . $link->thing_r->name,
+                'value'=>$link->thing_id,
+            ];
+        }
+
+
+
+
+        if (count($df)){
+            $datadata = \yii\helpers\Json::encode( $df );
+        } else {
+            $datadata_raw = Thing::find()->all();
+            $datadata = [];
+            foreach ($datadata_raw as $thing){
+                $datadata[] = [
+                    'name'=> $thing->place_r->name . ' ' . $thing->place_r->num . ' ' . $thing->cat_r->name . ' ' . $thing->name,
+                    'value'=>$thing->id,
+                ];
+            }
+        }
+
+        echo  \yii2mod\selectize\Selectize::widget([
+            'name' => 'selected_things',
+            'id' => 'selected_things',
+
+            'options' => [
+                'data-data' => $datadata
+            ],
+
+            'url' => \yii\helpers\Url::to(['/admin/reklamir/thing/get-list-format']) ,
+            'pluginOptions' => [
+                //  'maxItems'=>1,
+                'valueField' => 'value',
+                'labelField' => 'name',
+                'searchField' => ['name'],
+
+                // define list of plugins
+                'plugins' => ['remove_button'],
+                'persist' => false,
+                'createOnBlur' => true,
+                'create' =>false
+            ]
+        ]);
+        ?>
+    </div>
+    <?php
+
+    /*echo  $form->field($model, 'thing_id')->dropDownList( ArrayHelper::map(Thing::find()->all(),'id',function ($model){
+        return  $model->place_r->name . ' ' . $model->place_r->num . ' ' . $model->cat_r->name . ' ' . $model->name;
+    }) )*/
+    ?>
     <?= $this->render('_file',['model'=>$model,'form'=>$form]); ?>
 
 
@@ -39,7 +96,8 @@ use app\modules\reklamir\models\ReklamirThing;
 
     <?php
      if (! $model->isNewRecord){
-        echo Html::hiddenInput('reklamir_id',$model->id,[ 'id' =>'reklamir_id']);
+    echo Html::hiddenInput('reklamir_id',$model->id,[ 'id' =>'reklamir_id']);
+
      }
     ?>
 

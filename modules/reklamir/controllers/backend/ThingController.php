@@ -5,6 +5,7 @@ namespace app\modules\reklamir\controllers\backend;
 use Yii;
 use app\modules\reklamir\models\Thing;
 use app\modules\reklamir\models\ThingSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -140,6 +141,13 @@ class ThingController extends Controller
 
         Yii::$app->response->format = Response::FORMAT_JSON;
         return $df ;
+    }
+
+    public function actionGetThingByCat(){
+        $id = Yii::$app->request->post('thing_cat');
+        $all = Thing::find()->where(['cat_id'=>$id])->all();
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return ['status'=>'success','data'=>ArrayHelper::getColumn($all,'id')];
     }
 
 
