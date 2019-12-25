@@ -3,6 +3,7 @@
 namespace app\modules\show\models;
 
 use app\modules\reklamir\models\Reklamir;
+use app\modules\reklamir\models\Thing;
 use Yii;
 
 /**
@@ -13,6 +14,8 @@ use Yii;
  * @property string $date_sh
  * @property int $lat
  * @property int $long
+ * @property int $thing_id
+ *
  */
 class ShowRegister extends \yii\db\ActiveRecord
 {
@@ -31,7 +34,7 @@ class ShowRegister extends \yii\db\ActiveRecord
     {
         return [
             [[ 'date_sh'], 'required'],
-            [['reklamir_id','file_id'], 'integer'],
+            [['reklamir_id','file_id','thing_id'], 'integer'],
             [[  'lat', 'long' ], 'number'],
 
             [['date_sh'], 'safe'],
@@ -51,11 +54,18 @@ class ShowRegister extends \yii\db\ActiveRecord
             'long' => 'Long',
             'date_from' => 'От',
             'date_to' => 'До',
+            'thing_id' => 'Устройство'
         ];
     }
 
     public function getReklamir_r(){
         return $this->hasOne( Reklamir::class, ['id' => 'reklamir_id']);
     }
+
+    public function getThing_r(){
+        return $this->hasOne( Thing::class, ['id' => 'thing_id']);
+    }
+
+
 
 }

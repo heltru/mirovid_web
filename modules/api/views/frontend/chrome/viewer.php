@@ -490,7 +490,7 @@
         function register_show(reklamir_id) {
             $.ajax({
                 url: host + "/api/thing/register-show",
-                data: {'reklamir_id': reklamir_id, 'lat': lat, 'long': long},
+                data: {'reklamir_id': reklamir_id, 'lat': lat, 'long': long,'thing_id':thing_id},
             });
         }
 

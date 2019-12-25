@@ -64,6 +64,7 @@ class ThingController extends Controller
 
 
         $reklamir_id = (int) \Yii::$app->request->get('reklamir_id');
+        $thing_id = (int) \Yii::$app->request->get('thing_id');
         $lat =  \Yii::$app->request->get('lat') ;
         $long =   \Yii::$app->request->get('long');
 
@@ -76,7 +77,7 @@ class ThingController extends Controller
         }
 
 
-        $app = new RegisterShow($lat,$long,$reklamir_id);
+        $app = new RegisterShow($lat,$long,$reklamir_id,$thing_id);
         $r =  $app->begin();
 
          return [ $r ];

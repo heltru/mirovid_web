@@ -14,6 +14,7 @@ use app\modules\helper\models\Logs;
 use app\modules\pay\models\Pay;
 use app\modules\pay\models\Trx;
 use app\modules\reklamir\models\Reklamir;
+use app\modules\reklamir\models\Thing;
 use app\modules\show\models\ShowRegister;
 use yii\db\Transaction;
 use app\modules\helper\HelperModule;
@@ -26,17 +27,19 @@ class RegisterShow
     private $lat;
     private $long;
     private $reklamir_id;
+    private $thing_id;
+
 
     public $result;
 
-    public function __construct($lat,$long,$reklamir_id)
+    public function __construct($lat,$long,$reklamir_id,$thing_id)
     {
         $this->show_register = new ShowRegister();
 
         $this->lat = $lat;
         $this->long = $long;
         $this->reklamir_id = $reklamir_id;
-
+        $this->thing_id = $thing_id;
 
 
     }
@@ -48,6 +51,7 @@ class RegisterShow
         $this->show_register->reklamir_id = $this->reklamir_id;
         $this->show_register->long = $this->long;
         $this->show_register->lat = $this->lat;
+        $this->show_register->thing_id = $this->thing_id;
 
         $this->show_register->date_sh = date("Y-m-d H:i:s" ) ;
         $this->show_register->save();
@@ -55,7 +59,8 @@ class RegisterShow
 
 
         try{
-            $reklama = Reklamir::find()->where(['reklamir.id'=>$this->reklamir_id])->joinWith(['thing_r','thing_r.place_r'])->one();
+            $reklama = Reklamir::find()->where(['id'=>$this->reklamir_id])->one();
+
         } catch (\Exception $e){
             Logs::log('find Reklamir', $e->getMessage());
             return;
@@ -64,7 +69,13 @@ class RegisterShow
 
         if ($reklama !== null){
 
-            $price_show = $reklama->thing_r->place_r->price_show;
+            $thing = Thing::find()->where(['thing.id'=>$this->thing_id])->joinWith(['place_r'])->one();
+            if ($thing !== null){
+                $price_show = $thing->place_r->price_show;
+            } else {
+                $price_show = 1;
+            }
+
             $reklama->show = (int)$reklama->show + 1;
 
             $reklama->update(false,['show']);
