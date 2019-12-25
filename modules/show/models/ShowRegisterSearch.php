@@ -70,6 +70,8 @@ class ShowRegisterSearch extends ShowRegister
 
 
         $query = ShowRegister::find()->joinWith(['reklamir_r','reklamir_r.file_r']);
+        $query->andWhere(['>','lat',0]);
+        $query->andWhere(['>','long',0]);
         $query->limit(3);
 
         $this->load($params);
