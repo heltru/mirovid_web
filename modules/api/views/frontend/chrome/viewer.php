@@ -86,10 +86,9 @@
     const dir_files = 'files';
 
     var playlist_new = [];
-    var playlist_old = [];
-
     var comparelist_new = [];
-    var comparelist_old = [];
+
+    var reklamir_id = 0;
 
 
     var img_types = ['png', 'jpg', 'gif', 'jpeg', 'bmp'];
@@ -189,8 +188,6 @@
 
         }
 
-
-
         function convert_datetime_time_id(){
             let now = new Date(); //Date.now() / 1000 | 0;
             let hour = now.getHours();
@@ -211,7 +208,6 @@
             }
 
         }
-
 
         navigator.webkitPersistentStorage.requestQuota(1024 * 1024 * 300, () => {
             window.webkitRequestFileSystem(window.PERSISTENT, 1024 * 1024 * 300, (a) => {
@@ -241,8 +237,6 @@
 
             }, errorHandler);
         }
-
-
 
         function create_dirs_save_file(path, data) {
 
@@ -280,9 +274,6 @@
             return async_create_dir(obj).then(decide);
         }
 
-
-
-
         function file_in_chache(fileName, cb_yes, cb_no) {
             fs.root.getFile(fileName, {create: false}, function (fileEntry) {
                 cb_yes(fileEntry.toURL());
@@ -297,7 +288,7 @@
                 $('#viewer_img').attr('src', file);
                 $('#viewer_img').show();
                 console.log('show from chache', file);
-                register_show(reklamir_id, 0, 0);
+                register_show();
             }, function (file) {
 
                 $.ajax({
@@ -315,6 +306,7 @@
 
                 $('#viewer_img').attr("src", file);
                 $('#viewer_img').show();
+                register_show();
 
             });
 
@@ -355,7 +347,7 @@
                // video_full_screen();
 
                 console.log('show ', file);
-                register_show(reklamir_id, 0, 0);
+                register_show();
             }, function (file) {
                 $.ajax({
                     url: host + '/' + file,
@@ -370,7 +362,7 @@
                 $(video_block).html(video_tag('/' + file));
                 $('#viewer_video').show();
                 console.log('show ', file);
-                register_show(reklamir_id, 0, 0);
+                register_show();
 
 
             });
@@ -382,7 +374,7 @@
         async function loop(playlist_new) {
 
             for (var i = 0; i < playlist_new.broadcast.length; i++) {
-                let reklamir_id = playlist_new.broadcast[i];
+                reklamir_id = playlist_new.broadcast[i];
                 convert_datetime_time_id();
                 convert_gps_area_id();
 
@@ -430,9 +422,9 @@
 
         function dir_files_clear(playlist_new) {
             comparelist_new = [];
-            for (reklamir_id in playlist_new.reklamir) {
-                if (playlist_new.reklamir.hasOwnProperty(reklamir_id)) {
-                    let file = '/' + dir_web + '/' + dir_files + '/' + playlist_new.reklamir[reklamir_id].file;
+            for (reklamir_id_new in playlist_new.reklamir) {
+                if (playlist_new.reklamir.hasOwnProperty(reklamir_id_new)) {
+                    let file = '/' + dir_web + '/' + dir_files + '/' + playlist_new.reklamir[reklamir_id_new].file;
                     comparelist_new.push(file);
                 }
             }
@@ -487,7 +479,7 @@
         }
 
 
-        function register_show(reklamir_id) {
+        function register_show() {
             $.ajax({
                 url: host + "/api/thing/register-show",
                 data: {'reklamir_id': reklamir_id, 'lat': lat, 'long': long,'thing_id':thing_id},
