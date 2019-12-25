@@ -101,22 +101,24 @@
     var long = 0;
     var matrix_area = [[[58.63153527769201,49.511239887417005],[58.66744545273785,49.580136112582935]],[[58.63153527769198,49.58013611258283],[58.66744545273787,49.64903233774886]],[[58.63153527769201,49.64903233774886],[58.66744545273785,49.717928562914835]],[[58.595620373349945,49.511275223827596],[58.63153075030898,49.580100776172344]],[[58.59562037334996,49.580100776172344],[58.63153075030897,49.64892632851704]],[[58.595620373349945,49.64892632851694],[58.63153075030898,49.71775188086174]],[[58.5597052734611,49.54572325051421],[58.59561585246496,49.61447830183058]],[[58.55970527346108,49.61447830183053],[58.59561585246498,49.68323335314701]],[[58.5597052734611,49.68323335314701],[58.59561585246496,49.75198840446344]],[[58.52378997788079,49.51134563925065],[58.55970075906097,49.580030360749284]],[[58.52378997788079,49.580030360749284],[58.55970075906097,49.64871508224792]],[[58.52378997788082,49.64871508224792],[58.55970075906097,49.7173998037465]]];
 
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            lat = position.coords.latitude;
+            long = position.coords.longitude;
+            console.log(lat,long);
+        });
+    }
+
+    var watchId = navigator.geolocation.watchPosition(function(position) {
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
+    });
+
+    navigator.geolocation.clearWatch(watchId);
+
     $(document).ready(function () {
 
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                lat = position.coords.latitude;
-                long = position.coords.longitude;
-                console.log(lat,long);
-            });
-        }
 
-        var watchId = navigator.geolocation.watchPosition(function(position) {
-            console.log(position.coords.latitude);
-            console.log(position.coords.longitude);
-        });
-
-        navigator.geolocation.clearWatch(watchId);
 
         var matrix_time = [];//build_matrix_time();
         var time_id_active = 0;
