@@ -73,7 +73,8 @@
 
                         <div class="cont_utm_col_text">
                             <h5 class="header  light item_utp ">Новый канал</h5>
-                            <p class="item_utp_subtitle">Внимание клиента <br> Платёжеспособная аудитория </p>
+                            <p class="item_utp_subtitle">Внимание клиента <br> Платёжеспособная аудитория
+                                <br>  15 минут средняя поездка</p>
                         </div>
                     </div>
 

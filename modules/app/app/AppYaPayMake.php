@@ -15,7 +15,7 @@ use app\modules\pay\models\PayForm;
 class AppYaPayMake
 {
 
-    public  $successURL = 'mirovid/admin/pay/default/pay-info';//http://
+    public  $successURL = 'mirovid.ru/admin/pay/default/pay-info';//http://
 
     public $summ;
     public $paymentType;

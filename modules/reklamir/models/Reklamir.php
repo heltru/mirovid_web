@@ -55,7 +55,8 @@ class Reklamir extends \yii\db\ActiveRecord
         return [
             [[ 'account_id','name'], 'required'],
             [[ 'file_id', 'account_id', 'show', 'status'], 'integer'],
-            [['uploadFile'], 'file',  'extensions' => 'png, jpg, gif, jpeg, bmp, mp4, avi, webm, mpeg, mpg, wmv, mkv'],
+            [['uploadFile'], 'file',
+                'extensions' => 'png, jpg, gif, jpeg, bmp, mp4, avi, webm, mpeg, mpg, wmv, mkv, mov'],
             [['name'], 'string','max' => 255],
             [['msg'], 'string','max' => 9000],
             [['times','areas'], 'safe'],

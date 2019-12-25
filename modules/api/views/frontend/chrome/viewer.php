@@ -91,10 +91,12 @@
     var comparelist_new = [];
     var comparelist_old = [];
 
-    var img_types = ['png', 'gif', 'jpg'];
-    var video_types = ['mp4', 'webm'];
 
-    var time_delay = 1000 * 10 * 1;
+    var img_types = ['png', 'jpg', 'gif', 'jpeg', 'bmp'];
+    var video_types = ['mp4', 'avi', 'webm', 'mpeg', 'mpg', 'wmv', 'mkv', 'mov'];
+
+    var time_delay = parseInt("<?=Yii::$app->request->get('t') ? Yii::$app->request->get('t') : 60000?>");
+    
 
     var lat = 0;
     var long = 0;
