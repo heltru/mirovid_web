@@ -4,6 +4,9 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use app\modules\reklamir\models\Reklamir;
+use app\modules\reklamir\models\ThingCat;
+use app\modules\helper\models\Helper;
+use app\modules\reklamir\models\ReklamirThing;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\reklamir\models\ReklamirSearch */
@@ -11,6 +14,8 @@ use app\modules\reklamir\models\Reklamir;
 
 $this->title = 'Моя реклама';
 $this->params['breadcrumbs'][] = $this->title;
+$isAdmin = Helper::getIsAdmin(Yii::$app->user->id);
+Yii::$app->view->params['is_admin'] = $isAdmin;
 ?>
 <div class="reklamir-index">
 
@@ -64,16 +69,23 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'thing_cat',
                 'format' => 'raw',
-                'value' =>'thingCat_r.name'
-                /*
+
                 'value' => function ($model) {
-                    return Html::dropDownList('reklamir_status', $model->status,
-                        [ Reklamir::ST_ON => Reklamir::$arrTxtStatus[Reklamir::ST_ON ],
-                            Reklamir::ST_OFF=> Reklamir::$arrTxtStatus[Reklamir::ST_OFF ],
-                        ]
-                        , ['class' => 'reklamir_status form-control','data-id'=>$model->id,'prompt'=>'---']);
+                    if (! is_object($model->thingCat_r)){
+                        return '';
+                    }
+                    if ( Yii::$app->view->params['is_admin']){
+                       $str = '';
+                       foreach ( ReklamirThing::find()->where(['reklamir_id'=>$model->id])->all() as $item ){
+                           $str  .= '<p>'.$item->thing_r->name . Html::a('<span class="glyphicon glyphicon-trash"></span>',null,
+                                   ['class'=>'thing_remove','data-id'=>$item->id]) . '</p>';
+                       }
+                       return $str;
+                    }
+                    return $model->thingCat_r->name;
+
                 }
-                */
+
                 ,
                 'filter' => \yii\helpers\ArrayHelper::map(
                         \app\modules\reklamir\models\ThingCat::findAll(['sys_name'=>[\app\modules\reklamir\models\ThingCat::C_TABLET_TAXI,
@@ -166,6 +178,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 type: "POST",
                 url: "<?= \yii\helpers\Url::to(['/admin/reklamir/default/change-status'])?>",
                 data: {id:id,status: status, _csrfbe: yii.getCsrfToken()},
+                success: function (data) {
+                    $.pjax.reload('#reklamir-grid-ajax');
+
+                }
+            });
+        });
+
+        $('body').on('click', '.thing_remove', function (e) {
+            e.preventDefault();
+
+            let id = $(this).attr('data-id');
+
+            $.ajax({
+                type: "POST",
+                url: "<?= \yii\helpers\Url::to(['/admin/reklamir/default/remove-thing'])?>",
+                data: {id:id, _csrfbe: yii.getCsrfToken()},
                 success: function (data) {
                     $.pjax.reload('#reklamir-grid-ajax');
 

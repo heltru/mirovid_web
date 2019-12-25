@@ -72,6 +72,13 @@ class DefaultController extends Controller
     }
 
 
+    public function actionRemoveThing(){
+        $rec = ReklamirThing::findOne(['id'=>(int) Yii::$app->request->post('id') ]);
+        if ($rec !== null){
+            $rec->delete();
+        }
+    }
+
     public function actionCommon()
     {
         $searchModel = new ReklamirCommonSearch();
@@ -208,6 +215,8 @@ class DefaultController extends Controller
             'model' => $model,
         ]);
     }
+
+
 
     private function preseachReklamirThing($model){
 
