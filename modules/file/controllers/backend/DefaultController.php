@@ -75,7 +75,7 @@ class DefaultController extends Controller
         $list_dir = new DirFile();
 
         if ($app->is_add){
-            $this->redirect('/admin/file/default/index');
+            return $this->redirect('/admin/file/default/index');
         }
 
         return $this->render('create', [

@@ -93,10 +93,10 @@
 
 
     var img_types = ['png', 'jpg', 'gif', 'jpeg', 'bmp'];
-    var video_types = ['mp4', 'avi', 'webm', 'mpeg', 'mpg', 'wmv', 'mkv', 'mov'];
+    var video_types = ['mp4', 'avi', 'webm', 'mpeg', 'mpg', 'wmv', 'mkv', 'mov','MOV'];
 
     var time_delay = parseInt("<?=Yii::$app->request->get('t') ? Yii::$app->request->get('t') : 60000?>");
-    
+
 
     var lat = 0;
     var long = 0;
