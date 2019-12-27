@@ -67,7 +67,7 @@ use app\modules\reklamir\models\ReklamirThing;
             <div class="box-header with-border">
                 <h4 class="box-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseTime" class="collapsed" aria-expanded="false">
-                        Настроки Time
+                        Настроки времени
                     </a>
                 </h4>
             </div>
@@ -93,7 +93,7 @@ use app\modules\reklamir\models\ReklamirThing;
             <div class="box-header with-border">
                 <h4 class="box-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseArea"   aria-expanded="false">
-                        Настроки Area
+                        Настроки районов
                     </a>
                 </h4>
             </div>

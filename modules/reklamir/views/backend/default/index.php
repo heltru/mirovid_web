@@ -32,7 +32,7 @@ Yii::$app->view->params['is_admin'] = $isAdmin;
         </div>
         <div class="col-xs-6">
             <p style="text-align: right;
-    font-weight: bold;">10 руб/показ</p>
+    font-weight: bold;">1 руб/показ/60 сек</p>
         </div>
     </div>
 
