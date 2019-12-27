@@ -11,7 +11,14 @@
 
         </ul>
 
-
+        <ul id="nav-mobile" style="background-color: #e1e6ff;   " class="sidenav">
+            <li><a href="tel:89991002878" style="font-size: 1.5em;">89991002878</a></li>
+            <!--
+            <li><a href="/zakazat-reklamu-v-seti-mirovid-led" style="font-size: 1.5em;">Заказать рекламу</a></li>
+            <li><a href="/kupit-led-panel-mirovid" style="font-size: 1.5em;">Купить панель</a></li>
+            -->
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i style="color: black;" class="material-icons">menu</i></a>
     </div>
 </nav>
 
@@ -87,7 +94,15 @@
                                         Зарегистрируйся сейчас и получи на счет <span style="color: red;">300</span> руб. для своей рекламы
                                     </p>
                                 </div>
+                                <div class="input-field col s12 ">
+                                    <p style="font-size: 38px;
+                                    color: #fff;
+    text-transform: uppercase;
+    line-height: 38px;
+    text-align: center;">До конца акции</p>
+                                    <p class="timer offer_timer"></p>
 
+                                </div>
                                 <div class="col s12 center">
                                     <a onclick="window.dataLayer.push({'event': 'load_reclame'});"
                                             href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>"
@@ -366,11 +381,9 @@
 
                     </div>
                 </div>
-                <div class="center">
-                <a href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>"
-                   style="  background-color: #ffd400;color: black;font-weight: bold" class="btn_order_lk waves-effect waves-light btn-large ">
+
+                <a href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>" style="    float: right;background-color: #ffd400;color: black;font-weight: bold" class="waves-effect waves-light btn-large ">
                     Регистрация</a>
-                </div>
             </div>
 
         </div>
@@ -478,14 +491,9 @@
 
             <div class="col s12 m4 center-align">
 
-                <?php
-
-                if ( true /* Yii::$app->user->isGuest */){ ?>
-
-                        <a href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>" style="    background-color: #ffd400;color: black;font-weight: bold" class="waves-effect waves-light btn-large ">
-                            Регистрация</a>
-
-
+                <?php if ( true /* Yii::$app->user->isGuest */){ ?>
+                    <a href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>" style="    background-color: #ffd400;color: black;font-weight: bold" class="waves-effect waves-light btn-large ">
+                        Регистрация</a>
                 <?php } ?>
 
             </div>
@@ -581,7 +589,7 @@
     var heigh = $( window ).width();
     if ( heigh < 420){
 
-        $('#index-banner').height(1400);
+        $('#index-banner').height(1700);
 
         $('nav .brand-logo').css('font-size','2rem');
         $('.item_h1').css('font-size','3.2rem');

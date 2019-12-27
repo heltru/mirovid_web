@@ -196,3 +196,38 @@ video {
 .tabs .tab a {
     color: rgba(0, 0, 0, 0.72)  !important;
 }
+
+.btn_order_lk {
+    float: right;
+}
+
+@media (max-width: 479px) {
+    .utm_icon {
+        font-size: 2rem !important;
+        line-height: 0 !important;
+    }
+
+    .item_utp{
+        margin-left: 4px !important;
+    }
+    .item_h1{
+        font-size: 2.4rem !important;
+    }
+    h3 {
+        font-size: 2.2rem !important;
+    }
+
+    .item_logo_text{
+        font-size: 1.3rem !important;
+    }
+
+    .offer_btn{
+        font-size: 23px !important;
+    }
+
+    .btn_order_lk {
+        float: none !important;
+    }
+
+
+}
