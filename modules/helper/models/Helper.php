@@ -9,6 +9,8 @@
 namespace app\modules\helper\models;
 
 
+use app\modules\helper\components\Transliteration;
+
 class Helper
 {
 
@@ -89,6 +91,27 @@ class Helper
 
     public static function nophoto(){
         return '/images/noimage/noimage.jpg';
+    }
+
+
+    public static  function transliterate($txt){
+
+
+        $smth = preg_replace("/%u([0-9a-f]{3,4})/i","&#x\\1;",urldecode( $txt));
+        $txt =  html_entity_decode( $smth,null,'UTF-8');
+        $txt = mb_strtolower ($txt);
+
+
+        $replacement = '-';
+        $translator = new Transliteration();
+        $translator->standard = Transliteration::GOST_779B;
+
+        $txt = $translator->transliterate($txt);
+
+        $string = preg_replace('/[^a-zA-Z0-9=\s—–-]+/u', '', $txt);
+        $string = preg_replace('/[=\s—–-]+/u', $replacement, $string);
+        $txt = trim($string, $replacement);
+        return $txt;
     }
 
 

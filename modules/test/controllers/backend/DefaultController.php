@@ -2,6 +2,7 @@
 
 namespace app\modules\test\controllers\backend;
 
+use app\modules\app\app\AddNewUser;
 use app\modules\app\app\AppCreateMem;
 use app\modules\app\app\AppMemDelete;
 use app\modules\app\app\AppNovaVidShow;
@@ -13,7 +14,12 @@ use app\modules\block\models\MsgLocale;
 use app\modules\block\models\MsgLocaleCost;
 use app\modules\car\models\Car;
 use app\modules\helper\models\Helper;
+use app\modules\test\models\Ra;
 use app\modules\test\app\SiteError;
+
+use app\modules\user\forms\frontend\SignupForm;
+use app\modules\user\models\User;
+use yii\helpers\Inflector;
 use yii\web\Controller;
 use Yii;
 use yii\base\Model;
@@ -28,6 +34,44 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
+
+    public function actionGenerateUsers(){
+
+        foreach ( Ra::find()
+                      /*->andWhere([  '!=','pass',''])->andWhere([  '!=','login',''])*/->all() as $item ){
+
+
+
+
+            $item->login =  Helper::transliterate($item->login);
+
+            $old_user = User::find()->where(['username'=>$item->login])->one();
+            if ($old_user !== null){
+                continue;
+            }
+
+            $item->pass = Yii::$app->security->generateRandomString(6);
+            $item->lp = 1;
+            $item->update(false,['login','pass','lp']);
+
+
+            $app_create_user = new AddNewUser();
+
+            $model = new SignupForm();
+            $model->email = $item->email;
+            $model->username = $item->login;
+            $model->password = $item->pass;
+
+
+            if ($app_create_user->addNewUser($model)) {
+                $item->uc = 1;
+                $item->update(false,['uc']);
+            }
+
+
+
+        }
+    }
 
     public function actionDelTestData(){
 

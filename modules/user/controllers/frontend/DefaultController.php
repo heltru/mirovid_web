@@ -72,7 +72,8 @@ class DefaultController extends Controller
 
         $this->layout = '/adminlte/main-login';
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect('admin');
+            //return $this->goHome();
         }
 
         $model = new LoginForm();
@@ -113,6 +114,7 @@ class DefaultController extends Controller
                     'Email confirmation for ' . Yii::$app->name,
                     Yii::$app->getView()->renderFile('@app/modules/user/mails/emailConfirm.php',['user' => $user])
                 );
+
                 /* Yii::$app->mailer->compose(['text' => '@app/modules/user/mails/emailConfirm'], ['user' => $user])
                ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
                ->setTo($this->email)

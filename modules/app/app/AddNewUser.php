@@ -25,7 +25,7 @@ class AddNewUser
     public $error;
 
     public function addNewUser($form){
-        $summ = 500;
+        $summ = 300;
 
 
 
