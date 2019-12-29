@@ -47,7 +47,7 @@ $this->title = 'Баланс';
                         <div class="input-group">
 
 
-                            <?php  echo Html::textInput('summ',3,['class'=>'form-control','placeholder'=>'Введите сумму']); ?>
+                            <?php  echo Html::textInput('summ',null,['class'=>'form-control','placeholder'=>'Введите сумму']); ?>
                         </div>
 
 
