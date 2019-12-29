@@ -124,7 +124,7 @@
         var time_id_active = 0;
         var area_id_active = 0;
 
-        build_matrix_time();
+
 
         function build_matrix_time(){
             let c = 1;
@@ -146,7 +146,11 @@
                 stop = dx;
             }
 
+
+
         }
+
+        build_matrix_time();
 
         function check_time(times){
             if (times.length < 1){
@@ -191,13 +195,21 @@
         }
 
         function convert_datetime_time_id(){
-            let now = new Date(); //Date.now() / 1000 | 0;
+            let now = new Date();  //Date.now() / 1000 | 0;
+
             let hour = now.getHours();
             let minute = now.getMinutes();
             let week_day = now.getDay();
+            if (week_day === 0){
+                week_day = 1;
+            }
 
             let search_between = ((hour*60*60)+(minute*60));
             let day_cells = matrix_time[week_day];
+
+            console.log(
+                matrix_time,week_day
+            );
 
             for (let i=0;i<=day_cells.length;i++){
                 let item_time = day_cells[i];

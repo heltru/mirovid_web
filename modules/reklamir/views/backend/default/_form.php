@@ -25,13 +25,13 @@ use app\modules\reklamir\models\ReklamirThing;
 
     <?= $form->errorSummary($model) ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'thing_cat')->dropDownList(ArrayHelper::map(ThingCat::find()->where(['sys_name'=>
         [ThingCat::C_TABLET_TAXI,ThingCat::C_TABLE_AUTO]])->orderBy('ord')->all() ,'id','name') ) ?>
 
 
     <?= $this->render('_file',['model'=>$model,'form'=>$form]); ?>
+
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
 
     <?= $form->field($model, 'account_id')->hiddenInput(['value'=>Yii::$app->getModule('account')->getAccount()->id])->label(false) ?>
@@ -115,3 +115,16 @@ use app\modules\reklamir\models\ReklamirThing;
     <?php ActiveForm::end(); ?>
 
 </div>
+<script>
+    $(document).ready(function ( ) {
+        $('body').on('change','#reklamir-uploadfile', function (e) {
+            
+            if ( ! $('#reklamir-name').val()){
+                $('#reklamir-name').val(
+                    e.target.files[0].name
+                );
+
+            }
+        } );
+    });
+</script>
