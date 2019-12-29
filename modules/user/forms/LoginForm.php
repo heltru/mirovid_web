@@ -45,14 +45,28 @@ class LoginForm extends Model
         ];
     }
 
+
+
+    function cleanStr($value){
+        $value = str_replace('Â', '', $value);
+        $value = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $value);
+
+        // $value = str_replace(chr(194)," ",$value);
+
+        return $value;
+    }
+
     /**
      * Validates the username and password.
      * This method serves as the inline validation for password.
      */
+
     public function validatePassword()
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
+
+            $this->password = $this->cleanStr($this->password);
 
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError('password', Module::t('module', 'ERROR_WRONG_USERNAME_OR_PASSWORD'));
@@ -102,4 +116,5 @@ class LoginForm extends Model
 
         return $this->_user;
     }
+
 }
