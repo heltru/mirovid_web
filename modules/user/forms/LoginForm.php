@@ -50,7 +50,7 @@ class LoginForm extends Model
     function cleanStr($value){
         $value = str_replace('Â', '', $value);
         $value = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $value);
-
+        $value = trim($value);
         // $value = str_replace(chr(194)," ",$value);
 
         return $value;
