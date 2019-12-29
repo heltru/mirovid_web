@@ -7,7 +7,7 @@ use yii\helpers\Json;
             <span class="red-text text-accent-4">☀</span> MIROVID </a>
 
         <ul class="right hide-on-med-and-down">
-                <li><a class="item_phone" style="font-size: 1.5em;color: black" href="#">8(999)-100-2878</a></li>
+                <li><a class="item_phone" style="font-size: 1.5em;color: black" href="#">mirovidweb@yandex.ru</a></li>
         </ul>
 
         <ul id="nav-mobile" style="background-color: #e1e6ff;   " class="sidenav">

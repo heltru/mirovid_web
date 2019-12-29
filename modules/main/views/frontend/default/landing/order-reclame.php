@@ -7,7 +7,7 @@
             <?php if ( Yii::$app->user->isGuest ){ ?>
                 <li><a class="item_phone" style="font-size: 1.5em;color: black" href="/signup">Регистрация</a></li>
             <?php } ?>
-            <li><a class="item_phone" style="font-size: 1.5em;color: black" href="tel:89991002878">8(999)-100-2878</a></li>
+            <li><a class="item_phone" style="font-size: 1.5em;color: black" href="email:mirovidweb@yandex.ru">mirovidweb@yandex.ru</a></li>
 
         </ul>
 
