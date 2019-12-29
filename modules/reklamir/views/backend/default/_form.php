@@ -58,7 +58,7 @@ use app\modules\reklamir\models\ReklamirThing;
 
     ?>
 
-    <?php if ( !$model->isNewRecord) {  ?>
+
 
     <div class="box-group" id="accordion">
 
@@ -106,7 +106,7 @@ use app\modules\reklamir\models\ReklamirThing;
 
 
     </div>
-<?php } ?>
+
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

@@ -130,6 +130,7 @@ class DefaultController extends Controller
                 $model->file_id = $file->id;
                 $model->update(false,['file_id']);
                 $this->preseachReklamirThing($model);
+                $this->preseachTimeAndGeo($model);
 //ex($model->file_id);
 
             }catch (\Exception $e) {
