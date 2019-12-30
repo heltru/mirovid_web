@@ -168,7 +168,7 @@
 
             <div class="col s12 m6">
                 <div class="material-placeholder">
-                    <img style="width: 99%;" class="img-responsive materialboxed" src="/images/Screenshot_20.png"></div>
+                    <img style="width: 99%;" class="img-responsive materialboxed" src="/images/kkSko7iUwwo.jpg"></div>
             </div>
 
         </div>
