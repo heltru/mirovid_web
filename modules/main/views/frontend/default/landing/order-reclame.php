@@ -19,8 +19,8 @@
     <div class="section no-pad-bot">
         <div class="container">
 
-            <h1 class=" header center    item_h1">Сайт для маркетологов и владельцев бизнеса</h1>
-            <h3 class="center">рекламная сеть планшетов в такси</h3>
+            <h1 class=" header center    item_h1">Размести рекламу за 15 минут</h1>
+            <h3 class="center">планшеты в такси, led таблички в авто,  led билборд</h3>
             <div class="row ">
                 <div class="col s12 m7 ">
 
@@ -464,10 +464,9 @@
         <div class="row">
             <div class="col s12 m4 center-align">
 
-                <a href="tel:89991002878"
+                <a href="email:mirovidweb@yandex.ru"
                    style="   background-color: #7000ff;color: #e1e6ff;font-weight: bold" class="waves-effect waves-light btn-large ">
-                    Позвоните
-                    8 999 100 2878</a>
+                    mirovidweb@yandex.ru</a>
             </div>
 
 
