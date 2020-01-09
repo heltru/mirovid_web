@@ -14,11 +14,24 @@ use app\modules\block\models\MsgLocale;
 use app\modules\block\models\MsgLocaleCost;
 use app\modules\car\models\Car;
 use app\modules\helper\models\Helper;
+use app\modules\test\models\Gis2015ParseEmail;
+use app\modules\test\models\Gis2015ParseSite;
+use app\modules\test\models\Gis2016ParseEmail;
+use app\modules\test\models\Gis2016ParseSite;
+use app\modules\test\models\Gis201908ParseEmail;
+use app\modules\test\models\Gis201908ParseSite;
+use app\modules\test\models\gisParseEmail;
+use app\modules\test\models\gisParseSite;
+use app\modules\test\models\GisSite;
+use app\modules\test\models\GisSiteEmail;
+use app\modules\test\models\ParseEmail;
+use app\modules\test\models\ParseSite;
 use app\modules\test\models\Ra;
 use app\modules\test\app\SiteError;
 
 use app\modules\user\forms\frontend\SignupForm;
 use app\modules\user\models\User;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
 use yii\web\Controller;
 use Yii;
@@ -157,6 +170,262 @@ class DefaultController extends Controller
 
 
     }
+
+    public function actionGisSiteParse(){
+        $all_site = ArrayHelper::getColumn(GisSite::find()->all(),'url');
+        foreach ($all_site as $url){
+
+                $d = Helper::curl_get($url,[],[   CURLOPT_FOLLOWLOCATION => true]);
+                ex($d);
+        }
+
+    }
+
+    public function actionCommonGis(){
+        $old_email1 = ArrayHelper::getColumn(Gis2015ParseEmail::find()->all(),'email');
+        $old_site1 = ArrayHelper::getColumn(Gis2015ParseSite::find()->all(),'url');
+
+        $old_email2 = ArrayHelper::getColumn(Gis201908ParseEmail::find()->all(),'email');
+        $old_site2 = ArrayHelper::getColumn(Gis201908ParseSite::find()->all(),'url');
+
+        $old_email3 = ArrayHelper::getColumn(gisParseEmail::find()->all(),'email');
+        $old_site3 = ArrayHelper::getColumn(gisParseSite::find()->all(),'url');
+
+        $all_email = [];
+        $all_site = [];
+        foreach ($old_email1 as $email){
+            if ( ! in_array($email,$all_email)){
+                $all_email[] = $email;
+            }
+        }
+        foreach ($old_email2 as $email){
+            if ( ! in_array($email,$all_email)){
+                $all_email[] = $email;
+            }
+        }
+        foreach ($old_email3 as $email){
+            if ( ! in_array($email,$all_email)){
+                $all_email[] = $email;
+            }
+        }
+        foreach ($old_site1 as $site){
+            if ( ! in_array($site,$all_site)){
+                $all_site[] = $site;
+            }
+        }
+        foreach ($old_site2 as $site){
+            if ( ! in_array($site,$all_site)){
+                $all_site[] = $site;
+            }
+        }
+        foreach ($old_site3 as $site){
+            if ( ! in_array($site,$all_site)){
+                $all_site[] = $site;
+            }
+        }
+
+        /*$email_query = [];
+        foreach ($all_email as $email){
+            $email_query[] = "('".$email."')";
+        }*/
+        $site_query = [];
+        foreach ($all_site as $site){
+            $site_query[] = "('".$site."')";
+        }
+
+        $sql = 'INSERT INTO gis_site (url) VALUES ' .implode(',',$site_query);
+        \Yii::$app->db->createCommand($sql)->execute();
+
+
+
+    }
+
+    public function actionLoadEmailSiteCsvGis(){
+        set_time_limit(0);
+
+        $old_email = ArrayHelper::getColumn(Gis2015ParseEmail::find()->all(),'email');
+        $old_site = ArrayHelper::getColumn(Gis2015ParseSite::find()->all(),'url');
+
+        $newFn = 'gis_kirov_2019_08.csv';
+
+
+        $lines = file($newFn,FILE_IGNORE_NEW_LINES);
+
+
+        foreach ($lines as $key => $value)
+        {
+
+            $row = explode(';',$value);
+
+            if ( $key < 2) continue;
+//ex($row);
+            if (count($row) == 25){
+                $cat = str_replace('"','',$row[5]);
+                $subcat = str_replace('"','',$row[6]);
+                $urls = trim(str_replace('"','',$row[11]));
+                $emails = trim(str_replace('"','',$row[10]));
+            } else {
+                continue;
+            }
+
+            if (!($cat && $subcat)){
+                continue;
+            }
+
+
+            if (!$urls) continue;
+            $urls = explode(',',$urls);
+
+            foreach ($urls as $url) {
+                if ($url && !in_array($url, $old_site)) {
+                    $rec = new Gis201908ParseSite();
+                    $rec->url = $url;
+                    $rec->cat = $cat;
+                    $rec->subcat = $subcat;
+                    $rec->save();
+                }
+            }
+
+
+            if (!$emails) continue;
+            $emails = explode(',',$emails);
+
+            foreach ($emails as $email){
+                if (! in_array($email,$old_email)) {
+                    $rec = new Gis201908ParseEmail();
+                    $rec->email = $email;
+                    $rec->cat = $cat;
+                    $rec->subcat = $subcat;
+                    $rec->save();
+                }
+            }
+
+        }
+
+    }
+
+
+    private function actionGis201907(){
+        set_time_limit(0);
+
+        $old_email = ArrayHelper::getColumn(Gis2015ParseEmail::find()->all(),'email');
+        $old_site = ArrayHelper::getColumn(Gis2015ParseSite::find()->all(),'url');
+
+        $newFn = 'gis_kirov_2016.csv';
+
+
+        $lines = file($newFn,FILE_IGNORE_NEW_LINES);
+
+
+        foreach ($lines as $key => $value)
+        {
+
+            $row = explode(';',$value);
+
+            if ( $key < 2) continue;
+
+            if (count($row) == 10){
+                $cat = str_replace('"','',$row[1]);
+                $subcat = str_replace('"','',$row[2]);
+                $url = trim(str_replace('"','',$row[9]));
+                $emails = trim(str_replace('"','',$row[6]));
+            } else {
+                continue;
+            }
+
+            if (!($cat && $subcat)){
+                continue;
+            }
+
+            //  $row[0] = trim(str_replace('"','',$row[0]));
+
+
+            if ( $url && !in_array($url,$old_site)){
+                $rec = new Gis2016ParseSite();
+                $rec->url = $url;
+                $rec->cat = $cat;
+                $rec->subcat = $subcat;
+                $rec->save();
+            }
+
+
+            if (!$emails) continue;
+            $emails = explode(',',$emails);
+
+            foreach ($emails as $email){
+                if (! in_array($email,$old_email)) {
+                    $rec = new Gis2016ParseEmail();
+                    $rec->email = $email;
+                    $rec->cat = $cat;
+                    $rec->subcat = $subcat;
+                    $rec->save();
+                }
+            }
+
+        }
+    }
+
+    private function actionGis2019(){
+
+        $old_email = ArrayHelper::getColumn(gisParseEmail::find()->all(),'email');
+        $old_site = ArrayHelper::getColumn(gisParseSite::find()->all(),'url');
+
+        $newFn = 'Kirov2gis.csv';
+
+
+        $lines = file($newFn,FILE_IGNORE_NEW_LINES);
+
+
+        foreach ($lines as $key => $value)
+        {
+
+            $row = explode(';',$value);
+            if ( $key < 2) continue;
+
+            if (count($row) == 14){
+                $cat = str_replace('"','',$row[12]);
+                $subcat = str_replace('"','',$row[13]);
+                $url = trim(str_replace('"','',$row[7]));
+                $emails = trim(str_replace('"','',$row[6]));
+            } elseif(count($row) == 15) {
+                $cat = str_replace('"','',$row[13]);
+                $subcat = str_replace('"','',$row[14]);
+                $url = trim(str_replace('"','',$row[8]));
+                $emails = trim(str_replace('"','',$row[7]));
+            }else {
+                continue;
+            }
+
+
+            $row[0] = trim(str_replace('"','',$row[0]));
+
+
+            if ( $url && !in_array($url,$old_site)){
+                $rec = new gisParseSite();
+                $rec->url = $url;
+                $rec->cat = $cat;
+                $rec->subcat = $subcat;
+                $rec->save();
+            }
+
+
+            if (!$emails) continue;
+            $emails = explode(',',$emails);
+
+            foreach ($emails as $email){
+                if (! in_array($email,$old_email)) {
+                    $rec = new gisParseEmail();
+                    $rec->email = $email;
+                    $rec->cat = $cat;
+                    $rec->subcat = $subcat;
+                    $rec->ext_id = $row[0];
+                    $rec->save();
+                }
+            }
+
+        }
+    }
+
 
     public function actionTestTime(){
 

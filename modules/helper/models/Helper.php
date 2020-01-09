@@ -114,5 +114,42 @@ class Helper
         return $txt;
     }
 
+    public static function curl_get($url,$query_data,$options=[],$deb = false){
+
+
+        if ($deb){
+            ex($url. (strpos($url, '?') === FALSE ? '?' : ''). http_build_query($query_data));
+        }
+
+        $defaults = array(
+            CURLOPT_URL => $url. (strpos($url, '?') === FALSE ? '?' : ''). http_build_query($query_data),
+            CURLOPT_HEADER => 0,
+            CURLOPT_RETURNTRANSFER => TRUE,
+            CURLOPT_TIMEOUT => 10, //Максимальное количество секунд для выполнения функций cURL
+            CURLOPT_CONNECTTIMEOUT => 10, //Количество секунд ожидания при попытке подключения,
+            CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
+
+        );
+
+
+
+        $ch = curl_init();
+        curl_setopt_array($ch, ($options + $defaults));
+        if( ! $result = curl_exec($ch))
+        {
+            try {
+                trigger_error(curl_error($ch));
+
+
+            } catch (\Exception $e) {
+                curl_close($ch);
+                return null;
+            }
+
+        }
+        curl_close($ch);
+        return $result;
+    }
+
 
 }
