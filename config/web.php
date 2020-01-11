@@ -81,13 +81,18 @@ $config = [
                     'viewPath' => '@app/modules/pay/views/backend',
                 ],
                 'balance' => [
-                    'class' => 'app\modules\balance\BalanceModule',
+                    'class' => 'app\modules\balance\PreviewModule',
                     'controllerNamespace' => 'app\modules\balance\controllers\backend',
                     'viewPath' => '@app/modules/balance/views/backend',
                 ],
 
 
             ]
+        ],
+        'preview' => [
+            'class' => 'app\modules\preview\PreviewModule',
+            'controllerNamespace' => 'app\modules\preview\controllers\frontend',
+            'viewPath' => '@app/modules/preview/views/frontend',
         ],
         'bid' => [
             'class' => 'app\modules\bid\BidModule',
@@ -187,6 +192,7 @@ $config = [
             ],
         ],
         'formatter' => [
+            'timeZone' => 'Europe/Moscow',
             'dateFormat' => 'dd.m.yyyy h:m',
             'decimalSeparator' => '.',
             'thousandSeparator' => ' ',

@@ -23,7 +23,8 @@ NavBar::begin([
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'activateParents' => true,
-    'items' => array_filter([
+    'items' => []
+        /*array_filter([
         ['label' => Yii::t('app', 'NAV_HOME'), 'url' => ['/main/default/index']],
         ['label' => Yii::t('app', 'NAV_CONTACT'), 'url' => ['/main/contact/index']],
         Yii::$app->user->isGuest ?
@@ -43,7 +44,8 @@ echo Nav::widget([
                     'linkOptions' => ['data-method' => 'post']]
             ]] :
             false,
-    ]),
+    ])
+    ,*/
 ]);
 NavBar::end();
 ?>
