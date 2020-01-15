@@ -74,7 +74,7 @@ class DefaultController extends Controller
             chmod($new_file_path, 0660);
             $preview->link = $new_file_path;
             $preview->status = Preview::ST_READY;
-            $preview->update(false,['status']);
+          //  $preview->update(false,['status']);
         }
     }
 
