@@ -22,6 +22,8 @@ class DefaultController extends Controller
 
     public $dir = 'preview';
 
+    public $enableCsrfValidation = false;
+
     /**
      * {@inheritdoc}
      */
@@ -36,6 +38,7 @@ class DefaultController extends Controller
             ],
         ];
     }
+
 
 
     public function actionListNeedPreview(){
@@ -57,7 +60,22 @@ class DefaultController extends Controller
 
 
     public function actionReceivePreview(){
-        ex([$_FILES,$_REQUEST,$_POST,$_GET]);
+        $id = (int)Yii::$app->request->post('id');
+        $preview = Preview::find()->where(['status'=>Preview::ST_NEED_PREVIEW,'id'=>$id])->one();
+        if ($preview !== null){
+            $pathinfo = pathinfo($_FILES[0]['name']);
+            $filename = time() . '_' . rand(1000,9999) .'.'. $pathinfo['extension'];
+            if (! is_dir($this->dir)){
+                FileHelper::createDirectory($this->dir);
+            }
+            $new_file_path = $this->dir . '/' . $filename;
+
+            file_put_contents($new_file_path,file_get_contents($_FILES[0]['tmp_name']));
+            chmod($new_file_path, 0660);
+            $preview->link = $new_file_path;
+            $preview->status = Preview::ST_READY;
+            $preview->update(false,['status']);
+        }
     }
 
     public function actionIndex()
