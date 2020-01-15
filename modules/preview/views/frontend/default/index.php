@@ -26,12 +26,22 @@ echo Html::endForm();
 </div>
 
 <div class="link_div" style="margin-top: 1em;">
-
+    <?php
+    if ($link){
+        echo Html::a('Файл готов ' . $id ,'/'.$link,['target'=>'_blank']);
+    }
+    if ($id && ! $link){
+        echo '<p>Загружено, задание #'.$id.' ожидайте обработки 1-2 мин</p>';
+    }
+    ?>
 </div>
 
 <script>
     $(document).ready( function (){
 
+        var id = "<?=$id?>";
+        var link = "<?=$link?>";
+        console.log(id,link);
 
         $('#btn_send').click(function (e) {
             e.preventDefault();
@@ -49,18 +59,25 @@ echo Html::endForm();
                 success: function (data) {
                     if (typeof data == 'object' ){
 
-
+/*
                         let a = '<a target="_blank" href="'+data.link+'">'
-                            +data.name+'</a>';
-                        $('.link_div').append(a);
+                            +data.name+'</a>';*/
+                        $('.link_div').append('<p>Загружено, ожидайте обработки 1-2 мин</p>');
+                        console.log( data.link);
+                        setTimeout(function (){
 
+                            document.location.href = data.link;
+                        }, 3000);
 
                     }
                 }
             });
 
-
         });
+
+        if (id > 0 && link.length <= 0){
+            setTimeout(function (){document.location.reload(true)}, 3000);
+        }
 
     });
 </script>

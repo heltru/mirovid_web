@@ -41,6 +41,7 @@ class DefaultController extends Controller
 
 
 
+
     public function actionListNeedPreview(){
         Yii::$app->response->format = Response::FORMAT_JSON;
         return Preview::find()->where(['status'=>Preview::ST_NEED_PREVIEW])->asArray()->all();
@@ -52,10 +53,24 @@ class DefaultController extends Controller
         $link_id = $this->uploadFile();
         if ($link_id){
             return [
-                'link'=>Url::to(['preview','id'=>$link_id]),
+                'link'=> '/preview/default/index/?id='.$link_id,
                 'name' => 'Файл #' . $link_id
             ];
         }
+    }
+
+
+    public function actionIndex()
+    {
+        $id = (int) Yii::$app->request->get('id');
+
+        $preview = Preview::find()->where(['id'=>$id,'status'=>Preview::ST_READY])->one();
+        $link = '';
+        if ($preview !== null){
+            $link = $preview->link;
+        }
+
+        return $this->render('index',['id'=>$id,'link'=>$link]);
     }
 
 
@@ -74,14 +89,8 @@ class DefaultController extends Controller
             chmod($new_file_path, 0660);
             $preview->link = $new_file_path;
             $preview->status = Preview::ST_READY;
-          //  $preview->update(false,['status']);
+            $preview->update(false,['link']);
         }
-    }
-
-    public function actionIndex()
-    {
-
-        return $this->render('index');
     }
 
     private function uploadFile(){
