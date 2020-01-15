@@ -38,14 +38,15 @@ class DefaultController extends Controller
     }
 
 
-    public function actionPreview($id){
-
+    public function actionListNeedPreview(){
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return Preview::find()->where(['status'=>Preview::ST_NEED_PREVIEW])->asArray()->all();
     }
 
 
-    public function actionPreseachFile(){
+    public function actionUploadFile(){
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $link_id = $this->preseachFile();
+        $link_id = $this->uploadFile();
         if ($link_id){
             return [
                 'link'=>Url::to(['preview','id'=>$link_id]),
@@ -54,16 +55,18 @@ class DefaultController extends Controller
         }
     }
 
+
+    public function actionReceivePreview(){
+        ex([$_FILES,$_REQUEST,$_POST,$_GET]);
+    }
+
     public function actionIndex()
     {
-
-
-
 
         return $this->render('index');
     }
 
-    private function preseachFile(){
+    private function uploadFile(){
 
         if (isset($_FILES['file']) && isset($_FILES['file']['tmp_name'])  == ''){
             return -1;

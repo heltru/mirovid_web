@@ -15,6 +15,8 @@ Thumbs.db
 # composer vendor dir
 /vendor
 /web/mirovid
+/web/preview
+/web/preview_ready
 
 # composer itself is not needed
 composer.phar

@@ -14,6 +14,17 @@ use Yii;
  */
 class Preview extends \yii\db\ActiveRecord
 {
+
+
+
+    const ST_NEED_PREVIEW = 0;
+    const ST_READY = 1;
+
+    public static  $arrTxtStatus = [
+        self::ST_NEED_PREVIEW => 'Требует превью',
+        self::ST_READY =>'Готов'];
+
+
     /**
      * {@inheritdoc}
      */

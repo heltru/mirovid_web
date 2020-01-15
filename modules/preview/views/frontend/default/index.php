@@ -41,7 +41,7 @@ echo Html::endForm();
             fd.append('file',$input[0].files[0]);
 
             $.ajax({
-                url : "<?=\yii\helpers\Url::to(['preseach-file'])?>",
+                url : "<?=\yii\helpers\Url::to(['upload-file'])?>",
                 data: fd,
                 processData: false,
                 contentType: false,
