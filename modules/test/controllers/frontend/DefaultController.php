@@ -28,6 +28,9 @@ class DefaultController extends Controller
 
     public function actionTest(){
 
+        $this->layout = false;
+        return $this->render('a');
+
         /*
         Yii::$app->mailer->compose(['text' => '@app/modules/user/mails/test'])
             ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
@@ -47,6 +50,7 @@ class DefaultController extends Controller
             ->setHtmlBody(' ФИО ')
             ->send();
         */
+        /*
         $user = new User();
         $user->username ='123';
         $user->email = 'test@test.test';
@@ -56,7 +60,7 @@ class DefaultController extends Controller
         mail($this->email,
             'Email confirmation for ' . Yii::$app->name,
             Yii::$app->getView()->renderFile('@app/modules/user/mails/emailConfirm.php',['user' => $user])
-        );
+        );*/
     }
 
 

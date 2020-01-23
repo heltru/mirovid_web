@@ -13,11 +13,11 @@ class  AssetLanding extends AssetBundle
     public $baseUrl = '@web/themes/one';
 
     public $css = [
-        'css/css.css',
+      //  'css/css.css',
         //'https://fonts.googleapis.com/icon?family=Material+Icons',
         '/css/google-matrial-icon.css',
         'css/materialize.css',
-        'css/style.css',
+      //  'css/style.css',
         'css/timer.css',
 
     ];

@@ -1,24 +1,17 @@
-<?php
-$page =  ( isset($this->params['curr_page'])) ? $this->params['curr_page'] : '' ;
-$geo = Yii::$app->getModule('geo');
-$urlDeliv = (! $geo->isGeo) ? '/dostavka' : $geo->getDelivUrl();
-?>
-<div class="content-container">
-    <div id="menu-mobile">&nbsp;</div>
-    <ul id="main-items">
-        <div id="main-items-inner">
-            <?php  echo $this->render('_catitem'); ?>
+<nav class="white" role="navigation" xmlns="http://www.w3.org/1999/html">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="/"  style="color:#ba3238" class="brand-logo red-text text-accent-4 item_logo_text">
+            <span class="red-text text-accent-4">☀</span> MIROVID</a>
+        <ul class="right hide-on-med-and-down">
 
-            <?php if ( ! $geo->isGeo  ) { ?>
-                <li>
-                    <?= ( $page == \app\modules\blog\BlogModule::$url ) ? '<span >Рецепты</span>' :
-                        '<a href="/'.\app\modules\blog\BlogModule::$url.'">Рецепты</a>'?>
-                </li>
+            <li><a class="item_phone" style="font-size: 1.5em;color: black" href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>">Личный кабинет</a></li>
+            <?php if ( Yii::$app->user->isGuest ){ ?>
+                <li><a class="item_phone" style="font-size: 1.5em;color: black" href="/signup">Регистрация</a></li>
             <?php } ?>
+            <li><a class="item_phone" style="font-size: 1.5em;color: black" href="email:mirovidweb@yandex.ru">mirovidweb@yandex.ru</a></li>
 
-            <li>
-                <?= ( $page == 'contact' ) ? '<span >Контакты</span>' : '<a href="/kontakty">Контакты</a>'?>
-            </li>
-        </div>
-    </ul>
-</div> <!-- end of content-container -->
+        </ul>
+
+
+    </div>
+</nav>
