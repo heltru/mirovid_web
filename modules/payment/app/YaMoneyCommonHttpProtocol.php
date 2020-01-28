@@ -8,7 +8,7 @@
 
 namespace app\modules\payment\app;
 use app\modules\helper\models\Logs;
-use app\modules\order\models\Order;
+use app\modules\zapros\models\Zapros;
 use DateTime;
 
 
@@ -82,7 +82,7 @@ class YaMoneyCommonHttpProtocol
     private function paymentAviso($request) {
 
         if (isset($request['orderNumber'])){
-            $order = Order::findOne(['num_crm'=>$request['orderNumber']]);
+            $order = Zapros::findOne(['num_crm'=>$request['orderNumber']]);
             if ($order !== null){
                 $order->pay_status = 1;
                 $order->update(false,['pay_status']);

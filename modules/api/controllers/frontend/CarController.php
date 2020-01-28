@@ -11,7 +11,7 @@ use app\modules\car\models\Car;
 use app\modules\file\models\File;
 use app\modules\helper\HelperModule;
 use app\modules\helper\models\Helper;
-use app\modules\order\models\Order;
+use app\modules\zapros\models\Zapros;
 use app\modules\show\app\RegisterShow;
 use GuzzleHttp\Client;
 use yii\filters\VerbFilter;
@@ -169,10 +169,10 @@ class CarController extends Controller
           if ($formData->load(\Yii::$app->request->post())){
 ex($formData);
 
-              $order = new Order();
+              $order = new Zapros();
               $order->ip = \Yii::$app->request->getUserIP() . '^' . \Yii::$app->request->getRemoteIP();
               $order->datetime = HelperModule::convertDateToDatetime();
-              $order->type = Order::T_Q;
+              $order->type = Zapros::T_Q;
               $order->phone = $formData->phone;
               $order->car_id = $formData->number_car;
 

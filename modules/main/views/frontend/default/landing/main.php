@@ -445,7 +445,7 @@
 
 
         <div class="row">
-            <div class="col s12 m4 center-align">
+            <div class="col s12 m6 center-align">
 
                 <a href="email:mirovidweb@yandex.ru"
                    style="   background-color: #7000ff;color: #e1e6ff;font-weight: bold" class="waves-effect waves-light btn-large ">
@@ -453,12 +453,10 @@
             </div>
 
 
-            <div class="col s12 m4 center-align">
-                <a class="waves-effect waves-light btn-large modal-trigger" href="#modal1">Видеоинструкция</a>
-            </div>
 
 
-            <div class="col s12 m4 center-align">
+
+            <div class="col s12 m6 center-align">
 
                 <?php
 

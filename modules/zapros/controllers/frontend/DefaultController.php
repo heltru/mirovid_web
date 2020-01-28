@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\order\controllers;
+namespace app\modules\zapros\controllers\frontend;
 
 use app\modules\helper\models\Helper;
 use Yii;
-use app\modules\order\models\Order;
-use app\modules\order\models\OrderSearch;
+use app\modules\zapros\models\Zapros;
+use app\modules\zapros\models\ZaprosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -39,7 +39,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new OrderSearch();
+        $searchModel = new ZaprosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -68,7 +68,7 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Order();
+        $model = new Zapros();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -117,12 +117,12 @@ class DefaultController extends Controller
      * Finds the Order model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Order the loaded model
+     * @return Zapros the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Order::findOne($id)) !== null) {
+        if (($model = Zapros::findOne($id)) !== null) {
             return $model;
         }
 
@@ -130,23 +130,43 @@ class DefaultController extends Controller
     }
 
 
-    public function actionSendOrder(){
+    public function actionIncoming(){
         $name = \Yii::$app->request->post('name');
         $phone = \Yii::$app->request->post('phone');
         $email = \Yii::$app->request->post('email');
         $text = \Yii::$app->request->post('text');
+        $type = (int)\Yii::$app->request->post('type');
+
+        $this->preseachZapros($zapros);
+
+        $zapros = new Zapros();
+        $zapros->name = $name;
+        $zapros->phone = $phone;
+        $zapros->email = $email;
+        $zapros->text_query = $text;
+        $zapros->date_cr = Helper::mysql_datetime();
+        $zapros->type = $type;
+        $zapros->save();
 
 
-        $order = new Order();
-        $order->name = $name;
-        $order->phone = $phone;
-        $order->email = $email;
-        $order->text_query = $text;
-        $order->date_cr = Helper::mysql_datetime();
-        $order->save();
 
         \Yii::$app->response->format = Response::FORMAT_JSON;
 
-        return $order->id;
+        return $zapros->id;
     }
+
+    private function preseachZapros($zapros){
+        $body =  [$zapros->name , $zapros->phone ,$zapros->email,$zapros->text_query];
+        Yii::$app->mailer->compose()
+            ->setFrom('info@mirovid.ru')
+            ->setTo('mirovidweb@yandex.ru')
+            ->setSubject('Новая заявка - ' . Zapros::$arrTxtStatus[$zapros->type])
+           // ->setTextBody($body)
+            ->setHtmlBody(implode('<br>',$body))
+            ->send();
+    }
+
+
+
+
 }

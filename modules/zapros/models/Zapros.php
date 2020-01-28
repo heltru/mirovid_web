@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\order\models;
+namespace app\modules\zapros\models;
 
 use Yii;
 
@@ -15,14 +15,23 @@ use Yii;
  * @property string $date_cr
  * @property int $status
  */
-class Order extends \yii\db\ActiveRecord
+class Zapros extends \yii\db\ActiveRecord
 {
+
+
+
+    const T_COMMON = 0;
+    const T_LEDBILLBOAD = 1;
+
+    public static  $arrTxtStatus = [ self::T_COMMON => 'Общая', self::T_LEDBILLBOAD =>'led биллборд'];
+
+
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'order';
+        return 'zapros';
     }
 
     /**
@@ -32,8 +41,8 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             [['date_cr'], 'safe'],
-            [['status'], 'integer'],
-            [['text_query'], 'default','value'=>''],
+            [['status','type'], 'integer'],
+            [['text_query','email'], 'default','value'=>''],
             [['name', 'phone', 'email', 'text_query'], 'string', 'max' => 512],
         ];
     }

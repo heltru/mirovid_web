@@ -70,6 +70,7 @@ class DefaultController extends Controller
             'content' => \Yii::$app->request->hostInfo .'']);
 
         $this->view->registerCssFile('/themes/one/css/led-billboard.css');
+        $this->view->registerJsFile('/js/common.js');
         $this->layout = 'landing';
 
         return $this->render('landing/led-billboard');//led-billboard

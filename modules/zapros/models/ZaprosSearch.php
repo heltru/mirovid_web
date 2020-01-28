@@ -1,15 +1,15 @@
 <?php
 
-namespace app\modules\order\models;
+namespace app\modules\zapros\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\order\models\Order;
+use app\modules\zapros\models\Zapros;
 
 /**
- * OrderSearch represents the model behind the search form of `app\modules\order\models\Order`.
+ * OrderSearch represents the model behind the search form of `app\modules\zapros\models\Order`.
  */
-class OrderSearch extends Order
+class ZaprosSearch extends Zapros
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class OrderSearch extends Order
      */
     public function search($params)
     {
-        $query = Order::find();
+        $query = Zapros::find();
 
         // add conditions that should always apply here
 

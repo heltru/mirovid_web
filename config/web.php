@@ -20,6 +20,11 @@ $config = [
             ],
 
             'modules' => [
+                'zapros' => [
+                    'class' => 'app\modules\zapros\ZaprosModule',
+                    'controllerNamespace' => 'app\modules\zapros\controllers\backend',
+                    'viewPath' => '@app/modules/zapros/views/backend',
+                ],
                 'bid' => [
                     'class' => 'app\modules\bid\BidModule',
                     'controllerNamespace' => 'app\modules\bid\controllers\backend',
@@ -168,8 +173,10 @@ $config = [
         'account' => [
             'class' => 'app\modules\account\AccountModule',
         ],
-        'order' => [
-            'class' => 'app\modules\order\OrderModule',
+        'zapros' => [
+            'class' => 'app\modules\zapros\ZaprosModule',
+            'controllerNamespace' => 'app\modules\zapros\controllers\frontend',
+            'viewPath' => '@app/modules/zapros/views/frontend',
         ],
         'url' => [
             'class' => 'app\modules\url\UrlModule',

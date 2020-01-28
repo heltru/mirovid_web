@@ -8,7 +8,7 @@ use app\modules\car\models\Car;
 use app\modules\helper\HelperModule;
 use app\modules\helper\models\LoginCar;
 use app\modules\helper\models\Logs;
-use app\modules\order\models\Order;
+use app\modules\zapros\models\Zapros;
 use app\modules\user\models\User;
 use yii\db\Exception;
 use yii\debug\models\search\Log;
@@ -137,7 +137,7 @@ final class AppNovaVidShow
                         if($block_link->save()){
 
                             $this->quickOrderModel['block_link'] = $block_link;
-                            $order->status = Order::ST_P;
+                            $order->status = Zapros::ST_P;
                             $order->update(false,['status']);
 
                             $transaction->commit();
@@ -226,7 +226,7 @@ final class AppNovaVidShow
                             if($block_link->save()){
 
                                 $this->quickOrderModel['block_link'] = $block_link;
-                                $order->status = Order::ST_P;
+                                $order->status = Zapros::ST_P;
                                 $order->update(false,['status']);
 
                                 $transaction->commit();

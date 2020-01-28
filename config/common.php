@@ -54,6 +54,7 @@ return [
                         '' => 'reklamir/default/index',
                         //'' => 'file/default/index',
                       //  '/' => 'admin',
+
                         '<_m:[\w\-]+>' => '<_m>/default/index',
                         '<_m:[\w\-]+>/<id:\d+>' => '<_m>/default/view',
                         '<_m:[\w\-]+>/<id:\d+>/<_a:[\w-]+>' => '<_m>/default/<_a>',
@@ -73,6 +74,8 @@ return [
                 'kupit-led-panel-mirovid'=>'main/default/sale-panel',
                 'zakazat-reklamu-v-seti-mirovid-led'=>'main/default/order-reclame',
                 */
+
+                'zapros'=>'zapros/default/incoming',
 
                 'kupit-led-panel-mirovid'=>'main/default/redirect-main',
                 'zakazat-reklamu-v-seti-mirovid-led'=>'main/default/redirect-main',
@@ -115,10 +118,10 @@ return [
             'useFileTransport' => false,
              'transport' => [
                  'class' => 'Swift_SmtpTransport',
-                 //'host' => 'smtp.jino.ru',
+                  'host' => 'smtp.beget.com',
                  //'username' => 'redirectleeds@novaferm.ru',
                  //'password' => 'q8WMPg68f-fF',
-                 'port' => '587',
+                 'port' => '25',
                  // 'encryption' => 'tls',
              ],
         ],

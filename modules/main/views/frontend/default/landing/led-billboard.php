@@ -207,7 +207,7 @@
                         </li>
                         <li>Ежегодно через станцию ​​метро 42-й улицы проходят 66 000 000 человек</li>
                         <li>Несмотря на то, что размещение, расположение и время очень важны, отличная креативность часто будет определяющим фактором в вашей рекламной кампании.</li>
-                        <li>Средняя поездка 15 минут</li>
+
                     </ul>
                 </div>
 
@@ -244,7 +244,7 @@
                         </li>
                         <li>Ежегодно через станцию ​​метро 42-й улицы проходят 66 000 000 человек</li>
                         <li>Несмотря на то, что размещение, расположение и время очень важны, отличная креативность часто будет определяющим фактором в вашей рекламной кампании.</li>
-                        <li>Средняя поездка 15 минут</li>
+
                     </ul>
                 </div>
 
@@ -253,7 +253,7 @@
             <div class="col s12 m6">
                 <div class="material-placeholder">
                     <img style="width: 99%;" class="img-responsive materialboxed"
-                         src="/images/led_billboard/lepse/lepse_map_draw.png"></div>
+                         src="/images/led_billboard/lepse/lepse_map_draw_1.png"></div>
             </div>
 
         </div>
@@ -277,7 +277,7 @@
             <div class="col s6">
                 <div class="input-field">
                     <p style="color: #ff0000;font-weight: bold;">Бюджет <span style="color: #000;">₽</span></p>
-                    <input  value="150" placeholder="0" id="budget" type="text" class="validate"
+                    <input  value="160" placeholder="0" id="budget" type="text" class="validate"
                            maxlength="8"
                            onkeypress="  return isNumber(event)"
                            style="border-bottom: none; box-shadow: none; border: solid #ff0000 2px;">
@@ -288,7 +288,8 @@
                 <div class="input-field">
                     <p style="color: #ff0000;font-weight: bold;">Показы рекламы</p>
                     <input size="8" placeholder="0" id="cost_vid" type="text" class="validate"
-                           style="    background-color: rgb(237, 32, 68);
+                           style="    color: white;font-weight: bold;
+    font-size: 32px;    background-color: rgb(237, 32, 68);
     border-bottom: none;
     box-shadow: none;
     border-bottom: none;
@@ -306,13 +307,13 @@
                 <div class="input-field">
                     <p>
                         <label>
-                            <input value="1_5" class="with-gap" name="group_count" type="radio" checked />
+                            <input value="1_5" class="with-gap" name="rate_show" type="radio" checked />
                             <span>1 раз в 5 мин</span>
                         </label>
                     </p>
                     <p>
                         <label>
-                            <input value="1_10" class="with-gap" name="group_count" type="radio" />
+                            <input value="1_10" class="with-gap" name="rate_show" type="radio" />
                             <span>1 раз в 10 мин</span>
                         </label>
                     </p>
@@ -320,23 +321,23 @@
             </div>
             <div class="col s6 ">
 
-                <div class="input-field time_count_div">
+                <div class="input-field  time_count_div">
                     <p>
                         <label>
-                            <input value="5" name="group_time" type="radio" checked />
-                            <span>5 сек</span>
+                            <input value="5" name="len_show" type="radio" checked />
+                            <span>длительность 5 сек</span>
                         </label>
                     </p>
                     <p>
                         <label>
-                            <input value="10" name="group_time" type="radio" />
-                            <span>10 сек</span>
+                            <input value="10" name="len_show" type="radio" />
+                            <span>длительность 10 сек</span>
                         </label>
                     </p>
                     <p>
                         <label>
-                            <input value="15" name="group_time" type="radio" />
-                            <span>15 сек</span>
+                            <input value="15" name="len_show" type="radio" />
+                            <span>длительность 15 сек</span>
                         </label>
                     </p>
                 </div>
@@ -352,9 +353,63 @@
 
 
 
+<div class="container">
+    <div class="section">
+
+        <div class="row">
+            <div class="col s12  ">
+                <h3><i class="mdi-content-send brown-text"></i></h3>
+                <h3>Оставьте заявку</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <p class=" "> Заполните форму. Мы позвоним вам и расскажем, что делать дальше.</p>
+            </div>
+
+        </div>
+        <form method="post" action="/zapros" class="zapros_form">
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <input placeholder="Ваше имя"  name="name" type="text" class="validate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <input name="phone"   type="text" value="+7" >
+                    <label for="password">Номер телефона</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="  col s12 m6">
+                    <input name="type"   type="hidden" value="1" >
+                    <input type="submit" style="width: 100%;" class="btn-small btn_act_def_font_black yellow accent-4"
+                           value="Отправить">
+
+                </div>
+            </div>
+        </form>
 
 
 
+    </div>
+</div>
+
+
+
+<!-- Modal Structure -->
+<div id="zapros_success" class="modal">
+    <div class="modal-content">
+        <p class="flow-text center">Спасибо заявку!</p>
+        <p class="flow-text center">В течении 15 минут с Вами свяжется специалист!</p>
+    </div>
+    <div class="modal-footer">
+
+        <a   href="#!" class="  modal-close waves-effect waves-green btn-flat">Закрыть</a>
+
+    </div>
+</div>
 <footer style=" padding-top: 0;"  class="page-footer white">
     <div class="footer-copyright">
         <div class="container ">
@@ -371,14 +426,25 @@
         </div>
         <div class="modal-footer">
 
-            <a  href="#!" class="  modal-close waves-effect waves-green btn-flat">Закрыть</a>
+            <a   href="#!" class="  modal-close waves-effect waves-green btn-flat">Закрыть</a>
 
         </div>
     </div>
 
+
 </footer>
 <script>
     $(document).ready(function() {
+
+
+
+
+
+        var prices = {
+            "1_5":{ "v":5 ,"p":{"5":150,"10":335,"15":515} },
+            "1_10":{ "v":10, "p":{"10":300,"15":480,"20":640}}
+        };
+
         $('.modal').modal();
         $('.tabs').tabs();
         M.updateTextFields();
@@ -390,53 +456,68 @@
         });
 
 
-        $('body').on('change', "input[name='group_count']",  function (e) {
+        $('body').on('change', "input[name='rate_show']",  function (e) {
+            drawCeckTimeCount();
             estimationCalc();
+
         });
-        $('body').on('change', "input[name='group_time']",  function (e) {
+        $('body').on('change', "input[name='len_show']",  function (e) {
             estimationCalc();
         });
 
         estimationCalc();
 
-        function drawCeckTimeCount(time){
-            let ch = '';
-            if (  $('.time_count_div p').length === 0 ){
-                ch = 'checked';
+        function drawCeckTimeCount(){
+
+            let count = $( "input[name='rate_show']:checked" ).val();
+
+            $('.time_count_div').html('');
+            for ( let time in  prices[count].p ){
+
+                let ch = '';
+                if (  $('.time_count_div p').length === 0 ){
+                    ch = 'checked';
+                }
+
+                let str = '<p>\n' +
+                    '                        <label>\n' +
+                    '                            <input  value="'+time+'" name="len_show" type="radio" '+ch+' class="">\n' +
+                    '                                <span>длительность '+time+' сек</span>\n' +
+                    '                        </label>\n' +
+                    '                    </p>';
+
+
+                $('.time_count_div').append(str);
             }
 
-            let str = '<p>\n' +
-                '                        <label>\n' +
-                '                            <input value="'+time+'" name="group_time" type="radio" '+ch+' class="">\n' +
-                '                            <span>'+time+' сек</span>\n' +
-                '                        </label>\n' +
-                '                    </p>';
-            return str;
+
         }
 
         function estimationCalc(){
 
-
-
-            let prices = {
-                "1_5":{ "v":5 ,"p":{"5":150,"10":335,"15":515} },
-                "1_10":{ "v":10, "p":{"10":300,"15":480,"20":640}}
-            };
-
             let tiwe_work = 15;
 
-            let count = $( "input[name='group_count']:checked" ).val();
-            let time = $( "input[name='group_time']:checked" ).val();
-            let budget = $("#budget").val();
 
+
+            let rate_show = $( "input[name='rate_show']:checked" ).val();
+/*
             $('.time_count_div').html('');
             for ( let count_time in  prices[count].p ){
                 $('.time_count_div').append(drawCeckTimeCount(count_time));
             }
-             M.updateTextFields();
+*/
 
 
-            let calc = ( 60/ prices[count].v ) * tiwe_work * ( budget / prices[count].p[time] );
+            let len_show = $( "input[name='len_show']:checked" ).val();
+            let budget = $("#budget").val();
+
+
+            console.log(
+                len_show,rate_show,
+                  prices[rate_show].v  ,tiwe_work , budget ,prices[rate_show].p[len_show]
+            );
+
+            let calc = ( 60/ prices[rate_show].v ) * tiwe_work * ( budget / prices[rate_show].p[len_show] );
             $('#cost_vid').val(calc.toFixed(0));
 
         }
@@ -446,23 +527,24 @@
 
 
     });
-// $(document).ready(function (){
-    var heigh = $( window ).width();
-    if ( heigh < 420){
+    // $(document).ready(function (){
+        var heigh = $( window ).width();
+        if ( heigh < 420){
 
-        $('#index-banner').height(1400);
+            $('#index-banner').height(1400);
 
-        $('nav .brand-logo').css('font-size','2rem');
-        $('.item_h1').css('font-size','3.2rem');
+            $('nav .brand-logo').css('font-size','2rem');
+            $('.item_h1').css('font-size','3.2rem');
 
-        $('.quest').height(472);
+            $('.quest').height(472);
 
-        $('.review').height(1500);
-        $('.review').removeClass('section');
+            $('.review').height(1500);
+            $('.review').removeClass('section');
 
-    } else{
-      //  $('#index-banner').height (heigh);
-    }
+        } else{
+            //  $('#index-banner').height (heigh);
+        }
+
 
 
 
@@ -496,6 +578,7 @@
                     phone:phone,
                     email:email,
                     text:text,
+                    type:1
                 },
                 success:function (data) {
                     if (parseInt(data) > 0){
