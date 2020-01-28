@@ -137,7 +137,7 @@ class DefaultController extends Controller
         $text = \Yii::$app->request->post('text');
         $type = (int)\Yii::$app->request->post('type');
 
-        $this->preseachZapros($zapros);
+
 
         $zapros = new Zapros();
         $zapros->name = $name;
@@ -148,8 +148,8 @@ class DefaultController extends Controller
         $zapros->type = $type;
         $zapros->save();
 
-
-
+        $this->preseachZapros($zapros);
+        
         \Yii::$app->response->format = Response::FORMAT_JSON;
 
         return $zapros->id;
