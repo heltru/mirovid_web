@@ -157,10 +157,11 @@ class DefaultController extends Controller
 
     private function preseachZapros($zapros){
         $body =  [$zapros->name , $zapros->phone ,$zapros->email,$zapros->text_query];
+
         Yii::$app->mailer->compose()
-            ->setFrom('info@mirovid.ru')
+            ->setFrom('mirovidweb@gmail.com')
             ->setTo('mirovidweb@yandex.ru')
-            ->setSubject('Новая заявка - ' . Zapros::$arrTxtStatus[$zapros->type])
+            ->setSubject('Новая заявка - ' . Zapros::$arrTxtStatus[$zapros->type] . ' ' . $zapros->name)
            // ->setTextBody($body)
             ->setHtmlBody(implode('<br>',$body))
             ->send();

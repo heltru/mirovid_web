@@ -79,6 +79,7 @@ class DefaultController extends Controller
 
     public function actionSendMeEx(){
         $email = \Yii::$app->request->post('email');
+
         return $email;
     }
 
