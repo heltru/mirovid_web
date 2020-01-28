@@ -27,6 +27,17 @@ class DefaultController extends Controller
 
     public $email = 'laneo2007@yandex.ru';
 
+    public function actionTestEmail(){
+
+        Yii::$app->mailer->compose()
+            ->setFrom('info@mirovid.ru')
+            ->setTo('mirovidweb@yandex.ru')
+            ->setSubject('test')
+            ->setTextBody('test')
+            ->setHtmlBody('test a')
+            ->send();
+    }
+
     private function checkCarTimeLimit($car,$area){
         $date = Helper::mysql_datetime(strtotime("+30 minutes"));
         $old =  CityTransportCheck::find()->where(['<','date',$date])

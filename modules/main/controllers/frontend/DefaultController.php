@@ -24,6 +24,7 @@ class DefaultController extends Controller
         */
     }
 
+    public $enableCsrfValidation = false;
 
     public function actionIndex()
     {
@@ -74,6 +75,11 @@ class DefaultController extends Controller
         $this->layout = 'landing';
 
         return $this->render('landing/led-billboard');//led-billboard
+    }
+
+    public function actionSendMeEx(){
+        $email = \Yii::$app->request->post('email');
+        return $email;
     }
 
 
