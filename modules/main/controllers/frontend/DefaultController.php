@@ -6,6 +6,7 @@ use app\modules\helper\models\Helper;
 use app\modules\show\models\ShowRegister;
 use app\modules\show\models\TrackAuto;
 use app\modules\show\models\TrackPoint;
+use app\modules\zapros\models\Zapros;
 use yii\helpers\Json;
 use yii\web\Controller;
 
@@ -79,6 +80,14 @@ class DefaultController extends Controller
 
     public function actionSendMeEx(){
         $email = \Yii::$app->request->post('email');
+
+
+        \Yii::$app->mailer->compose()
+            ->setFrom('mirovidweb@gmail.com')
+            ->setTo($email)
+            ->setSubject('Образцы успешной рекламы')
+            ->attach('zarubezhnye-kreativy.rar')
+            ->send();
 
         return $email;
     }
