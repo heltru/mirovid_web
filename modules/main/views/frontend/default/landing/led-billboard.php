@@ -450,7 +450,8 @@
 
         <p class="flow-text">Образцы отправлены на вашу почту</p>
         <p class="">Также вы можете скачать их архивом с Яндекс.Диска:</p>
-        <a>аваываы</a>
+        <a href="https://yadi.sk/d/hGsIkJZbxUvxog">zarubezhnye-kreativy.zip</a>
+        <a href="https://yadi.sk/d/HKAUQyCqq--KNw">Успешный креатив - чек лист.pdf</a>
     </div>
     <div class="modal-footer">
 

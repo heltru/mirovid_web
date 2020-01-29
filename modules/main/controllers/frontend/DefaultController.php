@@ -86,7 +86,7 @@ class DefaultController extends Controller
             ->setFrom('mirovidweb@gmail.com')
             ->setTo($email)
             ->setSubject('Образцы успешной рекламы')
-            ->attach('zarubezhnye-kreativy.rar', ['fileName' => 'zarubezhnye-kreativy.rar'])
+            ->attach('zarubezhnye-kreativy.zip', ['fileName' => 'zarubezhnye-kreativy.rar'])
             ->send();
 
         return $email;
