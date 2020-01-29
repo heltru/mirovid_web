@@ -283,7 +283,7 @@
             <div class="col s6">
                 <div class="input-field">
                     <p style="color: #ff0000;font-weight: bold;">Бюджет <span style="color: #000;">₽</span></p>
-                    <input value="160" placeholder="0" id="budget" type="text" class="validate"
+                    <input value="160" placeholder="0" id="budget" type="text" class="validate input_red"
                            maxlength="8"
                            onkeypress="  return isNumber(event)"
                            style="border-bottom: none; box-shadow: none; border: solid #ff0000 2px;">
@@ -293,7 +293,7 @@
             <div class="col s6">
                 <div class="input-field">
                     <p style="color: #ff0000;font-weight: bold;">Показы рекламы</p>
-                    <input size="8" placeholder="0" id="cost_vid" type="text" class="validate"
+                    <input size="8" placeholder="0" id="cost_vid" type="text" class="validate input_red"
                            style="    color: white;font-weight: bold;
     font-size: 32px;    background-color: rgb(237, 32, 68);
     border-bottom: none;
@@ -355,6 +355,7 @@
 
     </div>
 </div>
+
 
 
 <section class="background_gray" id="form">

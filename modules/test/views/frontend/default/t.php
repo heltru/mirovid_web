@@ -11,16 +11,20 @@
 <script>
     $(document).ready(function () {
 
-        setInterval(function (){
+        $.ajax({
+            url:  "/test/default/test-time",
+            success:function (data){
+                console.log(data);
+            }
+        });
 
-            $.ajax({
-                url:  "/test/default/test-time",
-                success:function (data){
-                    console.log(data);
-                }
-            });
 
-        }, 50000);
+
+        setTimeout(function (){
+            location.reload();
+        },40000);
+
+
 
 
 
