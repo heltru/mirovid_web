@@ -64,11 +64,13 @@ class DefaultController extends Controller
         $routes = [1090,1054,1033,1037,1017,1051,1046,1053,1074,1061,1001,1023,1022,1010,1016,1044,1002,1070,1012,1039,1088,1014,1087,1021,1084,5007,5005,5008,5014,5001,5004,5003];
 
 
+        $t = [];
 
         foreach ($routes as $route){
             $d = file_get_contents('https://cdsvyatka.com/api/kirov/map/route/'.$route.'/transport');
 
             $d = Json::decode($d);
+            $t[] = $d;
             foreach ($d as $car) {
 
                 foreach ($sqrs as $num_area => $sqr){
@@ -97,7 +99,7 @@ class DefaultController extends Controller
             }
             sleep(rand(1,3));
         }
-
+ex($t);
 
 
     }

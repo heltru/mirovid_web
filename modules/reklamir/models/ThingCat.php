@@ -15,7 +15,7 @@ class ThingCat extends \yii\db\ActiveRecord
 
     const C_TABLE_AUTO  = 'table_auto';
     const C_TABLET_TAXI  = 'tablet_taxi';
-    const C_BB_LEPSE  = 'tablet_taxi';
+    const C_BB   = 'billboard';
 
 
 

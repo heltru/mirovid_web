@@ -26,7 +26,7 @@ use app\modules\reklamir\models\ReklamirThing;
     <?= $form->errorSummary($model) ?>
 
     <?= $form->field($model, 'thing_cat')->dropDownList(ArrayHelper::map(ThingCat::find()->where(['sys_name'=>
-        [ThingCat::C_TABLET_TAXI,ThingCat::C_TABLE_AUTO]])->orderBy('ord')->all() ,'id','name') ) ?>
+        [ThingCat::C_TABLET_TAXI,ThingCat::C_TABLE_AUTO,ThingCat::C_BB]])->orderBy('ord')->all() ,'id','name') ) ?>
 
 
     <?= $this->render('_file',['model'=>$model,'form'=>$form]); ?>

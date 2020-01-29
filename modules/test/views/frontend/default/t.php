@@ -22,7 +22,7 @@
 
         setTimeout(function (){
             location.reload();
-        },40000);
+        },50000);
 
 
 
