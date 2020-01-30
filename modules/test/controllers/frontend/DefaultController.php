@@ -40,7 +40,7 @@ class DefaultController extends Controller
 
     private function checkCarTimeLimit($car,$area){
         $date = Helper::mysql_datetime(strtotime("+25 minutes"));
-        $old =  CityTransportCheck::find()->where(['<','date',$date])
+        $old =  CityTransportCheck::find()->where(['>','date',$date])
             ->andWhere(['gn'=>$car['gn']])
             ->andWhere(['area'=>$area])
             ->andWhere(['number'=>$car['number']])

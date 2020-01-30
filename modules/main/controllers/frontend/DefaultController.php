@@ -49,6 +49,8 @@ class DefaultController extends Controller
 
         $this->view->registerCssFile('/themes/one/css/index-css.css');
 
+        $this->view->registerJsFile('/js/common.js');
+
         $this->layout = 'landing';
         return $this->render('landing/main');
     }
@@ -74,7 +76,7 @@ class DefaultController extends Controller
 
         $this->view->registerCssFile('/themes/one/css/led-billboard.css');
         $this->view->registerJsFile('/js/common.js');
-        $this->layout = 'landing';
+        $this->layout =  'landing';
 
         return $this->render('landing/led-billboard');//led-billboard
     }

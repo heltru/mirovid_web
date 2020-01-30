@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-
+    $(".dropdown-trigger").dropdown();
 
     $('.zapros_form').on('submit',function(e){
 

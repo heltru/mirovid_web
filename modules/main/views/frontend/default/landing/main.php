@@ -1,4 +1,3 @@
-
 <?php echo $this->render('//navbar/navbar') ?>
 <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
