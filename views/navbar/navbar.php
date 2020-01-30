@@ -2,10 +2,10 @@
 <ul id="dd_route" class="dropdown-content">
     <li>
         <?php
-        if ( Yii::$app->request->url === '/reklama-na-videoehkranah-v-kirove'){ ?>
+        if ( Yii::$app->request->url === '/didzhital-bilbordy-v-hlynove'){ ?>
             <span>билборды</span>
         <?php } else { ?>
-            <a href="/reklama-na-videoehkranah-v-kirove">билборды</a>
+            <a href="/didzhital-bilbordy-v-hlynove">билборды</a>
         <?php }
         ?>
 
