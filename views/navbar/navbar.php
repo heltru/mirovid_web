@@ -2,7 +2,7 @@
     <div class="nav-wrapper container">
         <a id="logo-container" href="/"  style="color:#ba3238" class="brand-logo red-text text-accent-4 item_logo_text">
             <span class="red-text text-accent-4">☀</span> MIROVID</a>
-        <ul class="right hide-on-med-and-down">
+            <ul class="right hide-on-med-and-down">
 
             <li><a class="item_phone" style="font-size: 1.5em;color: black" href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>">Личный кабинет</a></li>
             <?php if ( Yii::$app->user->isGuest ){ ?>

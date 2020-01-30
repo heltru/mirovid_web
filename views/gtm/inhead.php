@@ -21,6 +21,7 @@ if ( strpos( Yii::$app->request->hostInfo,'mirovid.ru') !== false) {
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-NTPG8P5');</script>
     <!-- End Google Tag Manager -->
+    <meta name="google-site-verification" content="ZY6IKxTqXGR3SLg4N4FcusOHvmaUP7Hvj-WnG6wZkVo" />
     <?php
 }
     ?>
