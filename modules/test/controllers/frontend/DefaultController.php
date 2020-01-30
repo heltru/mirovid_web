@@ -99,7 +99,7 @@ class DefaultController extends Controller
             }
             sleep(rand(1,3));
         }
-ex($t);
+//ex($t);
 
 
     }

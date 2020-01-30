@@ -79,7 +79,7 @@ return [
 
                 'kupit-led-panel-mirovid'=>'main/default/redirect-main',
                 'zakazat-reklamu-v-seti-mirovid-led'=>'main/default/redirect-main',
-                'reklama-na-videoehkranah-v-kirove'=>'main/default/led-billboard',
+                'didzhital-bilbordy-v-hlynove'=>'main/default/led-billboard',
 
 
                 ''=>'main/default/index',
