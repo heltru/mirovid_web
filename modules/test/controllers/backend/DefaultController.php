@@ -20,6 +20,7 @@ use app\modules\test\models\Gis2016ParseEmail;
 use app\modules\test\models\Gis2016ParseSite;
 use app\modules\test\models\Gis201908ParseEmail;
 use app\modules\test\models\Gis201908ParseSite;
+use app\modules\test\models\GisEmail;
 use app\modules\test\models\gisParseEmail;
 use app\modules\test\models\gisParseSite;
 use app\modules\test\models\GisSite;
@@ -47,6 +48,114 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
+
+
+    public function actionMail(){
+
+        $k = 0;
+        $all = [];
+
+        foreach (GisEmail::find()->all() as $item){
+            if ($k > 2000 and $k < 4000){
+                $all[] = [$item->email];
+            }
+
+            $k ++;
+        }
+
+        //Helper::download_send_headers('emails_2000_400.csv');
+        file_put_contents('emails_2000_4000.csv', Helper::array2csv($all));
+
+
+
+
+
+    }
+
+    private function download_send_headers($filename) {
+        // disable caching
+        $now = gmdate("D, d M Y H:i:s");
+        header("Expires: Tue, 03 Jul 2001 06:00:00 GMT");
+        header("Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate");
+        header("Last-Modified: {$now} GMT");
+
+        // force download
+        header("Content-Type: application/force-download");
+        header("Content-Type: application/octet-stream");
+        header("Content-Type: application/download");
+
+        // disposition / encoding on response body
+        header("Content-Disposition: attachment;filename={$filename}");
+        header("Content-Transfer-Encoding: binary");
+    }
+
+    private function array2csv(array &$array)
+    {
+        if (count($array) == 0) {
+            return null;
+        }
+        ob_start();
+        $df = fopen("php://output", 'w');
+        fputcsv($df, array_keys(reset($array)));
+        foreach ($array as $row) {
+            fputcsv($df, $row);
+        }
+        fclose($df);
+        return ob_get_clean();
+    }
+
+
+    public static function export($rows, $coldefs, $boolPrintRows=true, $csvFileName=null, $separator=';')
+    {
+        $endLine = '\r\n';
+        $returnVal = '';
+
+        if($csvFileName != null)
+        {
+            header("Cache-Control: public");
+            header("Content-Description: File Transfer");
+            header("Content-Disposition: attachment; filename=".$csvFileName);
+            header("Content-Type: application/octet-stream");
+            header("Content-Transfer-Encoding: binary");
+        }
+
+        if($boolPrintRows == true){
+            $names = '';
+            foreach($coldefs as $col=>$config){
+                $names .= $col.$separator;
+            }
+            $names = rtrim($names,$separator);
+            if($csvFileName != null){
+                echo $names.$endLine;
+            }else
+                $returnVal .= $names.$endLine;
+        }
+
+        foreach($rows as $row){
+            $r = '';
+            foreach($coldefs as $col=>$config){
+
+                if(isset($row[$col])){
+
+                    $val = $row[$col];
+
+                    foreach($config as $conf)
+                        if(!empty($conf))
+                            $val = Yii::$app->format->format($val,$conf);
+
+                    $r .= $val.$separator;
+                }
+            }
+            $item = trim(rtrim($r,$separator)).$endLine;
+            if($csvFileName != null){
+                echo $item;
+            }else{
+                $returnVal .= $item;
+            }
+        }
+        return $returnVal;
+    }
+
 
     public function actionGenerateUsers(){
 
