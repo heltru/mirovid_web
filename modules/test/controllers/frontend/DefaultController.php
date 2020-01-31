@@ -36,6 +36,8 @@ class DefaultController extends Controller
             ->setTextBody('test')
             ->setHtmlBody('test a')
             ->send();
+
+
     }
 
     private function checkCarTimeLimit($car,$area){

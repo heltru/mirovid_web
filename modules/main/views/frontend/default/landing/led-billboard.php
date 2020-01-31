@@ -15,7 +15,7 @@
     <div class="container">
 
         <h1 class=" header center item_h1">
-            узнаваемость бренда в массах за 24 часа от 1,95 руб</h1>
+            узнаваемость бренда в массах за 24 часа</h1>
         <h3 class="subtitle center">синергия интернет рекламы</h3>
 
         <div class="row">
@@ -48,220 +48,6 @@
 
     </div>
 </div>
-
-
-<div class="container">
-    <div class="section">
-
-        <div class="row" style=" margin-top: 100px;">
-            <div class="col s12  ">
-
-                <!--   Promo Section   -->
-                <div class="row left-align">
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <div>
-
-                                <p class="com_title left-align">Помогите своей аудитории найти вас</p>
-                                <p class="flow-text left-align">Оставайтесь в сознании потребителя с первого взгляда.
-                                    Доставка месседжа пассажирам, пешеходам, водителям туристам.</p>
-                            </div>
-                        </div>
-
-                        <div class="col s12 m6">
-                            <div>
-
-                                <p class="com_title ">Усиление рекламных компаний</p>
-                                <p class="flow-text left-align">Цифровые щиты являются доступным решением для улучшения
-                                    рекламы в социальных сетях:
-                                    Яндекс.Директ, Google AdWords, поисковой оптимизации (SEO). Оффлайн реклама
-                                    продвигает онлайн действие</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <div>
-
-                                <p class="left-align com_title ">Выделение на фоне конкурентов</p>
-                                <p class="flow-text left-align">Ярко. Необычно. Привлекательно. Динамично. Анимировано.
-                                    <br>
-                                    Большое влияние на аудиторию. Цифровые щиты - лучший способ расширить охват</p>
-                            </div>
-                        </div>
-                        <div class="col s12 m6">
-                            <div>
-
-                                <p class="com_title left-align">Возможность часто менять сообщение</p>
-                                <p class="flow-text left-align">Не требует печати и вставки в щит. Уникальные сообщения
-                                    на праздники</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-</div>
-
-
-<div class="container">
-    <div class="section">
-
-        <div class="row">
-            <div class="col s12 center">
-                <h3><i class="mdi-content-send brown-text"></i></h3>
-                <h3>Сравнение других каналов</h3>
-                <div style="margin-top: 3em;">
-                    <img style="width: 99%;" class="responsive-img" src="/images/cpm_analitycs.png">
-                </div>
-
-            </div>
-        </div>
-
-
-    </div>
-</div>
-
-
-<section class="background_gray">
-    <div class="container">
-        <div class="section">
-
-            <div class="row">
-                <div class="col s12 center">
-                    <h3><i class="mdi-content-send brown-text"></i></h3>
-                    <h3>Как это работает</h3>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col s12 ">
-                    <div class="flow-text">
-                        <p>1) Создать креатив</p>
-
-                        <ul class="def_list">
-                            <li>Агенство по рекламе-дизайну 5000-6000 тыс руб.</li>
-                            <li>Дизайнер с фотошопом на FL.ru 400-800 руб/час от 3 часов работы</li>
-                            <li>Своё изображение .JPEG или видеоролик формата .MPG4, .AVI</li>
-                        </ul>
-                    </div>
-
-                </div>
-
-                <div class="col s12 ">
-                    <div class="flow-text">
-                        <p>2)
-                            <a class="waves-effect waves-light btn-large btn_act_def_font_black yellow accent-4 calltoaction">Оставить
-                                заявку</a> на рекламу</p>
-                        <p>в течении 24 часов 17 865 просмотов ежедневно</p>
-                    </div>
-                </div>
-                <div class="col s12 ">
-                    <div class="flow-text">
-                        <p style="font-style: italic;" class=" grey-text text-lighten-1 ">Лайфхак: Что бы креатив был
-                            успешен, покажите эффективные образцы дизайнеру.
-                            <a class="modal-trigger" href="#email_sub">Скачать архив</a></p>
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
-    </div>
-
-</section>
-
-<div class="container">
-    <div class="section">
-
-        <div class="row">
-            <div class="col s12 center">
-                <h3><i class="mdi-content-send brown-text"></i></h3>
-                <h3>ТЦ Баско</h3>
-            </div>
-        </div>
-
-        <div class="row" style="margin-top: 6em;">
-
-            <div class="col s12 m6">
-                <div class="material-placeholder">
-                    <img style="width: 99%;" class="img-responsive materialboxed"
-                         src="/images/led_billboard/basko/basko_map_draw_2.png"></div>
-            </div>
-
-
-            <div class="col s12 m6 ">
-                <div class="flow-text">
-
-                    <ul class="def_list">
-                        <li>
-                            Более 5 автобусов и троллейбусов в день едут перед этим местом С ЮЗР в центр, Лепсе, Коминтерн, Вокзал, Нововятск, Чистый пруды
-                        </li>
-                        <li>Аудитория перекрестка Ивана Попова/Воровского 10 000 человек ежедневно</li>
-                        <li>Несмотря на то, что размещение, расположение и время очень важны, хороший креатив
-                            часто будет определяющим фактором в вашей рекламной кампании.
-                        </li>
-
-                    </ul>
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-</div>
-
-
-<section class="background_gray">
-    <div class="container">
-        <div class="section">
-
-            <div class="row">
-                <div class="col s12 center">
-                    <h3><i class="mdi-content-send brown-text"></i></h3>
-                    <h3>Площадь Лепсе</h3>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col s12 m6 ">
-                    <div class="flow-text">
-
-                        <ul class="def_list">
-
-                            <li>
-                                Через площать проходят 17 номеров автобусов и 3 номера троллейбуса, маршруты охватывают потоки людей  из Филейки, ЮЗ, Октябрьский проспект, Центр, Радужный, Ганино
-                            </li>
-                            <li>Мощная инфраструктура добавляет множество сегментов в целевую аудиторию: бассейны, каток, спортзалы, заводы предприятий, клубы</li>
-
-
-                        </ul>
-                    </div>
-
-                </div>
-
-                <div class="col s12 m6">
-                    <div class="material-placeholder">
-                        <img style="width: 99%;" class="img-responsive materialboxed"
-                             src="/images/led_billboard/lepse/lepse_map_draw_1.png"></div>
-                </div>
-
-            </div>
-
-
-        </div>
-    </div>
-</section>
 
 <div class="container">
     <div class="section">
@@ -349,6 +135,231 @@
 
     </div>
 </div>
+
+<section class="background_gray">
+<div class="container">
+    <div class="section">
+
+        <div class="row" style=" margin-top: 100px;">
+            <div class="col s12  ">
+
+                <!--   Promo Section   -->
+                <div class="row left-align">
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <div>
+
+                                <p class="com_title left-align">Помогите своей аудитории найти вас</p>
+                                <p class="flow-text left-align">Оставайтесь в сознании потребителя с первого взгляда.
+                                    Доставка месседжа пассажирам, пешеходам, водителям туристам.</p>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6">
+                            <div>
+
+                                <p class="com_title ">Усиление рекламных компаний</p>
+                                <p class="flow-text left-align">Цифровые щиты являются доступным решением для улучшения
+                                    рекламы в социальных сетях:
+                                    Яндекс.Директ, Google AdWords, поисковой оптимизации (SEO). Оффлайн реклама
+                                    продвигает онлайн действие</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <div>
+
+                                <p class="left-align com_title ">Выделение на фоне конкурентов</p>
+                                <p class="flow-text left-align">Ярко. Необычно. Привлекательно. Динамично. Анимировано.
+                                    <br>
+                                    Большое влияние на аудиторию. Цифровые щиты - лучший способ расширить охват</p>
+                            </div>
+                        </div>
+                        <div class="col s12 m6">
+                            <div>
+
+                                <p class="com_title left-align">Возможность часто менять сообщение</p>
+                                <p class="flow-text left-align">Не требует печати и вставки в щит. Уникальные сообщения
+                                    на праздники</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</section>
+
+
+<div class="container">
+    <div class="section">
+
+        <div class="row">
+            <div class="col s12 center">
+                <h3><i class="mdi-content-send brown-text"></i></h3>
+                <h3>Как это работает</h3>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col s12 ">
+                <div class="flow-text">
+                    <p>1) Создать креатив</p>
+
+                    <ul class="def_list">
+                        <li>Агенство по рекламе-дизайну 5000-6000 тыс руб.</li>
+                        <li>Дизайнер с фотошопом на FL.ru 400-800 руб/час от 3 часов работы</li>
+                        <li>Своё изображение .JPEG или видеоролик формата .MPG4, .AVI</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col s12 ">
+                <div class="flow-text">
+                    <p>2)
+                        <a class="waves-effect waves-light btn-large btn_act_def_font_black yellow accent-4 calltoaction">Оставить
+                            заявку</a> на рекламу</p>
+                    <p>в течении 24 часов 17 865 просмотов ежедневно</p>
+                </div>
+            </div>
+            <div class="col s12 ">
+                <div class="flow-text">
+                    <p style="font-style: italic;" class=" grey-text text-lighten-1 ">Лайфхак: Что бы креатив был
+                        успешен, покажите эффективные образцы дизайнеру.
+                        <a class="modal-trigger" href="#email_sub">Скачать архив</a></p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="section">
+
+        <div class="row">
+            <div class="col s12 center">
+                <h3><i class="mdi-content-send brown-text"></i></h3>
+                <h3>Сравнение других каналов</h3>
+                <div style="margin-top: 3em;">
+                    <img style="width: 99%;" class="responsive-img" src="/images/cpm_analitycs.png">
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="section">
+
+        <div class="row">
+            <div class="col s12 center">
+                <h3><i class="mdi-content-send brown-text"></i></h3>
+                <h3>ТЦ Баско</h3>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 6em;">
+
+            <div class="col s12 m6">
+                <div class="material-placeholder">
+                    <img style="width: 99%;" class="img-responsive materialboxed"
+                         src="/images/led_billboard/basko/basko_map_draw_2.png"></div>
+            </div>
+
+
+            <div class="col s12 m6 ">
+                <div class="flow-text">
+
+                    <ul class="def_list">
+                        <li>
+                            Более 5 автобусов и троллейбусов в день едут перед этим местом С ЮЗР в центр, Лепсе, Коминтерн, Вокзал, Нововятск, Чистый пруды
+                        </li>
+                        <li>Аудитория перекрестка Ивана Попова/Воровского 10 000 человек ежедневно</li>
+                        <li>Несмотря на то, что размещение, расположение и время очень важны, хороший креатив
+                            часто будет определяющим фактором в вашей рекламной кампании.
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col s12">
+                <a onclick="window.dataLayer.push({'event': 'order_reclame'});" href="/admin" style="background-color: #ffd400;color: black;font-weight: bold" class="offer_btn waves-effect waves-light btn-large calltoaction">
+                    Попробовать</a>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<section class="background_gray">
+    <div class="container">
+        <div class="section">
+
+            <div class="row">
+                <div class="col s12 center">
+                    <h3><i class="mdi-content-send brown-text"></i></h3>
+                    <h3>Площадь Лепсе</h3>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col s12 m6 ">
+                    <div class="flow-text">
+
+                        <ul class="def_list">
+
+                            <li>
+                                Через площать проходят 17 номеров автобусов и 3 номера троллейбуса, маршруты охватывают потоки людей  из Филейки, ЮЗ, Октябрьский проспект, Центр, Радужный, Ганино
+                            </li>
+                            <li>Мощная инфраструктура добавляет множество сегментов в целевую аудиторию: бассейны, каток, спортзалы, заводы предприятий, клубы</li>
+
+
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="col s12 m6">
+                    <div class="material-placeholder">
+                        <img style="width: 99%;" class="img-responsive materialboxed"
+                             src="/images/led_billboard/lepse/lepse_map_draw_1.png"></div>
+                </div>
+                <div style="margin-top: 1em;" class="col s12 right-align">
+                    <a onclick="window.dataLayer.push({'event': 'order_reclame'});" href="/admin" style="background-color: #ffd400;color: black;font-weight: bold" class="offer_btn waves-effect waves-light btn-large calltoaction">
+                        Попробовать</a>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
 
 
 
@@ -458,7 +469,28 @@
     </div>
 </div>
 
-<footer style=" padding-top: 0;" class="page-footer white">
+<footer style=" padding-top: 0;" class="">
+    <section>
+        <div class="row">
+            <div class="col s12">
+                <h3 class="center">Наш офис</h3>
+                <div style="width: 320px;margin 0 auto;display: block;" >
+                    <p class="flow-text left">
+                        Андрес: Хлынов, Пристанская , 1 <br>
+                        Телефон: 8(951) 349-14-87 <br>
+                        E-mail: mirovidweb@yandex.ru <br>
+                    </p>
+                </div>
+
+            </div>
+            <div class="col s12">
+
+                <script type="text/javascript" charset="utf-8" async
+                        src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A54cbd70ded30ac8de670bd47b66583d281fb8fbd7d4dc086c8565f3bce3ca72f&amp;width=100%&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+            </div>
+        </div>
+    </section>
+
     <div class="footer-copyright">
         <div class="container ">
 
@@ -586,14 +618,14 @@
     var heigh = $(window).width();
     if (heigh < 420) {
 
-        $('#index-banner').height(1400);
+        $('#index-banner').height(400);
 
         $('nav .brand-logo').css('font-size', '2rem');
         $('.item_h1').css('font-size', '3.2rem');
 
         $('.quest').height(472);
 
-        $('.review').height(1500);
+        $('.review').height(1400);
         $('.review').removeClass('section');
 
     }
