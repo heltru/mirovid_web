@@ -27,6 +27,12 @@ class DefaultController extends Controller
 
     public $email = 'laneo2007@yandex.ru';
 
+
+    public function actionVk(){
+        $this->layout = false;
+        return $this->render('vk');
+    }
+
     public function actionTestEmail(){
 
         Yii::$app->mailer->compose()
