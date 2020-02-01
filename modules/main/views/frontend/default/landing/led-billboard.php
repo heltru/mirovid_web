@@ -478,6 +478,7 @@
 </div>
 
 <footer style=" padding-top: 0;" class="">
+    <?php if (false) {  ?>
     <section>
         <div class="row">
             <div class="col s12">
@@ -498,7 +499,7 @@
             </div>
         </div>
     </section>
-
+<?php } ?>
     <div class="footer-copyright">
         <div class="container ">
 
