@@ -306,13 +306,22 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col s12 ">
+                <div class="flow-text">
+                    <p style="font-style: italic;" class=" grey-text text-lighten-1 ">Иностранные образцы креативов для дизайнера -
+                        <a class="modal-trigger" href="#email_sub">Скачать архив</a></p>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 </div>
 
 
 
-
+<?php if (false){ ?>
 <div class="container">
     <div class="section">
 
@@ -360,7 +369,7 @@
     </div>
 </div>
 
-
+<?php } ?>
 
 
 
