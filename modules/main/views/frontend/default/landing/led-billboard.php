@@ -237,7 +237,7 @@
             <div class="col s6">
                 <div class="input-field">
                     <p style="color: #ff0000;font-weight: bold;">Бюджет <span style="color: #000;">₽</span></p>
-                    <input value="160" placeholder="0" id="budget" type="text" class="validate input_red"
+                    <input value="150" placeholder="0" id="budget" type="text" class="validate input_red"
                            maxlength="8"
                            onkeypress="  return isNumber(event)"
                            style="border-bottom: none; box-shadow: none; border: solid #ff0000 2px;">
