@@ -11,6 +11,7 @@
     }
 
 </script>
+<?php if (false) { ?>
 <div id="index-banner" class="section">
     <div class="container">
 
@@ -48,65 +49,7 @@
 
     </div>
 </div>
-<section class="background_gray">
-    <div class="container">
-        <div class="section">
-
-            <div class="row" style=" margin-top: 100px;">
-                <div class="col s12  ">
-
-                    <!--   Promo Section   -->
-                    <div class="row left-align">
-                        <div class="row">
-                            <div class="col s12 m6">
-                                <div>
-
-                                    <p class="com_title left-align">Помогите своей аудитории найти вас</p>
-                                    <p class="flow-text left-align">Оставайтесь в сознании потребителя с первого взгляда.
-                                        Доставка месседжа пассажирам, пешеходам, водителям туристам.</p>
-                                </div>
-                            </div>
-
-                            <div class="col s12 m6">
-                                <div>
-
-                                    <p class="com_title ">Усиление рекламных компаний</p>
-                                    <p class="flow-text left-align">Цифровые щиты являются доступным решением для улучшения
-                                        рекламы в социальных сетях:
-                                        Яндекс.Директ, Google AdWords, поисковой оптимизации (SEO). Оффлайн реклама
-                                        продвигает онлайн действие</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col s12 m6">
-                                <div>
-
-                                    <p class="left-align com_title ">Выделение на фоне конкурентов</p>
-                                    <p class="flow-text left-align">Ярко. Необычно. Привлекательно. Динамично. Анимировано.
-                                        <br>
-                                        Большое влияние на аудиторию. Цифровые щиты - лучший способ расширить охват</p>
-                                </div>
-                            </div>
-                            <div class="col s12 m6">
-                                <div>
-
-                                    <p class="com_title left-align">Возможность часто менять сообщение</p>
-                                    <p class="flow-text left-align">Не требует печати и вставки в щит. Уникальные сообщения
-                                        на праздники</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-</section>
+<?php } ?>
 <div class="container">
     <div class="section">
 
@@ -199,6 +142,8 @@
 </section>
 
 
+
+
 <div class="container">
     <div class="section">
 
@@ -216,6 +161,67 @@
 
     </div>
 </div>
+
+
+<section class="background_gray">
+    <div class="container">
+        <div class="section">
+
+            <div class="row" style=" margin-top: 100px;">
+                <div class="col s12  ">
+
+                    <!--   Promo Section   -->
+                    <div class="row left-align">
+                        <div class="row">
+                            <div class="col s12 m6">
+                                <div>
+
+                                    <p class="com_title left-align">Помогите своей аудитории найти вас</p>
+                                    <p class="flow-text left-align">Оставайтесь в сознании потребителя с первого взгляда.
+                                        Доставка месседжа пассажирам, пешеходам, водителям туристам.</p>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6">
+                                <div>
+
+                                    <p class="com_title ">Усиление рекламных компаний</p>
+                                    <p class="flow-text left-align">Цифровые щиты являются доступным решением для улучшения
+                                        рекламы в социальных сетях:
+                                        Яндекс.Директ, Google AdWords, поисковой оптимизации (SEO). Оффлайн реклама
+                                        продвигает онлайн действие</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12 m6">
+                                <div>
+
+                                    <p class="left-align com_title ">Выделение на фоне конкурентов</p>
+                                    <p class="flow-text left-align">Ярко. Необычно. Привлекательно. Динамично. Анимировано.
+                                        <br>
+                                        Большое влияние на аудиторию. Цифровые щиты - лучший способ расширить охват</p>
+                                </div>
+                            </div>
+                            <div class="col s12 m6">
+                                <div>
+
+                                    <p class="com_title left-align">Возможность часто менять сообщение</p>
+                                    <p class="flow-text left-align">Не требует печати и вставки в щит. Уникальные сообщения
+                                        на праздники</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
 
 <div class="container">
     <div class="section">
