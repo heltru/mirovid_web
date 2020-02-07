@@ -202,7 +202,12 @@ video {
 }
 
 #index-banner{
-    height: 1050px;
+    height: 1071px;
+}
+
+ul.def_list li {
+    list-style-type: disc !important;
+    margin-left: 50px;
 }
 
 @media (max-width: 479px) {

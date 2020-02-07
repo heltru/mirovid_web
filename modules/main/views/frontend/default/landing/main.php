@@ -4,7 +4,7 @@
         <div class="container">
 
             <h1 class=" header center    item_h1">Размести рекламу за 15 минут</h1>
-            <h3 class="center">планшеты в такси, видео на стекле авто,  led билборд</h3>
+            <h3 class="center">планшеты в такси, видео на стекле авто,  циффровые билборды</h3>
             <div class="row ">
                 <div class="col s12 m7 ">
 
@@ -14,7 +14,7 @@
                         </div>
                         <div  class="cont_utm_col_text" >
                             <h5 class="header  light item_utp ">Охват</h5>
-                            <p class="item_utp_subtitle">19 машин / 28 800 мин / 100 человек / в день</p>
+                            <p class="item_utp_subtitle">10 машин / 1200 показов в пробках / в неделю / 2 перекрестка /  по 100 000 человек в день</p>
                         </div>
                     </div>
 
@@ -111,18 +111,22 @@
         <div class="row">
             <div class="col s12 m6">
                 <div class="material-placeholder">
-                    <img style="width: 99%;" class="img-responsive materialboxed" src="/images/image-473158-galleryV9-nzot-473158.jpg"></div>
+                    <img style="width: 99%;" class="img-responsive materialboxed" src="/images/0tHFrjI.jpeg"></div>
             </div>
 
             <div class="col s12 m6 ">
                 <div class="flow-text">
-                    <p>19 машин - 24 часа</p>
-
-                    <ul>
-                        <li>Что - вы получаете:</li>
-                        <li>Внимание каждого пассажира</li>
-                        <li>Платежеспособного клиента</li>
+                    <p>Планшеты в такси</p>
+                    <p>Какую аудиторию - вы получаете:</p>
+                    <ul class="def_list">
+                        <li><strong>Платежеспособного</strong>  клиента</li>
                         <li>Средняя поездка 15 минут</li>
+                        <li><strong>Внимание</strong> пассажира</li>
+                        <li><strong>Утро</strong> - распродажы  в торговых сетях, детских школ искусств, фитнес центров, парикмахерских, отделов торговых центров </li>
+                        <li><strong>День</strong> - инфобизнес, тренинги, банки, кредитные организаций</li>
+                        <li><strong>Вечер, выходные</strong> - кальянные, бары, ночные клубы, информирование об акциях в заведениях, горячих скидках</li>
+                        <li><strong>Выходные</strong> - Распродажи в ТЦ, бутики, стройматериалы, базы отдыха, бани ,сауны </li>
+
                     </ul>
                 </div>
 
@@ -136,16 +140,14 @@
             <div class="col s12 m6 ">
                 <div class="flow-text">
                     <p>Видео на стекле</p>
-                    <p>LED панель на транспортном средстве</p>
-                    <ul>
-                        <li><strong>Утро</strong> - распродажы  в торговых сетях, детских школ искусств, фитнес центров, парикмахерских, отделов торговых центров </li>
-                        <li><strong>День</strong> - инфобизнес, тренинги, банки, кредитные организаций</li>
-                        <li><strong>Вечер, выходные</strong> - кальянне, бары, ночные клубы, информирование об акциях в заведениях, горячих скидках</li>
-                        <li><strong>Выходные</strong> - Распродажи в ТЦ, бутики, стройматериалы, базы отдыха, бани ,сауны </li>
+
+                    <ul class="def_list">
+                        <li> <strong>Выделиться</strong> среди конкурентов</li>
+                        <li>Ярко / необычно / привлекательно / анимированно</li>
+                        <li>Привязка к району времени</li>
+                        <li>Показывает только там где нужно</li>
                     </ul>
-                    <p>Ярко / необычно / привлекательно / анимированно</p>
-                    <p>Привязка к району времени</p>
-                    <p>Показывает только там где нужно</p>
+
                 </div>
 
             </div>
@@ -156,6 +158,38 @@
             </div>
 
         </div>
+
+
+
+        <div class="row" style="margin-top: 6em;">
+
+            <div class="col s12 m6">
+                <div class="material-placeholder">
+                    <img style="width: 99%;" class="img-responsive materialboxed" src="/images/led_billboard/basko/basko_map_draw_2.png"></div>
+            </div>
+            <div class="col s12 m6 ">
+                <div class="flow-text">
+                    <p>Цифровые билборды</p>
+
+                    <ul class="def_list">
+                        <li>Повышение <strong>интереса к бренду</strong> на подсознательном уровне</li>
+                        <li>Усиление <strong>рекламных кампаний</strong></li>
+                        <li><strong>Быстро</strong> менять сообщения</li>
+                        <li>Зона высокого трафика</li>
+                    </ul>
+
+                </div>
+                <a href="/didzhital-bilbordy-v-hlynove" style="  background-color: #ffd400;color: black;font-weight: bold" class="btn_order_lk waves-effect waves-light btn-large ">
+                    подробнее</a>
+               
+
+            </div>
+
+
+
+        </div>
+
+
 
     </div>
 </div>
@@ -274,8 +308,7 @@
 
                 <ul  >
                     <li>Ремонт вмятин</li>
-                    <li>Охват 1000 мин</li>
-                    <li>Бюджет 1000 руб. привлечено 50 лидов.</li>
+
                 </ul>
             </div>
 
@@ -289,13 +322,24 @@
                 </div>
 
                 <ul  >
-                    <li>Домашний вентеляционный клапан</li>
-                    <li>Охват 16000 мин</li>
-                    <li>Бюджет 16000 руб. привлечено 80 лидов.</li>
+                    <li>Домашний вентеляционный клапан видео-текст</li>
+
                 </ul>
             </div>
 
+            <div class="col s12 m4">
 
+                <div class="img-container">
+                    <div class=" video material-placeholder">
+                        <img style="width: 99%;" class="img-responsive materialboxed" src="/images/Ve6irJttsTo.jpg">
+                    </div>
+
+
+                <ul  >
+                    <li>Домашний вентеляционный клапан слайд-анимация</li>
+
+                </ul>
+            </div>
 
         </div>
 
@@ -380,7 +424,7 @@
             <div class="col s12 m6">
                 <div class="icon-block">
 
-                    <h5 class="center com_title">Наклейка</h5>
+                    <h5 class="center com_title">Обычная наружка</h5>
 
                     <ul class="ul_comp">
                         <li class="li_item_comp" >Не видно в темноте</li>
@@ -446,9 +490,9 @@
         <div class="row">
             <div class="col s12 m6 center-align">
 
-                <a href="email:mirovidweb@yandex.ru"
+                <a href="tel:+79513491487"
                    style="   background-color: #7000ff;color: #e1e6ff;font-weight: bold" class="waves-effect waves-light btn-large ">
-                    mirovidweb@yandex.ru</a>
+                    8(951) 349-14-87</a>
             </div>
 
 
