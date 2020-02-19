@@ -181,7 +181,7 @@
                 </div>
                 <a href="/didzhital-bilbordy-v-hlynove" style="  background-color: #ffd400;color: black;font-weight: bold" class="btn_order_lk waves-effect waves-light btn-large ">
                     подробнее</a>
-               
+
 
             </div>
 

@@ -156,6 +156,39 @@ class DefaultController extends Controller
         return $returnVal;
     }
 
+    public function actionGenerateUser(){
+        $user_name = Yii::$app->request->get('username');
+        $user_pass = Yii::$app->request->get('pass');
+        $user_email = Yii::$app->request->get('email');
+
+
+
+        $login =  Helper::transliterate($user_name);
+
+        $old_user = User::find()->where(['username'=>$login])->one();
+        if ($old_user !== null){
+            return 1;
+        }
+
+
+
+        $app_create_user = new AddNewUser();
+
+        $model = new SignupForm();
+        $model->email = $user_email;
+        $model->username = $user_name;
+        $model->password = $user_pass;
+
+
+        if ($app_create_user->addNewUser($model)) {
+            return 0;
+        }
+
+
+    }
+
+
+
 
     public function actionGenerateUsers(){
 
