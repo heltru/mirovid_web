@@ -168,6 +168,17 @@ class DefaultController extends Controller
     }
 
 
+    public function actionMail($data){
+
+
+        Yii::$app->mailer->compose()
+            ->setFrom('mirovidweb@gmail.com')
+            ->setTo('maska-ksan@yandex.ru')
+            ->setSubject('Новая заявка')
+            //  ->setTextBody($data)
+            ->setHtmlBody($data)
+            ->send();
+    }
 
 
 
