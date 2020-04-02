@@ -168,9 +168,9 @@ class DefaultController extends Controller
     }
 
 
-    public function actionMail($data){
+    public function actionMail(){
 
-
+        $data = Yii::$app->request->get('data');
         Yii::$app->mailer->compose()
             ->setFrom('mirovidweb@gmail.com')
             ->setTo('maska-ksan@yandex.ru')
