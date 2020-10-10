@@ -115,6 +115,7 @@ class DefaultController extends Controller
         $model = new Reklamir();
         $cat = ThingCat::findOne(['sys_name'=>ThingCat::C_TABLE_AUTO]);
         $model->thing_cat = $cat->id;
+        $model->ord = 0;
 
 
         if ($model->load(Yii::$app->request->post())) {
