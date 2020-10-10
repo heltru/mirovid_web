@@ -16,6 +16,7 @@ use yii\web\Controller;
 class ThingController extends Controller
 {
 
+    public $enableCsrfValidation = false;
 
     public function actionPlaylist()
     {
