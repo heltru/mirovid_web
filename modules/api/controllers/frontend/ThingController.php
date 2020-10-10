@@ -4,6 +4,7 @@ namespace app\modules\api\controllers\frontend;
 
 use app\modules\app\app\RegisterShow;
 use app\modules\playlist\app\AppPlaylist;
+use app\modules\playlist\app\AppPlaylistDef;
 use app\modules\reklamir\models\Reklamir;
 
 use app\modules\reklamir\models\Thing;
@@ -26,9 +27,7 @@ class ThingController extends Controller
         $thing_id = (int) \Yii::$app->request->get('thing_id') ;
 
 
-
-
-        $app = new AppPlaylist($thing_id);
+        $app = new AppPlaylistDef($thing_id);
 
         return $app->getPlaylist();
 

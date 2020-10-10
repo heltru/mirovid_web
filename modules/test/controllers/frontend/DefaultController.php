@@ -391,7 +391,7 @@ ex($this->table);
 
     }
 
-    public
+
     function actionTestTimeF()
     {
         return $this->render('t');

@@ -10,6 +10,7 @@ use app\modules\reklamir\models\ReklamirCommonSearch;
 use app\modules\reklamir\models\ReklamirDaytime;
 use app\modules\reklamir\models\ReklamirThing;
 use app\modules\reklamir\models\Thing;
+use app\modules\reklamir\models\ThingCat;
 use Yii;
 use app\modules\reklamir\models\Reklamir;
 use app\modules\reklamir\models\ReklamirSearch;
@@ -112,14 +113,22 @@ class DefaultController extends Controller
     public function actionCreate()
     {
         $model = new Reklamir();
+        $cat = ThingCat::findOne(['sys_name'=>ThingCat::C_TABLE_AUTO]);
+        $model->thing_cat = $cat->id;
 
 
-        if ($model->load(Yii::$app->request->post())    ) {
+        if ($model->load(Yii::$app->request->post())) {
+
+            $transaction = Yii::$app->db->beginTransaction();
+
             $app_file = new FileUpload('mirovid/files/' . Yii::$app->getModule('account')->getAccount()->id);
 
             try {
 
                 $model->save();
+                if ($model->getErrors()){
+                    throw  new \Exception(print_r($model->getErrors(),1));
+                }
 
                 $app_file->begin();
                 if ($app_file->is_add){
@@ -132,18 +141,14 @@ class DefaultController extends Controller
                 $this->preseachReklamirThing($model);
                 $this->preseachTimeAndGeo($model);
 //ex($model->file_id);
+                $transaction->commit();
 
-            }catch (\Exception $e) {
-
-                Logs::log('Reklamir actionCreate',[$e]);
-                ex($e->getMessage());
-                return null;
             } catch (\Throwable $e) {
                 ex($e->getMessage());
                 Logs::log('Reklamir actionCreate',[$e]);
-                return null;
-            }
 
+                $transaction->rollBack();
+            }
 
 
             return $this->redirect(['index', 'id' => $model->id]);
@@ -166,6 +171,8 @@ class DefaultController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $cat = ThingCat::findOne(['sys_name'=>ThingCat::C_TABLE_AUTO]);
+        $model->thing_cat = $cat->id;
 
         $model->times = implode(',',ArrayHelper::getColumn( $model->daytime_r ,'time_id')) ;
         $model->areas = implode(',',ArrayHelper::getColumn( $model->area_r ,'area_id')) ;
@@ -223,8 +230,6 @@ class DefaultController extends Controller
 
         $selected_things = ArrayHelper::getColumn(Thing::find()->where(['cat_id'=>$model->thing_cat])->all(),
             'id') ;
-
-
 
 
         if ( count($selected_things) ) {

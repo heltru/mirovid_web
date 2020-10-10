@@ -21,6 +21,8 @@ use Yii;
  * @property int $status
  * @property int $name
  * @property int $thing_cat
+ * @property int $ord
+ *
  *
  */
 class Reklamir extends \yii\db\ActiveRecord
@@ -59,7 +61,7 @@ class Reklamir extends \yii\db\ActiveRecord
     {
         return [
             [[ 'account_id','name','thing_cat'], 'required'],
-            [[ 'file_id', 'account_id', 'show', 'status','thing_cat'], 'integer'],
+            [[ 'file_id', 'account_id', 'show', 'status','thing_cat','ord'], 'integer'],
             [['uploadFile'], 'file',
                 'extensions' => 'webm, webp, png, jpg, gif, jpeg, bmp, mp4, avi, webm, mpeg, mpg, wmv, mkv, mov, MOV'],
             [['name'], 'string','max' => 255],
@@ -84,7 +86,8 @@ class Reklamir extends \yii\db\ActiveRecord
             'name' => 'Название',
             'msg' => 'Сообщение',
             'thing_cat' => 'Категория устройств',
-            'uploadFile'=>'Выбрать файл'
+            'uploadFile'=>'Выбрать файл',
+            'ord' => 'Сортировка'
 
         ];
     }

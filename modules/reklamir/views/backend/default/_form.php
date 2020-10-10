@@ -25,8 +25,11 @@ use app\modules\reklamir\models\ReklamirThing;
 
     <?= $form->errorSummary($model) ?>
 
-    <?= $form->field($model, 'thing_cat')->dropDownList(ArrayHelper::map(ThingCat::find()->where(['sys_name'=>
-        [ThingCat::C_TABLET_TAXI,ThingCat::C_TABLE_AUTO,ThingCat::C_BB]])->orderBy('ord')->all() ,'id','name') ) ?>
+    <?php /* echo $form->field($model, 'thing_cat')->dropDownList(ArrayHelper::map(ThingCat::find()->
+    where(['sys_name'=>
+        [ThingCat::C_TABLET_TAXI,ThingCat::C_TABLE_AUTO,ThingCat::C_BB]])->orderBy('ord')->all() ,'id','name') )
+ */
+ ?>
 
 
     <?= $this->render('_file',['model'=>$model,'form'=>$form]); ?>
@@ -107,6 +110,7 @@ use app\modules\reklamir\models\ReklamirThing;
 
     </div>
 
+    <?= $form->field($model, 'ord')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

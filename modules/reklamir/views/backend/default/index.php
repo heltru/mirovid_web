@@ -109,6 +109,7 @@ Yii::$app->view->params['is_admin'] = $isAdmin;
 
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}'],
+            'ord',
 /*
             [
                 'label' => 'Устройства',
