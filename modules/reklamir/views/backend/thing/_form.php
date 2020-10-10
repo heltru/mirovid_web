@@ -33,6 +33,7 @@ use app\modules\reklamir\models\Place;
     );*/
     echo $form->field($model, 'global_config_local')->textarea(['rows' => 10])->hint('--led-rgb-sequence=RBG') ?>
 
+    <?= $form->field($model, 'active')->dropDownList(\app\modules\reklamir\models\Thing::$arrTxtActive) ?>
 
 
     <div class="form-group">

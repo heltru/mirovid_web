@@ -228,7 +228,7 @@ class DefaultController extends Controller
 
     private function preseachReklamirThing($model){
 
-        $selected_things = ArrayHelper::getColumn(Thing::find()->where(['cat_id'=>$model->thing_cat])->all(),
+        $selected_things = ArrayHelper::getColumn(Thing::find()->where(['cat_id'=>$model->thing_cat,'active'=>Thing::ACTIVE_ON])->all(),
             'id') ;
 
 

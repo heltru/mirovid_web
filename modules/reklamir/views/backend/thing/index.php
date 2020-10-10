@@ -31,6 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'cat_r.name',
             'place_r.name',
             'my_ip',
+            [
+                    'attribute'=>'active',
+                'value'=>function ( \app\modules\reklamir\models\Thing $model){
+        return \app\modules\reklamir\models\Thing::$arrTxtActive[$model->active];
+                }
+]
+            ,
 
             ['class' => 'yii\grid\ActionColumn','template'=>'{update} {delete}'],
         ],
