@@ -10,7 +10,7 @@ $params = ArrayHelper::merge(
 );
 
 return [
-    'name' => 'MIR☀VID',
+    'name' => 'MIROVID',
     'basePath' => dirname(__DIR__),
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
