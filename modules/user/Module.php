@@ -36,4 +36,7 @@ class Module extends \yii\base\Module
     public function getUser(){
         return $this->user;
     }
+    public function getVkToken(){
+        return $this->user->vk_token;
+    }
 }

@@ -8,20 +8,9 @@ use yii\web\Controller;
 class ChromeController extends Controller
 {
 
-
     public function actionIndex($id=null){
         $this->layout = 'html';
-
-
-        return $this->render('viewer');
+        return $this->render('viewer_main');
     }
-
-    public function actionViewer($id=null){
-        $this->layout = 'html';
-
-
-        return $this->render('viewer11');
-    }
-
 
 }

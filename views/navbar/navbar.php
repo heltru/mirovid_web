@@ -26,7 +26,7 @@
 
         <ul class="right hide-on-med-and-down">
 
-                <li><a class="item_phone" style="font-size: 1.5em;color: black" href="<?= Yii::$app->user->isGuest ? '/signup' : '/admin' ?>">Личный кабинет</a></li>
+                <li><a class="item_phone" style="font-size: 1.5em;color: black" href="<?= '/main/default/login' /*Yii::$app->user->isGuest ? '/signup' : '/admin'*/ ?>">Личный кабинет</a></li>
                 <?php if ( Yii::$app->user->isGuest ){ ?>
                     <li><a class="item_phone" style="font-size: 1.5em;color: black" href="/signup">Регистрация</a></li>
                 <?php } ?>

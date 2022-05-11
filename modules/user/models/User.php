@@ -2,13 +2,21 @@
 
 namespace app\modules\user\models;
 
+use app\modules\app\AppModule;
+use app\modules\app\common\Common;
+use app\modules\helper\models\Helper;
 use app\modules\user\models\query\UserQuery;
 use app\modules\user\Module;
+use app\modules\VkAPI\Exception;
+use app\modules\VkAPI\VkAPI;
+use app\modules\VkAPI\VkMethod;
+use app\modules\VkAPI\VkOauth;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\web\HttpException;
 use yii\web\IdentityInterface;
 
 /**
@@ -77,7 +85,20 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => array_keys(self::getStatusesArray())],
 
-            ['phone','string','max'=>12]
+            ['phone','string','max'=>12],
+
+            ['vk_id', 'integer'],
+            ['first_name', 'string'],
+            ['last_name', 'string'],
+            ['sex', 'integer'],
+            ['domain', 'string'],
+            ['bdate', 'safe'],
+            ['city', 'string'],
+            ['country', 'string'],
+            ['vk_photo', 'string'],
+            ['vk_token', 'string'],
+
+
 
         ];
     }
@@ -307,4 +328,186 @@ class User extends ActiveRecord implements IdentityInterface
         }
         return false;
     }
+
+    static function getLoginLink($scope = null)
+    {
+        if ($scope && !is_array($scope)) $scope = [$scope];
+
+        $a = ['groups', 'offline', 'ads', 'stories'];
+        if ($scope) $a = array_merge($a, $scope);
+
+        $vk = new VkOauth(
+            AppModule::getVkAppId4auth(),
+            AppModule::getVkAppSecret4auth(),
+            AppModule::getVkAppRedirect()
+        );
+
+        return $vk->getLink($a, 'user');
+    }
+
+    public static function update2Vk($vk_user_id, $access_token = null)
+    {
+        $vk_user = self::getOriginalVkUser($vk_user_id, $access_token);
+
+
+        if (!$vk_user || !$vk_user['id'] || isset($vk_user['deactivated'])) {
+            throw new HttpException(400,'bad user');
+        }
+
+//        if (Ignores::test(1, $vk_user_id)) {
+//            throw new Core\Exception\BadRequest();
+//        }
+
+        $params = array(
+            'vk_id' => intval($vk_user['id']),
+            'first_name' => '',
+            'last_name' => '',
+            'sex' => intval(isset($vk_user['sex']) ? $vk_user['sex'] : 0),
+            'domain' => '',
+            'bdate' => '',
+            'city' => '',
+            'country' => '',
+            'vk_photo' => self::getPhoto2Vk($vk_user),
+        );
+
+        if ($access_token) $params['vk_token'] = $access_token;
+
+        if (isset($vk_user['city']['title'])) $params['city'] =  Helper::sanitizeString($vk_user['city']['title']);
+        if (isset($vk_user['bdate'])) $params['bdate'] = date("Y-m-d H:i:s", strtotime($vk_user['bdate']));
+        if (isset($vk_user['country']['title'])) $params['country'] =  Helper::sanitizeString($vk_user['country']['title']);
+        if (isset($vk_user['first_name'])) $params['first_name'] =  Helper::sanitizeString($vk_user['first_name']);
+        if (isset($vk_user['last_name'])) $params['last_name'] =  Helper::sanitizeString($vk_user['last_name']);
+        if (isset($vk_user['domain'])) $params['domain'] = Helper::sanitizeString($vk_user['domain']);
+
+        $user = User::getUser2Vk($vk_user_id);
+        if (!$user) {
+            //$params['referrer_id'] = Core\App::$referrer_id;
+
+//            $tariff = Tariff::getDefaultTariff();
+//            if ($tariff) {
+//                $params['tariff_id'] = $tariff['tariff_id'];
+//            }
+
+//            if (in_array(Core\App::$referrer_id, array(1913))) {
+//                $params['tariff_id'] = 11; // Silver+
+//            }
+
+//            $params['pay_tariff_date'] = date("Y-m-d H:i:s");
+//            $params['change_tariff_date'] = date("Y-m-d H:i:s");
+//            $params['next_pay_tariff_date'] = date("Y-m-d H:i:s", strtotime("+1 month"));
+
+
+            $model_user = self::findOne(['id'=>Yii::$app->getUser()->getId()]);// new User();
+
+            Helper::assoc_model($params,$model_user);
+            if (!$model_user->save()){
+                ex([
+                    $params,
+                    $model_user->getErrors()]);
+            }
+
+
+            $user_id = $model_user->id;
+            $user = $model_user; //self::getUser($user_id);
+
+
+//            if (!in_array(Core\App::$referrer_id, array(1913))) {
+//                MoneyFlow::referralStart($user, Core\App::$referrer_id);
+//            }
+        } /*elseif ($user['disabled']) {
+            throw new Core\Exception\BadRequest();
+        } */else {
+            Helper::assoc_model($params,$user);
+            if ($user->update(false) === false){
+                ex($user->getErrors());
+            }
+
+            //Model\Users::update($params, $user['user_id']);
+        }
+        return $user;
+    }
+
+    static function getUser2Vk($vk_id)
+    {
+        $vk_id = intval($vk_id);
+        if (!$vk_id) return false;
+
+        return self::findOne(['vk_id' => $vk_id]);
+    }
+
+    static function getPhoto2Vk($vk_user)
+    {
+        if (!$vk_user) return '';
+        if (!$vk_user['has_photo']) return '';
+        if (!isset($vk_user['photo_50'])) return '';
+
+        return Helper::sanitizeURL($vk_user['photo_50']);
+    }
+
+    static $max_id = 2000000000;
+
+    static function getOriginalVkUser($vk_user_id, $access_token = null)
+    {
+        $vk_user_id = intval($vk_user_id);
+        if ($vk_user_id < 1 || $vk_user_id >= self::$max_id) return null;
+
+        $vk_users = self::getOriginalVkUsers($vk_user_id, $access_token);
+        if (count($vk_users) < 1) return false;
+        return array_shift($vk_users);
+    }
+    static $fields = array('city', 'country', 'has_photo', 'photo_50', 'photo_100', 'photo_200', 'photo_max_orig', 'domain', 'bdate', 'sex', 'relation');
+    static function getOriginalVkUsers($vk_user_ids, $access_token = null)
+    {
+        $vk_users = array();
+        $vk = new VkMethod();
+
+        try {
+            $vk->setToken(Common::getToken($access_token));
+            $vk_users = $vk->getUsers($vk_user_ids, self::$fields);
+        } catch ( Exception  $e) {
+            if ($vk->error) {
+                if (in_array($vk->error['error_code'], array(
+                    VkAPI::ACCESS_DENIED, VkAPI::WRONG_TOKEN))) {
+                    $vk->setToken(AppModule::getVkAppTech4user());
+                    $vk_users = $vk->getUsers($vk_user_ids, self::$fields);
+                }
+            }
+        }
+
+        if (!$vk_users) return array();
+        return self::formatOriginalVkUsers($vk_users);
+    }
+
+    private static function formatOriginalVkUsers($vk_users)
+    {
+        if (is_array($vk_users) && $vk_users) {
+            foreach ($vk_users as $key => $vk_user) {
+                if (!isset($vk_user['id'])) $vk_users[$key]['id'] = 0;
+                if (!isset($vk_user['first_name'])) $vk_users[$key]['first_name'] = '';
+                if (!isset($vk_user['last_name'])) $vk_users[$key]['last_name'] = '';
+                if (!isset($vk_user['photo_200'])) $vk_users[$key]['photo_200'] = '';
+                if (!isset($vk_user['sex'])) $vk_users[$key]['sex'] = 0;
+                if (!isset($vk_user['relation'])) $vk_users[$key]['relation'] = 0;
+                if (!isset($vk_user['domain'])) $vk_users[$key]['domain'] = '';
+                if (!isset($vk_user['has_photo'])) $vk_users[$key]['has_photo'] = '';
+                if (!isset($vk_user['photo_50'])) $vk_users[$key]['photo_50'] = '';
+                if (!isset($vk_user['photo_100'])) $vk_users[$key]['photo_100'] = '';
+                if (!isset($vk_user['photo_200'])) $vk_users[$key]['photo_200'] = '';
+
+                if (isset($vk_user['bdate'])) {
+                    $e = explode(".", $vk_user['bdate']);
+                    $vk_users[$key]['bdate'] = sprintf("%04d-%02d-%02d", (isset($e[2]) ? $e[2] : 1970), (isset($e[1]) ? $e[1] : 1), (isset($e[0]) ? $e[0] : 1));
+                } else {
+                    $vk_users[$key]['bdate'] = null;
+                }
+
+                if (!isset($vk_user['photo_max_orig'])) $vk_users[$key]['photo_max_orig'] = '';
+                if (!isset($vk_user['city'])) $vk_users[$key]['city'] = array('title' => '', 'id' => 0);
+                if (!isset($vk_user['country'])) $vk_users[$key]['country'] = array('title' => '', 'id' => 0);
+            }
+        }
+        return $vk_users;
+    }
+
+
 }

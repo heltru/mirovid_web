@@ -38,25 +38,26 @@ class AppPlaylistDef
     {
 
         $all = Reklamir::find()->
-        joinWith(['file_r', 'area_r'])->
+       // joinWith(['file_r', 'area_r'])->
         innerJoin('reklamir_thing','reklamir_thing.reklamir_id=reklamir.id AND reklamir_thing.thing_id = :thing_id',
             ['thing_id' => $this->thing_id])->
         where([ 'status' => Reklamir::ST_ON])->
-            orderBy('ord')->
+            orderBy('id')->
         all();
 
         foreach ($all as $item) {
-            if (!is_object($item->file_r)) {
-                continue;
-            }
+//            if (!is_object($item->file_r)) {
+//                continue;
+//            }
 
 
             $this->playlist['reklamir'][$item->id] =
                 [
                     'reklamir_id' => $item->id,
-                    'file' => str_replace('mirovid/files/', '', $item->file_r->path),
-                    'area' => ArrayHelper::getColumn($item->area_r, 'area_id'),
-                    'daytime' => ArrayHelper::getColumn($item->daytime_r, 'time_id')
+                    'file' => str_replace('mirovid/files/', '', $item->file),
+                    'type'=>  $item->type
+//                    'area' => ArrayHelper::getColumn($item->area_r, 'area_id'),
+//                    'daytime' => ArrayHelper::getColumn($item->daytime_r, 'time_id')
                 ];
             $this->playlist['broadcast'][] =  $item->id;
         }

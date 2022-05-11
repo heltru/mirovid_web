@@ -12,4 +12,7 @@ class Module extends \yii\base\Module
     {
         return Yii::t('modules/main/' . $category, $message, $params, $language);
     }
+
+
+
 }

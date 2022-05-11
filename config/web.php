@@ -94,6 +94,11 @@ $config = [
 
             ]
         ],
+//        'preview' => [
+//            'class' => 'app\modules\preview\PreviewModule',
+//            'controllerNamespace' => 'app\modules\preview\controllers\frontend',
+//            'viewPath' => '@app/modules/preview/views/frontend',
+//        ],
         'preview' => [
             'class' => 'app\modules\preview\PreviewModule',
             'controllerNamespace' => 'app\modules\preview\controllers\frontend',

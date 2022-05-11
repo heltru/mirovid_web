@@ -3,21 +3,13 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use app\modules\reklamir\models\Thing;
 use app\modules\reklamir\models\Reklamir;
 use app\modules\helper\models\Helper;
-
-use app\modules\reklamir\models\ThingCat;
-use app\modules\reklamir\models\ReklamirThing;
-
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\reklamir\models\Reklamir */
 /* @var $form yii\widgets\ActiveForm */
-
-
 ?>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=68531ae1-9ce3-44cf-95f9-a2a922bf7358" type="text/javascript"></script>
 
 <div class="reklamir-form">
 
@@ -25,92 +17,77 @@ use app\modules\reklamir\models\ReklamirThing;
 
     <?= $form->errorSummary($model) ?>
 
-    <?php /* echo $form->field($model, 'thing_cat')->dropDownList(ArrayHelper::map(ThingCat::find()->
-    where(['sys_name'=>
-        [ThingCat::C_TABLET_TAXI,ThingCat::C_TABLE_AUTO,ThingCat::C_BB]])->orderBy('ord')->all() ,'id','name') )
- */
- ?>
-
-
-    <?= $this->render('_file',['model'=>$model,'form'=>$form]); ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-
-    <?= $form->field($model, 'account_id')->hiddenInput(['value'=>Yii::$app->getModule('account')->getAccount()->id])->label(false) ?>
+    <?= $form->field($model, 'account_id')->hiddenInput(['value' => Yii::$app->getModule('account')->getAccount()->id])->label(false) ?>
 
 
     <?php
-     if (! $model->isNewRecord){
-        echo Html::hiddenInput('reklamir_id',$model->id,[ 'id' =>'reklamir_id']);
-     }
+    if (!$model->isNewRecord) {
+        echo Html::hiddenInput('reklamir_id', $model->id, ['id' => 'reklamir_id']);
+    }
     ?>
 
     <?php
 
-    if (Helper::getIsAdmin(Yii::$app->user->id)){
-        echo $form->field($model, 'status')->dropDownList(Reklamir::$arrTxtStatus);
+    if (Helper::getIsAdmin(Yii::$app->user->id)) {
+        //echo $form->field($model, 'status')->dropDownList(Reklamir::$arrTxtStatus);
     } else {
-        if ($model->isNewRecord){
-            $model->status = Reklamir::ST_OFF;
-        } else {
-            echo $form->field($model, 'status')->dropDownList([ Reklamir::ST_ON => 'Идут показы', Reklamir::ST_OFF =>'Выключено']);
-        }
-
+//        if ($model->isNewRecord) {
+//            $model->status = Reklamir::ST_OFF;
+//        } else {
+//            echo $form->field($model, 'status')->dropDownList([Reklamir::ST_ON => 'Идут показы', Reklamir::ST_OFF => 'Выключено']);
+//        }
     }
 
     ?>
-
-
+    <p>Выберите источник</p>
 
     <div class="box-group" id="accordion">
-
-
-        <div class="panel box box-primary">
+        <div class="panel box box-primary" style="margin-bottom: 0">
             <div class="box-header with-border">
                 <h4 class="box-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTime" class="collapsed" aria-expanded="false">
-                        Настроки времени
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseVK" class="collapsed"
+                       aria-expanded="true">
+                        ВКонтакте
                     </a>
                 </h4>
             </div>
-            <div id="collapseTime" class="panel-collapse collapse" aria-expanded="false" >
+            <div id="collapseVK" class="panel-collapse collapse in" aria-expanded="true">
                 <div class="box-body">
 
                     <?php
+                    echo Html::dropDownList('vk_type', null, ['wall' => 'Моя Стена'], ['prompt' => 'Выберите тип', 'class' => 'form-control']);
+                    ?>
+                    <div data-role="vk_content">
 
-                     echo  $this->render('_mem_update_time',
-                         ['model'=>$model,'form'=>$form, 
-                         ]);
-                    /* echo  $this->render('_bid_time',
-                        ['model'=>$model,'form'=>$form, 'bid_hour' => $bid_hour,
-                          ]);*/ ?>
-
+                    </div>
 
                 </div>
             </div>
         </div>
-
-
-        <div class="panel box box-success">
+        <div class="panel box box-success" style="margin-bottom: 0">
             <div class="box-header with-border">
                 <h4 class="box-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseArea"   aria-expanded="false">
-                        Настроки районов
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFile" class="collapsed"
+                       aria-expanded="false">
+                        Файл
                     </a>
                 </h4>
             </div>
-            <div id="collapseArea" class="panel-collapse collapse" aria-expanded="false" >
+            <div id="collapseFile" class="panel-collapse collapse" aria-expanded="false">
                 <div class="box-body">
-                    <?php  echo $this->render('_mem_update_locale',['model'=>$model,'form'=>$form]); ?>
+                    <?php
+                    echo $this->render('_file', ['model' => $model, 'form' => $form]);
+                    ?>
+                    <div data-role="file_content">
+                    </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 
-    <?= $form->field($model, 'ord')->textInput(['maxlength' => true]) ?>
+    <div data-role="preview">
+
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
@@ -120,15 +97,75 @@ use app\modules\reklamir\models\ReklamirThing;
 
 </div>
 <script>
-    $(document).ready(function ( ) {
-        $('body').on('change','#reklamir-uploadfile', function (e) {
-            
-            if ( ! $('#reklamir-name').val()){
-                $('#reklamir-name').val(
-                    e.target.files[0].name
-                );
+    $(document).ready(function () {
 
+        class Add {
+            constructor(el) {
+                console.log('test');
+                this.form = el.find('#w0');
+                this.vk_type = this.form.find('select[name="vk_type"]');
+                this.vk_content = this.form.find('[data-role="vk_content"]');
+                this.preview = this.form.find('div[data-role="preview"]');
+                this.file = this.form.find('#reklamir-uploadfile');
+
+                this.content = {
+                    wall:{}
+                };
+
+                this.file.change( (e) => {
+                    this.preview.html('');
+                });
+
+                this.vk_content.on('click','[data-role="btn_add"]', (e) => {
+                    let index = $(e.currentTarget).attr('data-index');
+                    let type = $(e.currentTarget).attr('data-type');
+                    if (type === 'wall'){
+                        let content =  this.content[type][index];
+                        if (content.type === 'img'){
+                            let html = '<img src="'+content.img+'">';
+                            html += '<input type="hidden" name="type" value="'+content.type+'">';
+                            html += '<input type="hidden" name="img_download" value="'+content.img_download+'">';
+                            this.preview.html(html);
+                            $([document.documentElement, document.body]).animate({
+                                scrollTop: this.preview.offset().top
+                            },500);
+                        }
+                    }
+                });
+
+                this.vk_type.change((e) => {
+                    let type = $(e.currentTarget).val();
+                    if (type === 'wall') {
+                        $.ajax({
+                            type: "POST",
+                            url: "/admin/reklamir/default/vk-load",
+                            data: {_csrfbe: yii.getCsrfToken(),type:type},
+                            success:  (data) => {
+                                if (data.success){
+                                    this.content[type] = {};
+                                    let html = '';
+                                    let i = 0;
+                                    for(let item of data.items){
+                                        this.content[type][i] = item;
+                                        html +='<div data-index="'+i+'">';
+                                        html += '<img src="'+item.img+'">';
+                                        html +='<a style="display: block;" data-index="'+i+'" data-type="wall" data-role="btn_add">Использовать</a>';
+                                        html +='</div>';
+                                        i++;
+                                    }
+                                    this.vk_content.html(html);
+                                    this.file.val('');
+
+                                }
+                            }
+                        });
+                    }
+                });
             }
-        } );
+
+
+        }
+
+        let add = new Add($('.reklamir-create'));
     });
 </script>

@@ -79,7 +79,7 @@
     const emitter = new EventEmitter();
 
 
-    const thing_id = "<?=Yii::$app->request->get('id') ? Yii::$app->request->get('id') : 15?>";
+    const thing_id = "<?=Yii::$app->request->get('id') ? Yii::$app->request->get('id') : 16?>";
     const host = '<?=Yii::$app->request->hostInfo?>';
     var fs = null;
     const dir_web = 'mirovid';

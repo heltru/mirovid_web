@@ -27,6 +27,29 @@ use yii\helpers\Html;
 
         <?php $this->head() ?>
 
+        <style>
+            html, body {
+                margin: 0;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            img {
+                min-height: 80%;
+                min-width: 100%;
+                height: auto;
+                width: auto;
+                position: absolute;
+                top: -100%;
+                bottom: -100%;
+                left: -100%;
+                right: -100%;
+                margin: auto;
+            }
+
+
+
+        </style>
     </head>
     <body>
 

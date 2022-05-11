@@ -2,8 +2,10 @@
 
 namespace app\modules\reklamir\controllers\backend;
 
+use app\modules\app\AppModule;
 use app\modules\app\fileupload\FileUpload;
 use app\modules\bid\models\Bid;
+use app\modules\helper\models\Helper;
 use app\modules\helper\models\Logs;
 use app\modules\reklamir\models\ReklamirArea;
 use app\modules\reklamir\models\ReklamirCommonSearch;
@@ -11,9 +13,13 @@ use app\modules\reklamir\models\ReklamirDaytime;
 use app\modules\reklamir\models\ReklamirThing;
 use app\modules\reklamir\models\Thing;
 use app\modules\reklamir\models\ThingCat;
+use app\modules\VkAPI\Exception;
+use app\modules\VkAPI\VkAPI;
+use app\modules\VkAPI\VkMethod;
 use Yii;
 use app\modules\reklamir\models\Reklamir;
 use app\modules\reklamir\models\ReklamirSearch;
+use yii\base\BaseObject;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -111,6 +117,109 @@ class DefaultController extends Controller
      * @return mixed
      */
     public function actionCreate()
+    {
+        $model = new Reklamir();
+        $cat = ThingCat::findOne(['sys_name'=>ThingCat::C_TABLE_AUTO]);
+        $model->thing_cat = $cat->id;
+        $model->ord = count(Reklamir::findAll(['account_id'=>Yii::$app->getModule('account')->getAccount()->id]))+1;
+        $model->name = '1';
+        $model->show = 0;
+        $model->status = 0;
+        $model->account_id = Yii::$app->getModule('account')->getAccount()->id;
+
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $transaction = Yii::$app->db->beginTransaction();
+
+            //$app_file = new FileUpload('mirovid/files/' . Yii::$app->getModule('account')->getAccount()->id);
+
+            try {
+
+//                ex([
+//                    $_REQUEST,
+//                    $_FILES
+//                ]);
+
+                $params = [
+                    'type'=> isset($_REQUEST['type']) ? $_REQUEST['type'] : null,
+                    'img_download'=> isset($_REQUEST['img_download']) ? $_REQUEST['img_download'] : null,
+                    'file'=> !empty($_FILES['Reklamir']) && !empty($_FILES['Reklamir']['tmp_name'])
+                            && !empty($_FILES['Reklamir']['tmp_name']['uploadFile'])
+                        ? $_FILES['Reklamir'] : null,
+                ];
+
+
+                if ($params['file']){
+                    file_put_contents(
+                        'mirovid/files/'.$model->account_id.'/' . time() . $params['file']['name']['uploadFile'],
+                        file_get_contents($params['file']['tmp_name']['uploadFile'] ));
+                    $file = 'mirovid/files/'.$model->account_id.'/' . time() . $params['file']['name']['uploadFile'];
+                    $model->type = 'img';
+                    $model->file = $file;
+                } else {
+                    if($params['img_download']){
+                        $c =  file_get_contents( $params['img_download'] );
+                        $file_info = new \finfo(FILEINFO_MIME_TYPE);
+                        $mime_type = $file_info->buffer($c);
+                        if (Helper::mime2ext($mime_type)){
+                            $file = 'mirovid/files/'.$model->account_id.'/' . time() . '.' .
+                                Helper::mime2ext($mime_type);
+                            file_put_contents(
+                                $file,
+                                file_get_contents( $params['img_download'] )
+                            );
+                            $model->type = 'img';
+                            $model->file = $file;
+                        }
+
+
+                    }
+
+
+                }
+
+                $model->save();
+
+                if ($model->getErrors()){
+                    ex(
+                        $model->getErrors()
+                    );
+                    throw  new \Exception(print_r($model->getErrors(),1));
+                }
+
+                //$app_file->begin();
+//                if ($app_file->is_add){
+//                    $file = $app_file->getFileModel();
+//                    //$app_file->create_preview();
+//                }
+
+               // $model->file_id = $file->id;
+                $model->update(false,['file_id']);
+                $this->preseachReklamirThing($model);
+                $this->preseachTimeAndGeo($model);
+//ex($model->file_id);
+                $transaction->commit();
+
+            } catch (\Throwable $e) {
+                ex($e->getMessage());
+                Logs::log('Reklamir actionCreate',[$e]);
+
+                $transaction->rollBack();
+            }
+
+
+            return $this->redirect(['index', 'id' => $model->id]);
+
+
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionCreate1()
     {
         $model = new Reklamir();
         $cat = ThingCat::findOne(['sys_name'=>ThingCat::C_TABLE_AUTO]);
@@ -557,5 +666,82 @@ class DefaultController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionVkLoad(){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $response['success'] = true;
+
+        try {
+            $params = [
+                'type' => !empty($_REQUEST['type']) ? $_REQUEST['type'] : null
+            ];
+            if (!$params['type']){
+                throw new \Exception('empty type');
+            }
+
+            switch ($_REQUEST['type']){
+                case 'wall':
+                    $vk = new VkMethod();
+
+                    //  $vk->setGroup(30109290);
+
+                    $vk->setToken(\app\modules\app\common\Common::getToken());
+
+                    try {
+
+                        $wall = $vk->getWall( AppModule::getUserVkId());
+                        $walls = [];
+                        if ($wall['count']) {
+                            foreach ($wall['items'] as $item) {
+                                if (isset($item['attachments'])) {
+                                    $img = null;
+                                    foreach ($item['attachments'] as $attachment){
+
+                                        if ($attachment['type'] === 'photo'){
+                                            foreach ($attachment['photo']['sizes'] as $size){
+                                                if ($size['type'] === 'm'){
+                                                    $img = $size['url'];
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if($img){
+                                        $walls[] = [
+                                            'id' => $item['id'],
+                                            'img' => $img,
+                                            'img_download' => $img,
+                                            'type'=>'img'
+                                        ];
+                                    }
+
+                                }
+                            }
+                        }
+                        $response['items'] = $walls;
+
+
+                    } catch ( Exception $e) {
+                        ex($e->getMessage());
+                        if ($vk->error) {
+                            if (in_array($vk->error['error_code'], array(VkAPI::ACCESS_DENIED, VkAPI::WRONG_TOKEN))) {
+                                // $vk->setToken( AppModule::getVkAppTech4user());
+                                ex($vk->error['error_code']);
+                                //$vk_users = $vk->getUsers($vk_user_ids, self::$fields);
+                            }
+                        }
+                    }
+                    break;
+            }
+
+        } catch (\Throwable $e){
+            $response['success'] = false;
+            $response['message'] = $e->getMessage();
+        }
+
+
+        return $response;
+
+
     }
 }
