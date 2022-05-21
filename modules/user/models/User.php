@@ -2,8 +2,11 @@
 
 namespace app\modules\user\models;
 
+use app\modules\app\app\AddNewUser;
+use app\modules\app\app\AppNovaVidAdminClient;
 use app\modules\app\AppModule;
 use app\modules\app\common\Common;
+use app\modules\helper\components\Transliteration;
 use app\modules\helper\models\Helper;
 use app\modules\user\models\query\UserQuery;
 use app\modules\user\Module;
@@ -12,10 +15,12 @@ use app\modules\VkAPI\VkAPI;
 use app\modules\VkAPI\VkMethod;
 use app\modules\VkAPI\VkOauth;
 use Yii;
+use yii\base\BaseObject;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Inflector;
 use yii\web\HttpException;
 use yii\web\IdentityInterface;
 
@@ -380,6 +385,7 @@ class User extends ActiveRecord implements IdentityInterface
         if (isset($vk_user['domain'])) $params['domain'] = Helper::sanitizeString($vk_user['domain']);
 
         $user = User::getUser2Vk($vk_user_id);
+
         if (!$user) {
             //$params['referrer_id'] = Core\App::$referrer_id;
 
@@ -396,19 +402,48 @@ class User extends ActiveRecord implements IdentityInterface
 //            $params['change_tariff_date'] = date("Y-m-d H:i:s");
 //            $params['next_pay_tariff_date'] = date("Y-m-d H:i:s", strtotime("+1 month"));
 
+            $user = new User();
+            $translator = new Transliteration();
+            $translator->standard = Transliteration::GOST_779B;
 
-            $model_user = self::findOne(['id'=>Yii::$app->getUser()->getId()]);// new User();
+            $first_name = $translator->transliterate( $params['first_name']);
+            $last_name = $translator->transliterate( $params['last_name']);
+            $params['username'] =  $first_name  . '-' . $last_name;
+            $params['email'] = Yii::$app->security->generateRandomString(6).
+                '@yandex.com';
 
-            Helper::assoc_model($params,$model_user);
-            if (!$model_user->save()){
-                ex([
-                    $params,
-                    $model_user->getErrors()]);
+
+            $params['status'] = 10;
+//            $params['email'] = '';
+//            $params['email'] = '';
+//            $params['email'] = '';
+//            $params['email'] = '';
+            try {
+                Helper::assoc_model($params,$user);
+            } catch (\Exception $e){
+                ex($e->getMessage());
             }
 
 
-            $user_id = $model_user->id;
-            $user = $model_user; //self::getUser($user_id);
+
+            //$model_user = self::findOne(['id'=>Yii::$app->getUser()->getId()]);// new User();
+            //Helper::assoc_model($params,$model_user);
+
+            if (!$user->save()){
+                ex([
+                    $params,
+                    $user->getErrors()]);
+            } else {
+                $app = new  AddNewUser();
+
+                if (  ! $app->addNewUser1($user)) {
+                    ex('err addNewUser');
+                }
+            }
+
+
+            $user_id = $user->id;
+           // $user = $model_user; //self::getUser($user_id);
 
 
 //            if (!in_array(Core\App::$referrer_id, array(1913))) {

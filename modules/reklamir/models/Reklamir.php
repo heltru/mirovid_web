@@ -61,11 +61,11 @@ class Reklamir extends \yii\db\ActiveRecord
     {
         return [
             [[ 'account_id','name','thing_cat'], 'required'],
-            [[ 'file_id', 'account_id', 'show', 'status','thing_cat','ord'], 'integer'],
+            [[ 'file_id', 'account_id', 'show', 'status','thing_cat','ord','thing_id','place_id'], 'integer'],
             [['uploadFile'], 'file',
                 'extensions' => 'webm, webp, png, jpg, gif, jpeg, bmp, mp4, avi, webm, mpeg, mpg, wmv, mkv, mov, MOV'],
             [['name'], 'string','max' => 255],
-            [['msg','file','vk_file','vk_type','type'], 'string','max' => 9000],
+            [['msg','file'], 'string','max' => 9000],
             [['times','areas'], 'safe'],
 
         ];
@@ -85,9 +85,10 @@ class Reklamir extends \yii\db\ActiveRecord
             'status' => 'Статус',
             'name' => 'Название',
             'msg' => 'Сообщение',
-            'thing_cat' => 'Категория устройств',
+            'thing_cat' => 'Категория устройства',
             'uploadFile'=>'Выбрать файл',
-            'ord' => 'Сортировка'
+            'ord' => 'Сортировка',
+            'place_id' => 'Место'
 
         ];
     }

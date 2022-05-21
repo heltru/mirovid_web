@@ -120,7 +120,7 @@ class DefaultController extends Controller
     {
         $model = new Reklamir();
         $cat = ThingCat::findOne(['sys_name'=>ThingCat::C_TABLE_AUTO]);
-        $model->thing_cat = $cat->id;
+      //  $model->thing_cat = $cat->id;
         $model->ord = count(Reklamir::findAll(['account_id'=>Yii::$app->getModule('account')->getAccount()->id]))+1;
         $model->name = '1';
         $model->show = 0;
@@ -151,9 +151,17 @@ class DefaultController extends Controller
 
 
                 if ($params['file']){
-                    file_put_contents(
-                        'mirovid/files/'.$model->account_id.'/' . time() . $params['file']['name']['uploadFile'],
-                        file_get_contents($params['file']['tmp_name']['uploadFile'] ));
+
+                    if(!empty($_POST['img_crop'])){
+                        file_put_contents(
+                            'mirovid/files/'.$model->account_id.'/' . time() . $params['file']['name']['uploadFile'],
+                            file_get_contents($_POST['img_crop']));
+                    } else {
+                        file_put_contents(
+                            'mirovid/files/'.$model->account_id.'/' . time() . $params['file']['name']['uploadFile'],
+                            file_get_contents($params['file']['tmp_name']['uploadFile'] ));
+                    }
+
                     $file = 'mirovid/files/'.$model->account_id.'/' . time() . $params['file']['name']['uploadFile'];
                     $model->type = 'img';
                     $model->file = $file;
@@ -197,7 +205,7 @@ class DefaultController extends Controller
                // $model->file_id = $file->id;
                 $model->update(false,['file_id']);
                 $this->preseachReklamirThing($model);
-                $this->preseachTimeAndGeo($model);
+             //  $this->preseachTimeAndGeo($model);
 //ex($model->file_id);
                 $transaction->commit();
 
@@ -338,7 +346,11 @@ class DefaultController extends Controller
 
     private function preseachReklamirThing($model){
 
-        $selected_things = ArrayHelper::getColumn(Thing::find()->where(['cat_id'=>$model->thing_cat,'active'=>Thing::ACTIVE_ON])->all(),
+        $selected_things = ArrayHelper::getColumn(
+            Thing::find()->where([
+                //'cat_id'=>$model->thing_cat,'active'=>Thing::ACTIVE_ON,
+                'id'=>$model->thing_id,
+            ])->all(),
             'id') ;
 
 
@@ -692,6 +704,7 @@ class DefaultController extends Controller
 
                         $wall = $vk->getWall( AppModule::getUserVkId());
                         $walls = [];
+//                        ex($wall);
                         if ($wall['count']) {
                             foreach ($wall['items'] as $item) {
                                 if (isset($item['attachments'])) {
@@ -699,11 +712,20 @@ class DefaultController extends Controller
                                     foreach ($item['attachments'] as $attachment){
 
                                         if ($attachment['type'] === 'photo'){
+                                            $max = 0;
                                             foreach ($attachment['photo']['sizes'] as $size){
-                                                if ($size['type'] === 'm'){
+                                                if ($size['width']> $max){
+                                                    $max = $size['width'];
                                                     $img = $size['url'];
                                                 }
                                             }
+
+//                                            foreach ($attachment['photo']['sizes'] as $size){
+//                                                if ($size['type'] === 'm'){
+//                                                    $img = $size['url'];
+//                                                }
+//                                            }
+
                                         }
                                     }
                                     if($img){

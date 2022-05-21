@@ -32,15 +32,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute'=>'file_id',
                     'format'=>'raw',
                     'value'=>function ($data){
-
-                        $pathinfo = pathinfo($data->file_r->path);
-                        $ext = $pathinfo['extension'];
-
-                        if (in_array($ext,['png','jpg','jpeg','gif','bmp'])){
-                            return ($data->file_r->path) ? Html::img( '/'.$data->file_r->path,['width'=>'150px']) : $data->file_r->name;
-                        } else {
-                            return (   $data->file_r->path_preview) ? Html::img('/'.$data->file_r->path_preview,['width'=>'150px']) : $data->file_r->name;
+                        if ($data->type === 'img'){
+                            return
+                                Html::img('/' . $data->file, ['width' => '150px']);
                         }
+
+
+//                        $pathinfo = pathinfo($data->file_r->path);
+//                        $ext = $pathinfo['extension'];
+//
+//                        if (in_array($ext,['png','jpg','jpeg','gif','bmp'])){
+//                            return ($data->file_r->path) ? Html::img( '/'.$data->file_r->path,['width'=>'150px']) : $data->file_r->name;
+//                        } else {
+//                            return (   $data->file_r->path_preview) ? Html::img('/'.$data->file_r->path_preview,['width'=>'150px']) : $data->file_r->name;
+//                        }
 
                     }
 ]

@@ -39,7 +39,8 @@ class AppPlaylistDef
 
         $all = Reklamir::find()->
        // joinWith(['file_r', 'area_r'])->
-        innerJoin('reklamir_thing','reklamir_thing.reklamir_id=reklamir.id AND reklamir_thing.thing_id = :thing_id',
+        innerJoin('reklamir_thing',
+            'reklamir_thing.reklamir_id=reklamir.id AND reklamir_thing.thing_id = :thing_id',
             ['thing_id' => $this->thing_id])->
         where([ 'status' => Reklamir::ST_ON])->
             orderBy('id')->

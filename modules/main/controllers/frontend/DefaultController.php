@@ -203,6 +203,7 @@ class DefaultController extends Controller
     public function actionIndex()
     {
 
+
         $title = 'Заказать рекламу Mirovid LED  в Кирове';
         $descr = 'Живые объявления в Кирове. Динамичный стиль. Заметно тысячам человек. Ночью и Днем светит LED огонь Вашей идеи!';
         $key = 'Объвяление, Реклама, авто, сообщения, новости, led, Киров';
@@ -224,6 +225,35 @@ class DefaultController extends Controller
         $this->view->registerJsFile('/js/common.js');
 
         $this->layout = 'landing';
+        return $this->render('landing/main');
+    }
+
+
+    public function actionIndex1()
+    {
+
+        $title = 'Заказать рекламу Mirovid LED  в Кирове';
+        $descr = 'Живые объявления в Кирове. Динамичный стиль. Заметно тысячам человек. Ночью и Днем светит LED огонь Вашей идеи!';
+        $key = 'Объвяление, Реклама, авто, сообщения, новости, led, Киров';
+        $this->view->title =$title;
+        $this->view->registerMetaTag([ 'name' => 'description', 'content' =>$descr]);
+        $this->view->registerMetaTag([ 'name' => 'keywords', 'content' => $key]);
+        $this->view->registerMetaTag([ 'property' => 'og:type', 'content' =>  'product.group']);
+        $this->view->registerMetaTag([ 'property' => 'og:locale', 'content' =>  'ru_RU']);
+        $this->view->registerMetaTag([ 'property' => 'og:description', 'content' => $descr]);
+        $this->view->registerMetaTag([ 'property' => 'og:title', 'content' =>  $title]);
+        $this->view->registerMetaTag([ 'property' => 'og:url', 'content' => \Yii::$app->request->hostInfo  ]);
+        $this->view->registerMetaTag(['property' => 'og:image',
+            'content' => \Yii::$app->request->hostInfo .'']);
+
+        $this->view->registerCssFile('/themes/one/css/style.css');
+
+        $this->view->registerCssFile('/themes/one/css/index-css.css');
+
+        $this->view->registerJsFile('/js/common.js');
+
+        $this->layout = 'landing';
+
         return $this->render('landing/main');
     }
 

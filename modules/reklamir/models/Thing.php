@@ -42,7 +42,7 @@ class Thing extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cat_id','place_id','active'], 'integer'],
+            [['cat_id','place_id','active','width','height'], 'integer'],
             [['my_ip'], 'string', 'max' => 45],
             [['name'], 'string', 'max' => 255],
             [['global_config_local'], 'string', 'max' => 1024],
@@ -67,8 +67,9 @@ class Thing extends \yii\db\ActiveRecord
             'cat_id' => 'Категория устройства',
             'place_id' => 'Место',
             'global_config_local' => 'Локальный конфиг',
-            'active' => 'Активен'
-
+            'active' => 'Активен',
+            'width' => 'Ширина (пикселей)',
+            'height' => 'Высота (пикселей)',
 
         ];
     }

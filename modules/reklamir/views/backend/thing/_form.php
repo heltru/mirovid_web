@@ -21,6 +21,8 @@ use app\modules\reklamir\models\Place;
 
     <?= $form->field($model, 'place_id')->dropDownList(ArrayHelper::map( Place::find()->all(),'id','name')) ?>
 
+    <?= $form->field($model, 'width')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'height')->textInput(['maxlength' => true]) ?>
 
     <?php
     /*

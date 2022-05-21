@@ -72,7 +72,7 @@ Yii::$app->view->params['is_admin'] = $isAdmin;
             'show',
 
             [
-                'attribute' => 'thing_cat',
+                'label' => 'Устройство',
                 'format' => 'raw',
 
                 'value' => function ($model) {
@@ -82,8 +82,11 @@ Yii::$app->view->params['is_admin'] = $isAdmin;
                     if ( Yii::$app->view->params['is_admin']){
                        $str = '';
                        foreach ( ReklamirThing::find()->where(['reklamir_id'=>$model->id])->all() as $item ){
-                           $str  .= '<p>'.$item->thing_r->name . ' ' . $item->thing_r->place_r->name . Html::a('<span class="glyphicon glyphicon-trash"></span>',null,
-                                   ['class'=>'thing_remove','data-id'=>$item->id]) . '</p>';
+                           $str  .= '<p>'.$item->thing_r->name . ' ' . $item->thing_r->place_r->name
+
+//                               . Html::a('<span class="glyphicon glyphicon-trash"></span>',null,
+//                                   ['class'=>'thing_remove','data-id'=>$item->id])
+                               . '</p>';
                        }
                        return $str;
                     }
@@ -113,7 +116,7 @@ Yii::$app->view->params['is_admin'] = $isAdmin;
             ],
 
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{delete}'],
             'ord',
 /*
             [
