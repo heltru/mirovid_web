@@ -27,13 +27,13 @@
             this.host = this.viewer.attr('data-host');
 
             this.item = null;
-            //
-            // navigator.webkitPersistentStorage.requestQuota(1024 * 1024 * 300, () => {
-            //     window.webkitRequestFileSystem(window.PERSISTENT, 1024 * 1024 * 300, (a) => {
-            //         this.fs.fs = a;
-            //         this.load();
-            //     }, this.errorHandler);
-            // }, this.errorHandler);
+
+            navigator.webkitPersistentStorage.requestQuota(1024 * 1024 * 300, () => {
+                window.webkitRequestFileSystem(window.PERSISTENT, 1024 * 1024 * 300, (a) => {
+                    this.fs.fs = a;
+                    this.load();
+                }, this.errorHandler);
+            }, this.errorHandler);
             this.load();
 
         }
