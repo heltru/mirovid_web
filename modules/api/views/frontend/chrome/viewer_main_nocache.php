@@ -19,7 +19,7 @@
             this.video_view = new VideoView(this);
             this.playlist_new = [];
             this.playlist_old = [];
-            this.time_delay = 1000;//1000 * 60 * 1;
+            this.time_delay = 3000;//1000 * 60 * 1;
 
             this.viewer = $('#viewer');
 
@@ -28,12 +28,13 @@
 
             this.item = null;
 
-            navigator.webkitPersistentStorage.requestQuota(1024 * 1024 * 300, () => {
-                window.webkitRequestFileSystem(window.PERSISTENT, 1024 * 1024 * 300, (a) => {
-                    this.fs.fs = a;
-                    this.load();
-                }, this.errorHandler);
-            }, this.errorHandler);
+            // navigator.webkitPersistentStorage.requestQuota(1024 * 1024 * 300, () => {
+            //     window.webkitRequestFileSystem(window.PERSISTENT, 1024 * 1024 * 300, (a) => {
+            //         this.fs.fs = a;
+            //         this.load();
+            //     }, this.errorHandler);
+            // }, this.errorHandler);
+            this.load();
 
         }
 
@@ -45,7 +46,9 @@
                 if (playlist_new.reklamir.hasOwnProperty(reklamir_id)) {
                     this.item = playlist_new.reklamir[reklamir_id];
 
-                    let file = this.fs.dir_web + '/' + this.fs.dir_files + '/' + this.item.file;
+                    //let file = this.fs.dir_web + '/' + this.fs.dir_files + '/' + this.item.file;
+                    let file =  '/mirovid/files/'+ this.item.file; //this.fs.dir_web + '/' + this.fs.dir_files + '/' + this.item.file;
+
                     let type = this.item.type;
 
                     console.log('.loop',file, type);
@@ -62,7 +65,7 @@
                 this.video_view.hide();
             }
 
-            location.reload();
+          ///  location.reload();
 
         }
 
@@ -86,8 +89,9 @@
             $.ajax({
                 url: this.host + "/api/thing/playlist?thing_id=" + this.thing_id,
                 success: (data) => {
+                    console.log(data);
                     this.playlist_new = data;
-                    this.fs.dir_files_clear(this.playlist_new);
+                   // this.fs.dir_files_clear(this.playlist_new);
                     this.loop(data);
                 }
             });
@@ -108,35 +112,37 @@
         }
 
         preseach_img(file) {
-
-            this.vr.fs.file_in_chache(file, (file) => {
-                this.viewer_img.attr('src', file);
-                this.viewer_img.show();
-                console.log('img_view show from chache', file);
-                this.vr.register_show();
-            }, (file) => {
-
-                console.log('ImgView download','host', this.vr.host, 'file', file);
-
-                $.ajax({
-                    url: this.vr.host + '/' + file,
-                    xhrFields: {
-                        responseType: 'blob'
-                    },
-                    success: (data) => {
-                        console.log('isDownloaded',data);
-                        let blobData = data;
-                        let url = window.URL || window.webkitURL;
-                        let src = url.createObjectURL(data);
-                        this.vr.fs.create_dirs_save_file(file, blobData);
-                    }
-                });
-
-                console.log('.preseach_img src_file=',file);
-                this.viewer_img.attr("src", this.vr.host + '/' + file);
-                this.viewer_img.show();
-
-            });
+                  console.log('.preseach_img src_file=',file);
+            this.viewer_img.attr("src",file);
+            this.viewer_img.show();
+            // this.vr.fs.file_in_chache(file, (file) => {
+            //     this.viewer_img.attr('src', file);
+            //     this.viewer_img.show();
+            //     console.log('img_view show from chache', file);
+            //     this.vr.register_show();
+            // }, (file) => {
+            //
+            //     console.log('ImgView download','host', this.vr.host, 'file', file);
+            //
+            //     $.ajax({
+            //         url: this.vr.host + '/' + file,
+            //         xhrFields: {
+            //             responseType: 'blob'
+            //         },
+            //         success: (data) => {
+            //             console.log('isDownloaded',data);
+            //             let blobData = data;
+            //             let url = window.URL || window.webkitURL;
+            //             let src = url.createObjectURL(data);
+            //             this.vr.fs.create_dirs_save_file(file, blobData);
+            //         }
+            //     });
+            //
+            //     console.log('.preseach_img src_file=',file);
+            //     this.viewer_img.attr("src", this.vr.host + '/' + file);
+            //     this.viewer_img.show();
+            //
+            // });
         }
 
         hide() {

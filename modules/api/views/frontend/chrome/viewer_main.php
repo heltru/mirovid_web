@@ -19,7 +19,7 @@
             this.video_view = new VideoView(this);
             this.playlist_new = [];
             this.playlist_old = [];
-            this.time_delay = 1000;//1000 * 60 * 1;
+            this.time_delay = parseInt("<?=Yii::$app->request->get('t') ? Yii::$app->request->get('t') : 6000?>");
 
             this.viewer = $('#viewer');
 
@@ -27,13 +27,14 @@
             this.host = this.viewer.attr('data-host');
 
             this.item = null;
-
-            navigator.webkitPersistentStorage.requestQuota(1024 * 1024 * 300, () => {
-                window.webkitRequestFileSystem(window.PERSISTENT, 1024 * 1024 * 300, (a) => {
-                    this.fs.fs = a;
-                    this.load();
-                }, this.errorHandler);
-            }, this.errorHandler);
+            //
+            // navigator.webkitPersistentStorage.requestQuota(1024 * 1024 * 300, () => {
+            //     window.webkitRequestFileSystem(window.PERSISTENT, 1024 * 1024 * 300, (a) => {
+            //         this.fs.fs = a;
+            //         this.load();
+            //     }, this.errorHandler);
+            // }, this.errorHandler);
+            this.load();
 
         }
 
